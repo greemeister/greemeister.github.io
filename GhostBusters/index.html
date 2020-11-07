@@ -131,8 +131,9 @@
                 { name : "demon", evidences : [2,5,6], description: "<b>Spiritbox + Writings + Freezing temps</b><br />Very aggressive. Attacks often. <span class='weakness'>Ouija board use won't affect sanity.</span>"},
                 { name : "yurei", evidences : [4,5,6], description: "<b>Orbs + Writings + Freezing temps</b><br />Strong effect on sanity. <span class='weakness'>Smudging its room contains it to that room for a while.</span>"},
                 { name : "oni", evidences : [1,2,5], description: "<b>EMF Level 5 + Spiritbox + Writings</b><br />More active with people nearby. <span class='weakness'>High activity makes it easier to find and identify.</span>"},
-            ]
+            ];
 
+            maxEvidenceID = 0;
 
             // Do not touch v
             function getGhostInfoMatches(present, notPresent){
@@ -189,7 +190,7 @@
                     document.getElementById(getEvidenceByID(evidenceArray[i])).style.backgroundImage = "url('btnsChecked/" + getEvidenceByID(evidenceArray[i]) + ".png')"; // selected button
                 }
                 
-                for (var j = 1; j < 7; j++) {
+                for (var j = 1; j < maxEvidenceID+1; j++) {
                 	var element = document.getElementById(getEvidenceByID(j));
 
                 	if (element.style.backgroundImage.includes("Disabled")) {
@@ -265,11 +266,24 @@
                         return "error";
                 }
             }
+
+            function findMaxEvidenceID() {
+                ghostInfos.forEach(function(item, index) {
+                    //console.log(item.evidences.length)
+                    for (i = 0; i < item.evidences.length; i++) {
+                        if (item.evidences[i] > maxEvidenceID) {
+                            maxEvidenceID = item.evidences[i];
+                        }
+                    }
+                });
+
+                //console.log("Max evidence id: " + maxEvidenceID);
+            }
         </script>
 
     </head>
 
-    <body>
+    <body onload="findMaxEvidenceID()">
     	<div id="clear" onClick="clearEvidence()"></div>
         <div id="wrapper">
             <div id="evidence">
