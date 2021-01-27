@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: url('journal.jpg');
+}
+
+#wrapper {
+    padding: 25px;
+    display: flex;
+}
+
+#ghosts {
+    font-family: 'Kalam', cursive;
+    color: rgb(45,45,45);
+    border-left: solid rgb(45,45,45) 3px;
+    margin-left: 5px;
+    padding-left: 25px;
+}
+
+#possibleGhosts {
+    list-style: square inside url("x.png");
+    text-transform: uppercase;
+}
+
+#possibleGhosts li {
+    font-size: 2em;
+    color: rgb(100,50,50);
+}
+
+#possibleGhosts p {
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+#evidence {
+    font-family: 'Kalam', cursive;
+    color: rgb(45,45,45);
+}
+
+#evidence h1 {
+    margin-bottom: 15px;
+}
+
+#evidence .button {
+    margin-bottom: 15px;
+}
+
+#emf,#spiritbox,#fingerprints,#ghostorbs,#ghostwritings,#freezingtemperatures {
+    width: 355px;
+    height: 38px;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+#clear {
+    width: 355px;
+    height: 75px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 75px;
+}
+
+#emf.enabled:hover,#spiritbox.enabled:hover,#fingerprints.enabled:hover,#ghostorbs.enabled:hover,#ghostwritings.enabled:hover,#freezingtemperatures.enabled:hover,#clear:hover {
+    cursor: pointer;
+}
+
+#emf {
+    background-image: url('btnsUnchecked/emf.png');
+}
+
+#spiritbox {
+    background-image: url('btnsUnchecked/spiritbox.png');
+}
+
+#fingerprints {
+    background-image: url('btnsUnchecked/fingerprints.png');
+}
+
+#ghostorbs {
+    background-image: url('btnsUnchecked/ghostorbs.png');
+}
+
+#ghostwritings {
+    background-image: url('btnsUnchecked/ghostwritings.png');
+}
+
+#freezingtemperatures {
+    background-image: url('btnsUnchecked/freezingtemperatures.png');
+}
+
+#clear {
+    background-image: url('clear.png');
+}
+
+.weakness {
+    color: rgb(0, 88, 0);
+}
+ 
