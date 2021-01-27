@@ -136,7 +136,7 @@
             maxEvidenceID = 0;
 
             // Do not touch v
-            function getGhostInfoMatches(present, notPresent){
+            function getGhostInfoMatches(present, notPresent) {
                 return Object.values(_.pickBy(_.omitBy(ghostInfos,ghost =>
                         ghost.evidences.some(r=> notPresent.indexOf(r) >= 0)
                     ), ghost =>
@@ -288,12 +288,12 @@
         <div id="wrapper">
             <div id="evidence">
                 <h1>Evidence found</h1>
-                <div class="button enabled" id="emf" onClick="toggleEvidence(1)"></div>
-                <div class="button enabled" id="spiritbox" onClick="toggleEvidence(2)"></div>
-                <div class="button enabled" id="fingerprints" onClick="toggleEvidence(3)"></div>
-                <div class="button enabled" id="ghostorbs" onClick="toggleEvidence(4)"></div>
-                <div class="button enabled" id="ghostwritings" onClick="toggleEvidence(5)"></div>
-                <div class="button enabled" id="freezingtemperatures" onClick="toggleEvidence(6)"></div>
+                <div class="button enabled" id="emf" onClick="getClickFunction(1)"></div>
+                <div class="button enabled" id="spiritbox" onClick="getClickFunction(2)"></div>
+                <div class="button enabled" id="fingerprints" onClick="getClickFunction(3)"></div>
+                <div class="button enabled" id="ghostorbs" onClick="getClickFunction(4)"></div>
+                <div class="button enabled" id="ghostwritings" onClick="getClickFunction(5)"></div>
+                <div class="button enabled" id="freezingtemperatures" onClick="getClickFunction(6)"></div>
             </div>
             <div id="ghosts">
                 <h1>Possible Ghosts</h1>
