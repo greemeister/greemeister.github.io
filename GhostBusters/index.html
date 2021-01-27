@@ -170,10 +170,10 @@
                 if (evidenceArray.length == 0) {
                     document.getElementById("possibleGhosts").innerHTML = "<br /><p>We need tangible evidence. I should check rooms with an EMF reader for activity, or a thermometer for sub-zero temperatures.</p>";
                 } else {
-	                getGhostInfoMatches(evidenceArray,[]).forEach(ghostInfo => { // getGhostMatches([foundEvidence], [missingEvidence])
-    	                document.getElementById("possibleGhosts").innerHTML += '<li>' + ghostInfo.name + '</li> <p>' + ghostInfo.description;
-	                })
-				}
+                    getGhostInfoMatches(evidenceArray,[]).forEach(ghostInfo => { // getGhostMatches([foundEvidence], [missingEvidence])
+                    document.getElementById("possibleGhosts").innerHTML += '<li>' + ghostInfo.name + '</li> <p>' + ghostInfo.description;
+                    })
+                }
 
                 document.getElementById("emf").style.backgroundImage = "url('btnsDisabled/emf.png')";
                 document.getElementById("spiritbox").style.backgroundImage = "url('btnsDisabled/spiritbox.png')";
