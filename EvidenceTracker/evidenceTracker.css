@@ -4,7 +4,9 @@
 }
 
 body {
-    background: url('journal.jpg');
+    background: url('new-journal.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #wrapper {
@@ -21,7 +23,8 @@ body {
 }
 
 #possibleGhosts {
-    list-style: square inside url("x.png");
+    /*list-style: square inside url("x.png");*/
+    list-style: none;
     text-transform: uppercase;
 }
 
@@ -31,7 +34,7 @@ body {
 }
 
 #possibleGhosts p {
-    margin-top: -10px;
+    margin-top: -12px;
     margin-bottom: 10px;
 }
 
@@ -56,7 +59,7 @@ body {
 }
 
 #clear {
-    width: 355px;
+    width: 375px;
     height: 75px;
     background-repeat: no-repeat;
     background-position: center;
@@ -93,6 +96,10 @@ body {
 
 #clear {
     background-image: url('clear.png');
+}
+
+#clear:hover {
+	background-image: url('clear-highlighted.png');
 }
 
 .weakness {
