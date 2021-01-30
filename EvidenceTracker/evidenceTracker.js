@@ -1,31 +1,33 @@
-/* 
-   1 = EMF level 5
-   2 = Spirit Box
-   3 = Fingerprints
-   4 = Ghost Orbs 
-   5 = Ghost Writings
-   6 = Freezing Temps
-*/
+
+
+const evidenceTypes = [
+    "Unknown",
+    "EMF Level 5",
+    "Spiritbox",
+    "Fingerprints",
+    "Orbs",
+    "Writings",
+    "Freezing Temps"
+];
 
 // ghost info definitions
 const ghostInfos = [
-    { name : "spirit", evidences : [2,3,5], description: "<b>Spiritbox + Fingerprints + Writings</b><br />No strengths. <span class='weakness'>Smudge sticks will pacify it for a while.</span>"},
-    { name : "wraith", evidences : [2,3,6], description: "<b>Spiritbox + Fingerprints + Freezing temps</b><br />Floats, footsteps rare. <span class='weakness'>Has toxicity to salt.</span>"},
-    { name : "phantom", evidences : [1,4,6], description: "<b>EMF Level 5 + Orbs + Freezing temps</b><br />Seeing it drops sanity fast. <span class='weakness'>Taking its photo makes it hide for a while.</span>"},
-    { name : "poltergeist", evidences : [2,3,4], description: "<b>Spiritbox + Fingerprints + Orbs</b><br />Can throw objects around. <span class='weakness'>Ineffective in empty rooms.</span>"},
-    { name : "banshee", evidences : [1,3,6], description: "<b>EMF Level 5 + Fingerprints + Freezing temps</b><br />Targets lone individuals. <span class='weakness'>Fears crucifix & less aggressive near them.</span>"},
-    { name : "jinn", evidences : [1,2,4], description: "<b>EMF Level 5 + Spiritbox + Orbs</b><br />Travels fast if victim is far. <span class='weakness'>Kill electricity to stop its powers.</span>"},
-    { name : "mare", evidences : [2,4,6], description: "<b>Spiritbox + Orbs + Freezing temps</b><br />More chances to attack in darkness. <span class='weakness'>Turn lights on to reduce aggression.</span>"},
-    { name : "revenant", evidences : [1,3,5], description: "<b>EMF Level 5 + Fingerprints + Writings</b><br />Travels fast when hunting. <span class='weakness'>Moves slowly if it can't see humans.</span>"},
-    { name : "shade", evidences : [1,4,5], description: "<b>EMF Level 5 + Orbs + Writings</b><br />Shy/hard to find. Less activity around groups. <span class='weakness'>Can't hunt if multiple people around.</span>"},
-    { name : "demon", evidences : [2,5,6], description: "<b>Spiritbox + Writings + Freezing temps</b><br />Very aggressive. Attacks often. <span class='weakness'>Ouija board use won't affect sanity.</span>"},
-    { name : "yurei", evidences : [4,5,6], description: "<b>Orbs + Writings + Freezing temps</b><br />Strong effect on sanity. <span class='weakness'>Smudging its room contains it to that room for a while.</span>"},
-    { name : "oni", evidences : [1,2,5], description: "<b>EMF Level 5 + Spiritbox + Writings</b><br />More active with people nearby. <span class='weakness'>High activity makes it easier to find and identify.</span>"},
+    { name : "spirit", evidences : [2,3,5], description: "No strengths. <span class='weakness'>Smudge sticks will pacify it for a while.</span>"},
+    { name : "wraith", evidences : [2,3,6], description: "Floats, footsteps rare. <span class='weakness'>Has toxicity to salt.</span>"},
+    { name : "phantom", evidences : [1,4,6], description: "Seeing it drops sanity fast. <span class='weakness'>Taking its photo makes it hide for a while.</span>"},
+    { name : "poltergeist", evidences : [2,3,4], description: "Can throw objects around. <span class='weakness'>Ineffective in empty rooms.</span>"},
+    { name : "banshee", evidences : [1,3,6], description: "Targets lone individuals. <span class='weakness'>Fears crucifix & less aggressive near them.</span>"},
+    { name : "jinn", evidences : [1,2,4], description: "Travels fast if victim is far. <span class='weakness'>Kill electricity to stop its powers.</span>"},
+    { name : "mare", evidences : [2,4,6], description: "More chances to attack in darkness. <span class='weakness'>Turn lights on to reduce aggression.</span>"},
+    { name : "revenant", evidences : [1,3,5], description: "Travels fast when hunting. <span class='weakness'>Moves slowly if it can't see humans.</span>"},
+    { name : "shade", evidences : [1,4,5], description: "Shy/hard to find. Less activity around groups. <span class='weakness'>Can't hunt if multiple people around.</span>"},
+    { name : "demon", evidences : [2,5,6], description: "Very aggressive. Attacks often. <span class='weakness'>Ouija board use won't affect sanity.</span>"},
+    { name : "yurei", evidences : [4,5,6], description: "Strong effect on sanity. <span class='weakness'>Smudging its room contains it to that room for a while.</span>"},
+    { name : "oni", evidences : [1,2,5], description: "More active with people nearby. <span class='weakness'>High activity makes it easier to find and identify.</span>"},
 ];
 
-maxEvidenceID = 0;
+maxEvidenceID = 0
 
-// Do not touch v
 function getGhostInfoMatches(present, notPresent) {
     return Object.values(_.pickBy(_.omitBy(ghostInfos,ghost =>
             ghost.evidences.some(r=> notPresent.indexOf(r) >= 0)
@@ -37,20 +39,33 @@ function getGhostInfoMatches(present, notPresent) {
 function getRemainingEvidenceIds(present, notPresent) {
     return _.difference(_.flatMap(getGhostInfoMatches(present, notPresent), gi=> gi.evidences), present)
 }
-// Do not touch ^
 
-let evidenceArray = [];
+function getEvidencePossibilities(gi) {
+    let res = ""
+
+    for (i = 0; i < gi.evidences.length; i++) {
+        res = res + evidenceTypes[gi.evidences[i]]
+
+        if (i < (gi.evidences.length - 1)) {
+            res = res + " + "
+        }
+    }
+
+    return res
+}
+
+let evidenceArray = []
 
 function toggleEvidence(evidence) {    
 
-    console.clear();
+    console.clear()
     //console.log("Evidence: " + evidence);
     // if that evidence doesn't exist in the array (-1)
     if (evidence) {
         if(evidenceArray.indexOf(evidence) === -1){
-            evidenceArray.push(evidence);
+            evidenceArray.push(evidence)
         } else {
-            evidenceArray.splice(evidenceArray.indexOf(evidence), 1);
+            evidenceArray.splice(evidenceArray.indexOf(evidence), 1)
         }
     }   
 
@@ -61,7 +76,8 @@ function toggleEvidence(evidence) {
         document.getElementById("possibleGhosts").innerHTML = "<br /><p>We need tangible evidence. I should check rooms with an EMF reader for activity, or a thermometer for sub-zero temperatures.</p>";
     } else {
         getGhostInfoMatches(evidenceArray,[]).forEach(ghostInfo => { // getGhostMatches([foundEvidence], [missingEvidence])
-        document.getElementById("possibleGhosts").innerHTML += '<li>' + ghostInfo.name + '</li> <p>' + ghostInfo.description;
+        document.getElementById("possibleGhosts").innerHTML += '<li>' + ghostInfo.name + '</li> <p><b>' + 
+                                getEvidencePossibilities(ghostInfo) + '</b><br />' + ghostInfo.description + '</p>';
         })
     }
 
