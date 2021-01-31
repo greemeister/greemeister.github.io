@@ -34,6 +34,7 @@ var maxEvidenceID = 0;
 var excludeEvidence = false;
 var evidenceArray = [];
 var excludeEvidenceArray = [];
+var cachedImages = [];
 
 document.addEventListener("keydown", function(event) {
     if (event.keyCode == 17) {
@@ -153,6 +154,20 @@ function getEvidenceByID(id){
     }
 }
 
+function getEvidencePossibilities(gi) {
+    let res = "";
+
+    for (let i = 0; i < gi.evidences.length; i++) {
+        res = res + evidenceTypes[gi.evidences[i]];
+
+        if (i < (gi.evidences.length - 1)) {
+            res = res + " + ";
+        }
+    }
+
+    return res;
+}
+
 function getGhostInfoMatches(present, notPresent, exclude) {
     let matches = (_.pickBy(_.omitBy(ghostInfos,ghost =>
             ghost.evidences.some(r=> notPresent.indexOf(r) >= 0)
@@ -174,23 +189,22 @@ function getRemainingEvidenceIds(present, notPresent, exclude) {
     return _.difference(_.flatMap(getGhostInfoMatches(present, notPresent, exclude), gi=> gi.evidences), present);
 }
 
-function getEvidencePossibilities(gi) {
-    let res = "";
-
-    for (let i = 0; i < gi.evidences.length; i++) {
-        res = res + evidenceTypes[gi.evidences[i]];
-
-        if (i < (gi.evidences.length - 1)) {
-            res = res + " + ";
-        }
-    }
-
-    return res;
-}
-
 function initializeTracker() {
     findMaxEvidenceID();
+    initImageCache();
     initPossibleGhostText();
+}
+
+function initImageCache() {
+    for (let i = 1; i <= maxEvidenceID; i++) {
+        let evidenceStr = getEvidenceByID(i);
+        cachedImages[evidenceStr] = {checked: new Image(), disabled: new Image(), excluded: new Image(), unchecked: new Image()};
+
+        cachedImages[evidenceStr].checked.src = 'btnsChecked/' + evidenceStr + '.png';
+        cachedImages[evidenceStr].disabled.src = 'btnsDisabled/' + evidenceStr + '.png';
+        cachedImages[evidenceStr].excluded.src = 'btnsExcluded/' + evidenceStr + '.png';
+        cachedImages[evidenceStr].unchecked.src = 'btnsUnchecked/' + evidenceStr + '.png';
+    }
 }
 
 function initPossibleGhostText() {
@@ -254,23 +268,23 @@ function toggleEvidence(evidence) {
         })
     }
 
-    document.getElementById("emf").style.backgroundImage = "url('btnsDisabled/emf.png')";
-    document.getElementById("spiritbox").style.backgroundImage = "url('btnsDisabled/spiritbox.png')";
-    document.getElementById("fingerprints").style.backgroundImage = "url('btnsDisabled/fingerprints.png')";
-    document.getElementById("ghostorb").style.backgroundImage = "url('btnsDisabled/ghostorb.png')";
-    document.getElementById("ghostwriting").style.backgroundImage = "url('btnsDisabled/ghostwriting.png')";
-    document.getElementById("freezingtemperatures").style.backgroundImage = "url('btnsDisabled/freezingtemperatures.png')";
+    document.getElementById("emf").style.backgroundImage = toUrl(cachedImages["emf"].disabled.src);
+    document.getElementById("spiritbox").style.backgroundImage = toUrl(cachedImages["spiritbox"].disabled.src);
+    document.getElementById("fingerprints").style.backgroundImage = toUrl(cachedImages["fingerprints"].disabled.src);
+    document.getElementById("ghostorb").style.backgroundImage = toUrl(cachedImages["ghostorb"].disabled.src);
+    document.getElementById("ghostwriting").style.backgroundImage = toUrl(cachedImages["ghostwriting"].disabled.src);
+    document.getElementById("freezingtemperatures").style.backgroundImage = toUrl(cachedImages["freezingtemperatures"].disabled.src);
                     
     getRemainingEvidenceIds(evidenceArray, [], excludeEvidenceArray).forEach(evidenceId => {
-        document.getElementById(getEvidenceByID(evidenceId)).style.backgroundImage = "url('btnsUnchecked/" + getEvidenceByID(evidenceId) + ".png')";
+        document.getElementById(getEvidenceByID(evidenceId)).style.backgroundImage = toUrl(cachedImages[getEvidenceByID(evidenceId)].unchecked.src);
     })
 
     for (let i = 0; i < evidenceArray.length; i++) {
-        document.getElementById(getEvidenceByID(evidenceArray[i])).style.backgroundImage = "url('btnsChecked/" + getEvidenceByID(evidenceArray[i]) + ".png')";
+        document.getElementById(getEvidenceByID(evidenceArray[i])).style.backgroundImage = toUrl(cachedImages[getEvidenceByID(evidenceArray[i])].checked.src);
     }
 
     for (let i = 0; i < excludeEvidenceArray.length; i++) {
-        document.getElementById(getEvidenceByID(excludeEvidenceArray[i])).style.backgroundImage = "url('btnsExcluded/" + getEvidenceByID(excludeEvidenceArray[i]) + ".png')";
+        document.getElementById(getEvidenceByID(excludeEvidenceArray[i])).style.backgroundImage = toUrl(cachedImages[getEvidenceByID(excludeEvidenceArray[i])].excluded.src);
     }
     
     for (let j = 1; j < maxEvidenceID+1; j++) {
@@ -290,4 +304,8 @@ function toggleEvidence(evidence) {
 
         //console.log("j: " + j + ", " + element);
     }
+}
+
+function toUrl(str) {
+    return "url(" + str + ")";
 }
