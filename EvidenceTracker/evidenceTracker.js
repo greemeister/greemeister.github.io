@@ -147,7 +147,7 @@ function toggleEvidence(evidence) {
     document.getElementById("possibleGhosts").innerHTML = "";
 
     if (evidenceArray.length == 0) {
-        document.getElementById("possibleGhosts").innerHTML = "<br /><p>We need tangible evidence. I should check rooms with an EMF reader for activity, or a thermometer for sub-zero temperatures.</p>";
+        document.getElementById("possibleGhosts").innerHTML = "<br /><p>We need tangible evidence! Check areas with tools to gather information and evidence.</p>";
     } else {
         getGhostInfoMatches(evidenceArray, [], excludeEvidenceArray).forEach(ghostInfo => { // getGhostMatches([foundEvidence], [missingEvidence])
         document.getElementById("possibleGhosts").innerHTML += '<li>' + ghostInfo.name + '</li> <p><b>' + 
