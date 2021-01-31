@@ -1,16 +1,15 @@
-
-
+// Evidence Type Defs
 const evidenceTypes = [
     "Unknown",
     "EMF Level 5",
-    "Spiritbox",
+    "Spirit Box",
     "Fingerprints",
-    "Orbs",
-    "Writings",
+    "Ghost Orb",
+    "Ghost Writing",
     "Freezing Temps"
 ];
 
-// ghost info definitions
+// Ghost Info Defs
 const ghostInfos = [
     { name : "spirit", evidences : [2,3,5], description: "No strengths. <span class='weakness'>Smudge sticks will pacify it for a while.</span>"},
     { name : "wraith", evidences : [2,3,6], description: "Floats, footsteps rare. <span class='weakness'>Has toxicity to salt.</span>"},
@@ -26,56 +25,131 @@ const ghostInfos = [
     { name : "oni", evidences : [1,2,5], description: "More active with people nearby. <span class='weakness'>High activity makes it easier to find and identify.</span>"},
 ];
 
-maxEvidenceID = 0
+const maxNumOfEvidences = ghostInfos[0].evidences.length;
+const ecn_enabled = "enabled";
+const ecn_excluded = "excluded";
+const ecn_tagged = "tagged";
 
-function getGhostInfoMatches(present, notPresent) {
-    return Object.values(_.pickBy(_.omitBy(ghostInfos,ghost =>
+var maxEvidenceID = 0;
+var excludeEvidence = false;
+var evidenceArray = [];
+var excludeEvidenceArray = [];
+
+function getGhostInfoMatches(present, notPresent, exclude) {
+    let matches = (_.pickBy(_.omitBy(ghostInfos,ghost =>
             ghost.evidences.some(r=> notPresent.indexOf(r) >= 0)
         ), ghost =>
             present.every(r=> ghost.evidences.indexOf(r) >= 0)
-    ))
+    ));
+
+    return Object.values(_.omitBy(matches, m => 
+        m.evidences.some(r => exclude.indexOf(r) >= 0)
+    ));
+    /*return Object.values(_.pickBy(_.omitBy(ghostInfos,ghost =>
+            ghost.evidences.some(r=> notPresent.indexOf(r) >= 0)
+        ), ghost =>
+            present.every(r=> ghost.evidences.indexOf(r) >= 0)
+    ));*/
 }
 
-function getRemainingEvidenceIds(present, notPresent) {
-    return _.difference(_.flatMap(getGhostInfoMatches(present, notPresent), gi=> gi.evidences), present)
+function getRemainingEvidenceIds(present, notPresent, exclude) {
+    return _.difference(_.flatMap(getGhostInfoMatches(present, notPresent, exclude), gi=> gi.evidences), present);
 }
 
 function getEvidencePossibilities(gi) {
-    let res = ""
+    let res = "";
 
     for (i = 0; i < gi.evidences.length; i++) {
-        res = res + evidenceTypes[gi.evidences[i]]
+        res = res + evidenceTypes[gi.evidences[i]];
 
         if (i < (gi.evidences.length - 1)) {
-            res = res + " + "
+            res = res + " + ";
         }
     }
 
-    return res
+    return res;
 }
 
-let evidenceArray = []
+function modifyEvidenceClass(evidence, classname, action="add") {
+    let element = document.getElementById(getEvidenceByID(evidence));
 
-function toggleEvidence(evidence) {    
-
-    console.clear()
-    //console.log("Evidence: " + evidence);
-    // if that evidence doesn't exist in the array (-1)
-    if (evidence) {
-        if(evidenceArray.indexOf(evidence) === -1){
-            evidenceArray.push(evidence)
-        } else {
-            evidenceArray.splice(evidenceArray.indexOf(evidence), 1)
+    action = action.toLowerCase();
+    
+    if (action !== "add") {
+        element.classList.remove(classname);
+    } else {
+        if (!element.classList.contains(classname)) {
+            element.classList.add(classname);
         }
-    }   
+    }
+}
 
-    // get ghost matches according to entered evidence
+function evidenceToArray(arr, evidence, action="add") {
+    let classname = "";
+    
+    action = action.toLowerCase();
+
+    if (arr === excludeEvidenceArray) {
+        classname = ecn_excluded;
+    } else if (arr === evidenceArray) {
+        classname = ecn_tagged;
+    }
+
+    if (action !== "add") {
+        if (Array.isArray(arr) && arr.indexOf(evidence) !== -1) {
+            arr.splice(arr.indexOf(evidence), 1);
+        }
+    } else if (!Array.isArray(arr) || arr.indexOf(evidence) === -1) {
+        if (arr.length < maxNumOfEvidences) {
+            arr.push(evidence);
+        } else {
+            return;
+        }
+    } else {
+        return;
+    }
+
+    modifyEvidenceClass(evidence, classname, action);
+}
+
+function toggleEvidence(evidence) {
+    console.clear();
+    //console.log("Evidence: " + evidence);
+
+    if (evidence) {
+        let arr = evidenceArray;
+        let arr2 = excludeEvidenceArray;
+
+        if (excludeEvidence) {
+            arr = excludeEvidenceArray;
+            arr2 = evidenceArray;
+        }
+
+        // Make sure to remove the evidence from the "other" array first
+        if (arr2.indexOf(evidence) !== -1) {
+            evidenceToArray(arr2, evidence, "remove");
+        }
+
+        if (arr.indexOf(evidence) === -1) {
+            if ((getRemainingEvidenceIds(evidenceArray, [], excludeEvidenceArray).length > 1) || (arr === evidenceArray)) {
+                /*getRemainingEvidenceIds(evidenceArray, [], excludeEvidenceArray).forEach (e => {
+                    console.log("e: " + getEvidenceByID(e));
+                })*/
+                evidenceToArray(arr, evidence, "add");
+            }
+
+        } else {
+            evidenceToArray(arr, evidence, "remove");
+        }
+    }
+
+    // grab ghost matches according to selected evidence
     document.getElementById("possibleGhosts").innerHTML = "";
 
     if (evidenceArray.length == 0) {
         document.getElementById("possibleGhosts").innerHTML = "<br /><p>We need tangible evidence. I should check rooms with an EMF reader for activity, or a thermometer for sub-zero temperatures.</p>";
     } else {
-        getGhostInfoMatches(evidenceArray,[]).forEach(ghostInfo => { // getGhostMatches([foundEvidence], [missingEvidence])
+        getGhostInfoMatches(evidenceArray, [], excludeEvidenceArray).forEach(ghostInfo => { // getGhostMatches([foundEvidence], [missingEvidence])
         document.getElementById("possibleGhosts").innerHTML += '<li>' + ghostInfo.name + '</li> <p><b>' + 
                                 getEvidencePossibilities(ghostInfo) + '</b><br />' + ghostInfo.description + '</p>';
         })
@@ -84,41 +158,50 @@ function toggleEvidence(evidence) {
     document.getElementById("emf").style.backgroundImage = "url('btnsDisabled/emf.png')";
     document.getElementById("spiritbox").style.backgroundImage = "url('btnsDisabled/spiritbox.png')";
     document.getElementById("fingerprints").style.backgroundImage = "url('btnsDisabled/fingerprints.png')";
-    document.getElementById("ghostorbs").style.backgroundImage = "url('btnsDisabled/ghostorbs.png')";
-    document.getElementById("ghostwritings").style.backgroundImage = "url('btnsDisabled/ghostwritings.png')";
+    document.getElementById("ghostorb").style.backgroundImage = "url('btnsDisabled/ghostorb.png')";
+    document.getElementById("ghostwriting").style.backgroundImage = "url('btnsDisabled/ghostwriting.png')";
     document.getElementById("freezingtemperatures").style.backgroundImage = "url('btnsDisabled/freezingtemperatures.png')";
                     
-    getRemainingEvidenceIds(evidenceArray,[]).forEach(evidenceId => {
-        document.getElementById(getEvidenceByID(evidenceId)).style.backgroundImage = "url('btnsUnchecked/" + getEvidenceByID(evidenceId) + ".png')"; // enabled button (possible evidence)
+    getRemainingEvidenceIds(evidenceArray, [], excludeEvidenceArray).forEach(evidenceId => {
+        document.getElementById(getEvidenceByID(evidenceId)).style.backgroundImage = "url('btnsUnchecked/" + getEvidenceByID(evidenceId) + ".png')";
     })
 
-    for (var i = 0; i < evidenceArray.length; i++){
-        document.getElementById(getEvidenceByID(evidenceArray[i])).style.backgroundImage = "url('btnsChecked/" + getEvidenceByID(evidenceArray[i]) + ".png')"; // selected button
+    for (let i = 0; i < evidenceArray.length; i++) {
+        document.getElementById(getEvidenceByID(evidenceArray[i])).style.backgroundImage = "url('btnsChecked/" + getEvidenceByID(evidenceArray[i]) + ".png')";
+    }
+
+    for (let i = 0; i < excludeEvidenceArray.length; i++) {
+        document.getElementById(getEvidenceByID(excludeEvidenceArray[i])).style.backgroundImage = "url('btnsExcluded/" + getEvidenceByID(excludeEvidenceArray[i]) + ".png')";
     }
     
-    for (var j = 1; j < maxEvidenceID+1; j++) {
-        var element = document.getElementById(getEvidenceByID(j));
+    for (let j = 1; j < maxEvidenceID+1; j++) {
+        let element = document.getElementById(getEvidenceByID(j));
 
         if (element.style.backgroundImage.includes("Disabled")) {
             //console.log(element + ": is disabled!");
             element.onclick = false;
-            element.classList.remove("enabled");
+            element.classList.remove(ecn_enabled);
         } else {
             element.onclick = getClickFunction(j);
             
-            if (!element.classList.contains("enabled")) {
-                element.classList.add("enabled");
+            if (!element.classList.contains(ecn_enabled)) {
+                element.classList.add(ecn_enabled);
             }
-        }
-        
+        }    
 
         //console.log("j: " + j + ", " + element);
-        
     }
 }
 
 function clearEvidence() {
     evidenceArray = [];
+    excludeEvidenceArray = [];
+    
+    for (let i = 1; i < maxEvidenceID+1; i++) {
+        evidenceToArray(evidenceArray, i, "remove");
+        evidenceToArray(excludeEvidenceArray, i, "remove");
+    }
+
     toggleEvidence(null);
 }
 
@@ -159,10 +242,10 @@ function getEvidenceByID(id){
             return "fingerprints";
             break;
         case 4:
-            return "ghostorbs";
+            return "ghostorb";
             break;
         case 5:
-            return "ghostwritings";
+            return "ghostwriting";
             break;
         case 6:
             return "freezingtemperatures";
@@ -174,10 +257,28 @@ function getEvidenceByID(id){
 
 function findMaxEvidenceID() {
     ghostInfos.forEach(function(item, index) {
-        for (i = 0; i < item.evidences.length; i++) {
+        for (let i = 0; i < item.evidences.length; i++) {
             if (item.evidences[i] > maxEvidenceID) {
                 maxEvidenceID = item.evidences[i];
             }
         }
     });
 }
+
+document.addEventListener("keydown", function(event) {
+    if (event.keyCode == 17) {
+        if (!excludeEvidence) {
+            excludeEvidence = true;
+            //window.alert("keydown");
+        }
+    }
+});
+
+document.addEventListener("keyup", function(event) {
+    if (event.keyCode == 17) {
+        if (excludeEvidence) {
+            excludeEvidence = false;
+            //window.alert("keyup");
+        }
+    }
+});

@@ -43,6 +43,12 @@ body {
     color: rgb(45,45,45);
 }
 
+#note {
+    font-family: 'Kalam', cursive;
+    font-size: 1.3em;
+    color: #496595;
+}
+
 #evidence h1 {
     margin-bottom: 15px;
 }
@@ -51,7 +57,7 @@ body {
     margin-bottom: 15px;
 }
 
-#emf,#spiritbox,#fingerprints,#ghostorbs,#ghostwritings,#freezingtemperatures {
+#emf,#spiritbox,#fingerprints,#ghostorb,#ghostwriting,#freezingtemperatures {
     width: 355px;
     height: 38px;
     background-repeat: no-repeat;
@@ -59,15 +65,19 @@ body {
 }
 
 #clear {
-    width: 375px;
+    width: 425px;
     height: 75px;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 75px;
 }
 
-#emf.enabled:hover,#spiritbox.enabled:hover,#fingerprints.enabled:hover,#ghostorbs.enabled:hover,#ghostwritings.enabled:hover,#freezingtemperatures.enabled:hover,#clear:hover {
+#emf.enabled:hover,#spiritbox.enabled:hover,#fingerprints.enabled:hover,#ghostorb.enabled:hover,#ghostwriting.enabled:hover,#freezingtemperatures.enabled:hover,#clear:hover {
     cursor: pointer;
+}
+
+#emf:not(.enabled),#spiritbox:not(.enabled),#fingerprints:not(.enabled),#ghostorb:not(.enabled),#ghostwriting:not(.enabled),#freezingtemperatures:not(.enabled) {
+    filter: opacity(50%);
 }
 
 #emf {
@@ -82,12 +92,12 @@ body {
     background-image: url('btnsUnchecked/fingerprints.png');
 }
 
-#ghostorbs {
-    background-image: url('btnsUnchecked/ghostorbs.png');
+#ghostorb {
+    background-image: url('btnsUnchecked/ghostorb.png');
 }
 
-#ghostwritings {
-    background-image: url('btnsUnchecked/ghostwritings.png');
+#ghostwriting {
+    background-image: url('btnsUnchecked/ghostwriting.png');
 }
 
 #freezingtemperatures {
@@ -99,7 +109,7 @@ body {
 }
 
 #clear:hover {
-	background-image: url('clear-highlighted.png');
+	/*background-image: url('clear-highlighted.png');*/
 }
 
 .weakness {
