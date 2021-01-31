@@ -35,53 +35,34 @@ var excludeEvidence = false;
 var evidenceArray = [];
 var excludeEvidenceArray = [];
 
-function getGhostInfoMatches(present, notPresent, exclude) {
-    let matches = (_.pickBy(_.omitBy(ghostInfos,ghost =>
-            ghost.evidences.some(r=> notPresent.indexOf(r) >= 0)
-        ), ghost =>
-            present.every(r=> ghost.evidences.indexOf(r) >= 0)
-    ));
-
-    return Object.values(_.omitBy(matches, m => 
-        m.evidences.some(r => exclude.indexOf(r) >= 0)
-    ));
-    /*return Object.values(_.pickBy(_.omitBy(ghostInfos,ghost =>
-            ghost.evidences.some(r=> notPresent.indexOf(r) >= 0)
-        ), ghost =>
-            present.every(r=> ghost.evidences.indexOf(r) >= 0)
-    ));*/
-}
-
-function getRemainingEvidenceIds(present, notPresent, exclude) {
-    return _.difference(_.flatMap(getGhostInfoMatches(present, notPresent, exclude), gi=> gi.evidences), present);
-}
-
-function getEvidencePossibilities(gi) {
-    let res = "";
-
-    for (i = 0; i < gi.evidences.length; i++) {
-        res = res + evidenceTypes[gi.evidences[i]];
-
-        if (i < (gi.evidences.length - 1)) {
-            res = res + " + ";
+document.addEventListener("keydown", function(event) {
+    if (event.keyCode == 17) {
+        if (!excludeEvidence) {
+            excludeEvidence = true;
+            //window.alert("keydown");
         }
     }
+});
 
-    return res;
-}
+document.addEventListener("keyup", function(event) {
+    if (event.keyCode == 17) {
+        if (excludeEvidence) {
+            excludeEvidence = false;
+            //window.alert("keyup");
+        }
+    }
+});
 
-function modifyEvidenceClass(evidence, classname, action="add") {
-    let element = document.getElementById(getEvidenceByID(evidence));
-
-    action = action.toLowerCase();
+function clearEvidence() {
+    evidenceArray = [];
+    excludeEvidenceArray = [];
     
-    if (action !== "add") {
-        element.classList.remove(classname);
-    } else {
-        if (!element.classList.contains(classname)) {
-            element.classList.add(classname);
-        }
+    for (let i = 1; i < maxEvidenceID+1; i++) {
+        evidenceToArray(evidenceArray, i, "remove");
+        evidenceToArray(excludeEvidenceArray, i, "remove");
     }
+
+    toggleEvidence(null);
 }
 
 function evidenceToArray(arr, evidence, action="add") {
@@ -112,97 +93,14 @@ function evidenceToArray(arr, evidence, action="add") {
     modifyEvidenceClass(evidence, classname, action);
 }
 
-function toggleEvidence(evidence) {
-    console.clear();
-    //console.log("Evidence: " + evidence);
-
-    if (evidence) {
-        let arr = evidenceArray;
-        let arr2 = excludeEvidenceArray;
-
-        if (excludeEvidence) {
-            arr = excludeEvidenceArray;
-            arr2 = evidenceArray;
-        }
-
-        // Make sure to remove the evidence from the "other" array first
-        if (arr2.indexOf(evidence) !== -1) {
-            evidenceToArray(arr2, evidence, "remove");
-        }
-
-        if (arr.indexOf(evidence) === -1) {
-            if ((getRemainingEvidenceIds(evidenceArray, [], excludeEvidenceArray).length > 1) || (arr === evidenceArray)) {
-                /*getRemainingEvidenceIds(evidenceArray, [], excludeEvidenceArray).forEach (e => {
-                    console.log("e: " + getEvidenceByID(e));
-                })*/
-                evidenceToArray(arr, evidence, "add");
+function findMaxEvidenceID() {
+    ghostInfos.forEach(function(item, index) {
+        for (let i = 0; i < item.evidences.length; i++) {
+            if (item.evidences[i] > maxEvidenceID) {
+                maxEvidenceID = item.evidences[i];
             }
-
-        } else {
-            evidenceToArray(arr, evidence, "remove");
         }
-    }
-
-    // grab ghost matches according to selected evidence
-    document.getElementById("possibleGhosts").innerHTML = "";
-
-    if (evidenceArray.length == 0) {
-        document.getElementById("possibleGhosts").innerHTML = "<br /><p>We need tangible evidence! Check areas with tools to gather information and evidence.</p>";
-    } else {
-        getGhostInfoMatches(evidenceArray, [], excludeEvidenceArray).forEach(ghostInfo => { // getGhostMatches([foundEvidence], [missingEvidence])
-        document.getElementById("possibleGhosts").innerHTML += '<li>' + ghostInfo.name + '</li> <p><b>' + 
-                                getEvidencePossibilities(ghostInfo) + '</b><br />' + ghostInfo.description + '</p>';
-        })
-    }
-
-    document.getElementById("emf").style.backgroundImage = "url('btnsDisabled/emf.png')";
-    document.getElementById("spiritbox").style.backgroundImage = "url('btnsDisabled/spiritbox.png')";
-    document.getElementById("fingerprints").style.backgroundImage = "url('btnsDisabled/fingerprints.png')";
-    document.getElementById("ghostorb").style.backgroundImage = "url('btnsDisabled/ghostorb.png')";
-    document.getElementById("ghostwriting").style.backgroundImage = "url('btnsDisabled/ghostwriting.png')";
-    document.getElementById("freezingtemperatures").style.backgroundImage = "url('btnsDisabled/freezingtemperatures.png')";
-                    
-    getRemainingEvidenceIds(evidenceArray, [], excludeEvidenceArray).forEach(evidenceId => {
-        document.getElementById(getEvidenceByID(evidenceId)).style.backgroundImage = "url('btnsUnchecked/" + getEvidenceByID(evidenceId) + ".png')";
-    })
-
-    for (let i = 0; i < evidenceArray.length; i++) {
-        document.getElementById(getEvidenceByID(evidenceArray[i])).style.backgroundImage = "url('btnsChecked/" + getEvidenceByID(evidenceArray[i]) + ".png')";
-    }
-
-    for (let i = 0; i < excludeEvidenceArray.length; i++) {
-        document.getElementById(getEvidenceByID(excludeEvidenceArray[i])).style.backgroundImage = "url('btnsExcluded/" + getEvidenceByID(excludeEvidenceArray[i]) + ".png')";
-    }
-    
-    for (let j = 1; j < maxEvidenceID+1; j++) {
-        let element = document.getElementById(getEvidenceByID(j));
-
-        if (element.style.backgroundImage.includes("Disabled")) {
-            //console.log(element + ": is disabled!");
-            element.onclick = false;
-            element.classList.remove(ecn_enabled);
-        } else {
-            element.onclick = getClickFunction(j);
-            
-            if (!element.classList.contains(ecn_enabled)) {
-                element.classList.add(ecn_enabled);
-            }
-        }    
-
-        //console.log("j: " + j + ", " + element);
-    }
-}
-
-function clearEvidence() {
-    evidenceArray = [];
-    excludeEvidenceArray = [];
-    
-    for (let i = 1; i < maxEvidenceID+1; i++) {
-        evidenceToArray(evidenceArray, i, "remove");
-        evidenceToArray(excludeEvidenceArray, i, "remove");
-    }
-
-    toggleEvidence(null);
+    });
 }
 
 function getClickFunction(id){
@@ -255,30 +153,141 @@ function getEvidenceByID(id){
     }
 }
 
-function findMaxEvidenceID() {
-    ghostInfos.forEach(function(item, index) {
-        for (let i = 0; i < item.evidences.length; i++) {
-            if (item.evidences[i] > maxEvidenceID) {
-                maxEvidenceID = item.evidences[i];
-            }
-        }
-    });
+function getGhostInfoMatches(present, notPresent, exclude) {
+    let matches = (_.pickBy(_.omitBy(ghostInfos,ghost =>
+            ghost.evidences.some(r=> notPresent.indexOf(r) >= 0)
+        ), ghost =>
+            present.every(r=> ghost.evidences.indexOf(r) >= 0)
+    ));
+
+    return Object.values(_.omitBy(matches, m => 
+        m.evidences.some(r => exclude.indexOf(r) >= 0)
+    ));
+    /*return Object.values(_.pickBy(_.omitBy(ghostInfos,ghost =>
+            ghost.evidences.some(r=> notPresent.indexOf(r) >= 0)
+        ), ghost =>
+            present.every(r=> ghost.evidences.indexOf(r) >= 0)
+    ));*/
 }
 
-document.addEventListener("keydown", function(event) {
-    if (event.keyCode == 17) {
-        if (!excludeEvidence) {
-            excludeEvidence = true;
-            //window.alert("keydown");
-        }
-    }
-});
+function getRemainingEvidenceIds(present, notPresent, exclude) {
+    return _.difference(_.flatMap(getGhostInfoMatches(present, notPresent, exclude), gi=> gi.evidences), present);
+}
 
-document.addEventListener("keyup", function(event) {
-    if (event.keyCode == 17) {
-        if (excludeEvidence) {
-            excludeEvidence = false;
-            //window.alert("keyup");
+function getEvidencePossibilities(gi) {
+    let res = "";
+
+    for (let i = 0; i < gi.evidences.length; i++) {
+        res = res + evidenceTypes[gi.evidences[i]];
+
+        if (i < (gi.evidences.length - 1)) {
+            res = res + " + ";
         }
     }
-});
+
+    return res;
+}
+
+function initializeTracker() {
+    findMaxEvidenceID();
+    initPossibleGhostText();
+}
+
+function initPossibleGhostText() {
+    document.getElementById("possibleGhosts").innerHTML = "<br /><p>We need tangible evidence! Check areas with tools to gather information and evidence.</p>";
+}
+
+function modifyEvidenceClass(evidence, classname, action="add") {
+    let element = document.getElementById(getEvidenceByID(evidence));
+
+    action = action.toLowerCase();
+    
+    if (action !== "add") {
+        element.classList.remove(classname);
+    } else {
+        if (!element.classList.contains(classname)) {
+            element.classList.add(classname);
+        }
+    }
+}
+
+function toggleEvidence(evidence) {
+    console.clear();
+    //console.log("Evidence: " + evidence);
+
+    if (evidence) {
+        let arr = evidenceArray;
+        let arr2 = excludeEvidenceArray;
+
+        if (excludeEvidence) {
+            arr = excludeEvidenceArray;
+            arr2 = evidenceArray;
+        }
+
+        // Make sure to remove the evidence from the "other" array first
+        if (arr2.indexOf(evidence) !== -1) {
+            evidenceToArray(arr2, evidence, "remove");
+        }
+
+        if (arr.indexOf(evidence) === -1) {
+            if ((getRemainingEvidenceIds(evidenceArray, [], excludeEvidenceArray).length > 1) || (arr === evidenceArray)) {
+                /*getRemainingEvidenceIds(evidenceArray, [], excludeEvidenceArray).forEach (e => {
+                    console.log("e: " + getEvidenceByID(e));
+                })*/
+                evidenceToArray(arr, evidence, "add");
+            }
+
+        } else {
+            evidenceToArray(arr, evidence, "remove");
+        }
+    }
+
+    // grab ghost matches according to selected evidence
+    document.getElementById("possibleGhosts").innerHTML = "";
+
+    if (evidenceArray.length == 0) {
+        initPossibleGhostText();        
+    } else {
+        getGhostInfoMatches(evidenceArray, [], excludeEvidenceArray).forEach(ghostInfo => { // getGhostMatches([foundEvidence], [missingEvidence])
+        document.getElementById("possibleGhosts").innerHTML += '<li>' + ghostInfo.name + '</li> <p><b>' + 
+                                getEvidencePossibilities(ghostInfo) + '</b><br />' + ghostInfo.description + '</p>';
+        })
+    }
+
+    document.getElementById("emf").style.backgroundImage = "url('btnsDisabled/emf.png')";
+    document.getElementById("spiritbox").style.backgroundImage = "url('btnsDisabled/spiritbox.png')";
+    document.getElementById("fingerprints").style.backgroundImage = "url('btnsDisabled/fingerprints.png')";
+    document.getElementById("ghostorb").style.backgroundImage = "url('btnsDisabled/ghostorb.png')";
+    document.getElementById("ghostwriting").style.backgroundImage = "url('btnsDisabled/ghostwriting.png')";
+    document.getElementById("freezingtemperatures").style.backgroundImage = "url('btnsDisabled/freezingtemperatures.png')";
+                    
+    getRemainingEvidenceIds(evidenceArray, [], excludeEvidenceArray).forEach(evidenceId => {
+        document.getElementById(getEvidenceByID(evidenceId)).style.backgroundImage = "url('btnsUnchecked/" + getEvidenceByID(evidenceId) + ".png')";
+    })
+
+    for (let i = 0; i < evidenceArray.length; i++) {
+        document.getElementById(getEvidenceByID(evidenceArray[i])).style.backgroundImage = "url('btnsChecked/" + getEvidenceByID(evidenceArray[i]) + ".png')";
+    }
+
+    for (let i = 0; i < excludeEvidenceArray.length; i++) {
+        document.getElementById(getEvidenceByID(excludeEvidenceArray[i])).style.backgroundImage = "url('btnsExcluded/" + getEvidenceByID(excludeEvidenceArray[i]) + ".png')";
+    }
+    
+    for (let j = 1; j < maxEvidenceID+1; j++) {
+        let element = document.getElementById(getEvidenceByID(j));
+
+        if (element.style.backgroundImage.includes("Disabled")) {
+            //console.log(element + ": is disabled!");
+            element.onclick = false;
+            element.classList.remove(ecn_enabled);
+        } else {
+            element.onclick = getClickFunction(j);
+            
+            if (!element.classList.contains(ecn_enabled)) {
+                element.classList.add(ecn_enabled);
+            }
+        }    
+
+        //console.log("j: " + j + ", " + element);
+    }
+}

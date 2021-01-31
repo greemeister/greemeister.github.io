@@ -8,7 +8,7 @@
         <script src="evidenceTracker.js"></script>
     </head>
 
-    <body onload="findMaxEvidenceID()">
+    <body onload="initializeTracker()">
     	<div id="clear" onClick="clearEvidence()"></div>
         <div id="note">
             <ul id="note1"><p>(Hold control key during click to exclude evidence)</p></ul>
@@ -25,7 +25,7 @@
             </div>
             <div id="ghosts">
                 <h1>Possible Ghosts</h1>
-                <ul id="possibleGhosts"><br /><p>We need tangible evidence! Check areas with tools to gather information and evidence.</p></ul>
+                <ul id="possibleGhosts"></ul>
             </div>
         </div>
     </body>
