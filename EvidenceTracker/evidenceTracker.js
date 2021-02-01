@@ -1,3 +1,14 @@
+// Element ID table
+const elementIdTable = [
+    "",
+    "emf",
+    "spiritbox",
+    "fingerprints",
+    "ghostorb",
+    "ghostwriting",
+    "freezingtemperatures"
+];
+
 // Evidence Type Defs
 const evidenceTypes = [
     "Unknown",
@@ -26,11 +37,11 @@ const ghostInfos = [
 ];
 
 const maxNumOfEvidences = ghostInfos[0].evidences.length;
+const maxEvidenceID = evidenceTypes.length - 1;
 const ecn_enabled = "enabled";
 const ecn_excluded = "excluded";
 const ecn_tagged = "tagged";
 
-var maxEvidenceID = 0;
 var excludeEvidence = false;
 var evidenceArray = [];
 var excludeEvidenceArray = [];
@@ -40,7 +51,6 @@ document.addEventListener("keydown", function(event) {
     if (event.keyCode == 17) {
         if (!excludeEvidence) {
             excludeEvidence = true;
-            //window.alert("keydown");
         }
     }
 });
@@ -49,12 +59,11 @@ document.addEventListener("keyup", function(event) {
     if (event.keyCode == 17) {
         if (excludeEvidence) {
             excludeEvidence = false;
-            //window.alert("keyup");
         }
     }
 });
 
-function clearEvidence() {
+function clearEvidence(e) {
     evidenceArray = [];
     excludeEvidenceArray = [];
     
@@ -94,64 +103,22 @@ function evidenceToArray(arr, evidence, action="add") {
     modifyEvidenceClass(evidence, classname, action);
 }
 
-function findMaxEvidenceID() {
-    ghostInfos.forEach(function(item, index) {
-        for (let i = 0; i < item.evidences.length; i++) {
-            if (item.evidences[i] > maxEvidenceID) {
-                maxEvidenceID = item.evidences[i];
-            }
+function getEvidenceByID(id) {
+    if (id < 0 || id > maxEvidenceID) {
+        return "error";
+    }
+
+    return elementIdTable[id];
+}
+
+function getEvidenceByName(evidence) {
+    for (let i = 1; i <= maxEvidenceID; i++) {
+        if (elementIdTable[i] === evidence) {
+            return i;
         }
-    });
-}
-
-function getClickFunction(id){
-    switch(id) {
-        case 1:
-            return function() { toggleEvidence(1) };
-            break;
-        case 2:
-            return function() { toggleEvidence(2) };
-            break;
-        case 3:
-            return function() { toggleEvidence(3) };
-            break;
-        case 4:
-            return function() { toggleEvidence(4) };
-            break;
-        case 5:
-            return function() { toggleEvidence(5) };
-            break;
-        case 6:
-            return function() { toggleEvidence(6) };
-            break;
-        default:
-            return "error";
     }
-}
 
-function getEvidenceByID(id){
-    switch(id) {
-        case 1:
-            return "emf";
-            break;
-        case 2:
-            return "spiritbox";
-            break;
-        case 3:
-            return "fingerprints";
-            break;
-        case 4:
-            return "ghostorb";
-            break;
-        case 5:
-            return "ghostwriting";
-            break;
-        case 6:
-            return "freezingtemperatures";
-            break;
-        default:
-            return "error";
-    }
+    return 0;
 }
 
 function getEvidencePossibilities(gi) {
@@ -178,11 +145,6 @@ function getGhostInfoMatches(present, notPresent, exclude) {
     return Object.values(_.omitBy(matches, m => 
         m.evidences.some(r => exclude.indexOf(r) >= 0)
     ));
-    /*return Object.values(_.pickBy(_.omitBy(ghostInfos,ghost =>
-            ghost.evidences.some(r=> notPresent.indexOf(r) >= 0)
-        ), ghost =>
-            present.every(r=> ghost.evidences.indexOf(r) >= 0)
-    ));*/
 }
 
 function getRemainingEvidenceIds(present, notPresent, exclude) {
@@ -190,21 +152,30 @@ function getRemainingEvidenceIds(present, notPresent, exclude) {
 }
 
 function initializeTracker() {
-    findMaxEvidenceID();
-    initImageCache();
+    // Initialize image cache
+    (function () {
+        for (let i = 1; i <= maxEvidenceID; i++) {
+            let evidenceStr = getEvidenceByID(i);
+            cachedImages[evidenceStr] = {checked: new Image(), disabled: new Image(), excluded: new Image(), unchecked: new Image()};
+
+            cachedImages[evidenceStr].checked.src = 'btnsChecked/' + evidenceStr + '.png';
+            cachedImages[evidenceStr].disabled.src = 'btnsDisabled/' + evidenceStr + '.png';
+            cachedImages[evidenceStr].excluded.src = 'btnsExcluded/' + evidenceStr + '.png';
+            cachedImages[evidenceStr].unchecked.src = 'btnsUnchecked/' + evidenceStr + '.png';
+        }
+    })();
+
+    // Initialize the onClick handlers
+    (function () {
+        for (let i = 1; i <= maxEvidenceID; i++) {
+            document.getElementById(getEvidenceByID(i)).onclick = onClickHandler;
+        }
+
+        document.getElementById("clear").onclick = clearEvidence;
+    })();
+
+    // Initialize the possible ghost text ul element
     initPossibleGhostText();
-}
-
-function initImageCache() {
-    for (let i = 1; i <= maxEvidenceID; i++) {
-        let evidenceStr = getEvidenceByID(i);
-        cachedImages[evidenceStr] = {checked: new Image(), disabled: new Image(), excluded: new Image(), unchecked: new Image()};
-
-        cachedImages[evidenceStr].checked.src = 'btnsChecked/' + evidenceStr + '.png';
-        cachedImages[evidenceStr].disabled.src = 'btnsDisabled/' + evidenceStr + '.png';
-        cachedImages[evidenceStr].excluded.src = 'btnsExcluded/' + evidenceStr + '.png';
-        cachedImages[evidenceStr].unchecked.src = 'btnsUnchecked/' + evidenceStr + '.png';
-    }
 }
 
 function initPossibleGhostText() {
@@ -225,9 +196,16 @@ function modifyEvidenceClass(evidence, classname, action="add") {
     }
 }
 
+function onClickHandler(e) {
+    let evidenceId = getEvidenceByName(e.srcElement.id);
+    
+    if (evidenceId > 0) {
+        toggleEvidence(evidenceId);
+    }
+}
+
 function toggleEvidence(evidence) {
     console.clear();
-    //console.log("Evidence: " + evidence);
 
     if (evidence) {
         let arr = evidenceArray;
@@ -245,9 +223,6 @@ function toggleEvidence(evidence) {
 
         if (arr.indexOf(evidence) === -1) {
             if ((getRemainingEvidenceIds(evidenceArray, [], excludeEvidenceArray).length > 1) || (arr === evidenceArray)) {
-                /*getRemainingEvidenceIds(evidenceArray, [], excludeEvidenceArray).forEach (e => {
-                    console.log("e: " + getEvidenceByID(e));
-                })*/
                 evidenceToArray(arr, evidence, "add");
             }
 
@@ -291,18 +266,15 @@ function toggleEvidence(evidence) {
         let element = document.getElementById(getEvidenceByID(j));
 
         if (element.style.backgroundImage.includes("Disabled")) {
-            //console.log(element + ": is disabled!");
             element.onclick = false;
             element.classList.remove(ecn_enabled);
         } else {
-            element.onclick = getClickFunction(j);
+            element.onclick = onClickHandler;
             
             if (!element.classList.contains(ecn_enabled)) {
                 element.classList.add(ecn_enabled);
             }
         }    
-
-        //console.log("j: " + j + ", " + element);
     }
 }
 
