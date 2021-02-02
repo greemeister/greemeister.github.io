@@ -1,25 +1,3 @@
-// Element ID table
-const elementIdTable = [
-    "",
-    "emf",
-    "spiritbox",
-    "fingerprints",
-    "ghostorb",
-    "ghostwriting",
-    "freezingtemperatures"
-];
-
-// Evidence Type Defs
-const evidenceTypes = [
-    "Unknown",
-    "EMF Level 5",
-    "Spirit Box",
-    "Fingerprints",
-    "Ghost Orb",
-    "Ghost Writing",
-    "Freezing Temps"
-];
-
 // Ghost Info Defs
 const ghostInfos = [
     { name : "spirit", evidences : [2,3,5], description: "No strengths. <span class='weakness'>Smudge sticks will pacify it for a while.</span>"},
@@ -37,13 +15,17 @@ const ghostInfos = [
 ];
 
 const maxNumOfEvidences = ghostInfos[0].evidences.length;
-const maxEvidenceID = evidenceTypes.length - 1;
-const maxElementID = elementIdTable.length - 1;
 const ecn_enabled = "enabled";
 const ecn_excluded = "excluded";
 const ecn_tagged = "tagged";
 
 var excludeEvidence = false;
+var maxElementTypeID = 0;
+
+var elementTypeCache = [
+    {id: "VOID", description: "DO NOT USE!"}
+];
+
 var evidenceArray = [];
 var excludeEvidenceArray = [];
 var cachedImages = [];
@@ -77,16 +59,16 @@ function clearEvidence(e) {
 }
 
 function getEvidenceByID(id) {
-    if (id < 0 || id > maxEvidenceID) {
+    if (id < 0 || id > maxElementTypeID) {
         return "error";
     }
 
-    return elementIdTable[id];
+    return elementTypeCache[id].id;
 }
 
 function getEvidenceByName(evidence) {
-    for (let i = 1; i <= maxEvidenceID; i++) {
-        if (elementIdTable[i] === evidence) {
+    for (let i = 1; i <= maxElementTypeID; i++) {
+        if (elementTypeCache[i].id === evidence) {
             return i;
         }
     }
@@ -98,7 +80,7 @@ function getEvidencePossibilities(gi) {
     let res = "";
 
     for (let i = 0; i < gi.evidences.length; i++) {
-        res = res + evidenceTypes[gi.evidences[i]];
+        res = res + elementTypeCache[gi.evidences[i]].description;
 
         if (i < (gi.evidences.length - 1)) {
             res = res + " + ";
@@ -125,9 +107,24 @@ function getRemainingEvidenceIds(present, notPresent, exclude) {
 }
 
 function initializeTracker() {
+    // Build our element cache (THIS MUST BE FIRST IN THE INITIALIZATION PROCESS!!!)
+    (function () {
+        var goo = document.getElementById('evidence');
+        
+        for (let i = 0; i < goo.children.length; i++) {
+            if (goo.children[i].nodeName.toLowerCase() === "div") {
+                elementTypeCache.push({id: goo.children[i].attributes.getNamedItem("id").value,
+                                       description: goo.children[i].attributes.getNamedItem("description").value
+                                      });
+            }
+        }
+
+        maxElementTypeID = elementTypeCache.length - 1;
+    })();
+
     // Initialize image cache
     (function () {
-        for (let i = 1; i <= maxEvidenceID; i++) {
+        for (let i = 1; i <= maxElementTypeID; i++) {
             let evidenceStr = getEvidenceByID(i);
             cachedImages[evidenceStr] = {checked: new Image(), disabled: new Image(), excluded: new Image(), unchecked: new Image()};
 
@@ -140,7 +137,7 @@ function initializeTracker() {
 
     // Initialize the onClick handlers
     (function () {
-        for (let i = 1; i <= maxEvidenceID; i++) {
+        for (let i = 1; i <= maxElementTypeID; i++) {
             document.getElementById(getEvidenceByID(i)).onclick = onClickHandler;
         }
 
@@ -260,13 +257,13 @@ function toggleEvidence(evidence) {
         document.getElementById(getEvidenceByID(excludeEvidenceArray[i])).style.backgroundImage = toUrl(cachedImages[getEvidenceByID(excludeEvidenceArray[i])].excluded.src);
     }
 
-    for (let i = 1; i <= maxElementID; i++) {
+    for (let i = 1; i <= maxElementTypeID; i++) {
         if (!evidenceUsed.includes(i)) {
-            document.getElementById(elementIdTable[i]).style.backgroundImage = toUrl(cachedImages[elementIdTable[i]].disabled.src);
+            document.getElementById(elementTypeCache[i].id).style.backgroundImage = toUrl(cachedImages[elementTypeCache[i].id].disabled.src);
         }
     }
     
-    for (let i = 1; i <= maxEvidenceID; i++) {
+    for (let i = 1; i <= maxElementTypeID; i++) {
         let element = document.getElementById(getEvidenceByID(i));
 
         if (element.style.backgroundImage.includes("Disabled")) {
