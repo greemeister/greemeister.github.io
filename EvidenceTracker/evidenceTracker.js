@@ -50,7 +50,7 @@ function clearEvidence(e) {
     evidenceArray = [];
     excludeEvidenceArray = [];
     
-    for (let i = 1; i < maxEvidenceID+1; i++) {
+    for (let i = 1; i <= maxElementTypeID; i++) {
         manageEvidenceArray(evidenceArray, i, "remove");
         manageEvidenceArray(excludeEvidenceArray, i, "remove");
     }
