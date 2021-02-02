@@ -273,7 +273,9 @@ function toggleEvidence(evidence) {
             element.onclick = false;
             element.classList.remove(ecn_enabled);
         } else {
-            element.onclick = onClickHandler;
+            if (element.onclick != onClickHandler) {
+                element.onclick = onClickHandler;
+            }
             
             if (!element.classList.contains(ecn_enabled)) {
                 element.classList.add(ecn_enabled);
