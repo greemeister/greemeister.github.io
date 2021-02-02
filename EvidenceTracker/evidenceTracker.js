@@ -38,6 +38,7 @@ const ghostInfos = [
 
 const maxNumOfEvidences = ghostInfos[0].evidences.length;
 const maxEvidenceID = evidenceTypes.length - 1;
+const maxElementID = elementIdTable.length - 1;
 const ecn_enabled = "enabled";
 const ecn_excluded = "excluded";
 const ecn_tagged = "tagged";
@@ -68,39 +69,11 @@ function clearEvidence(e) {
     excludeEvidenceArray = [];
     
     for (let i = 1; i < maxEvidenceID+1; i++) {
-        evidenceToArray(evidenceArray, i, "remove");
-        evidenceToArray(excludeEvidenceArray, i, "remove");
+        manageEvidenceArray(evidenceArray, i, "remove");
+        manageEvidenceArray(excludeEvidenceArray, i, "remove");
     }
 
     toggleEvidence(null);
-}
-
-function evidenceToArray(arr, evidence, action="add") {
-    let classname = "";
-    
-    action = action.toLowerCase();
-
-    if (arr === excludeEvidenceArray) {
-        classname = ecn_excluded;
-    } else if (arr === evidenceArray) {
-        classname = ecn_tagged;
-    }
-
-    if (action !== "add") {
-        if (Array.isArray(arr) && arr.indexOf(evidence) !== -1) {
-            arr.splice(arr.indexOf(evidence), 1);
-        }
-    } else if (!Array.isArray(arr) || arr.indexOf(evidence) === -1) {
-        if (arr.length < maxNumOfEvidences) {
-            arr.push(evidence);
-        } else {
-            return;
-        }
-    } else {
-        return;
-    }
-
-    modifyEvidenceClass(evidence, classname, action);
 }
 
 function getEvidenceByID(id) {
@@ -182,6 +155,34 @@ function initPossibleGhostText() {
     document.getElementById("possibleGhosts").innerHTML = "<br /><p>We need tangible evidence! Check areas with tools to gather information and evidence.</p>";
 }
 
+function manageEvidenceArray(arr, evidence, action="add") {
+    let classname = "";
+    
+    action = action.toLowerCase();
+
+    if (arr === excludeEvidenceArray) {
+        classname = ecn_excluded;
+    } else if (arr === evidenceArray) {
+        classname = ecn_tagged;
+    }
+
+    if (action !== "add") {
+        if (Array.isArray(arr) && arr.indexOf(evidence) !== -1) {
+            arr.splice(arr.indexOf(evidence), 1);
+        }
+    } else if (!Array.isArray(arr) || arr.indexOf(evidence) === -1) {
+        if (arr.length < maxNumOfEvidences) {
+            arr.push(evidence);
+        } else {
+            return;
+        }
+    } else {
+        return;
+    }
+
+    modifyEvidenceClass(evidence, classname, action);
+}
+
 function modifyEvidenceClass(evidence, classname, action="add") {
     let element = document.getElementById(getEvidenceByID(evidence));
 
@@ -206,6 +207,7 @@ function onClickHandler(e) {
 
 function toggleEvidence(evidence) {
     console.clear();
+    evidenceUsed = [];
 
     if (evidence) {
         let arr = evidenceArray;
@@ -218,16 +220,16 @@ function toggleEvidence(evidence) {
 
         // Make sure to remove the evidence from the "other" array first
         if (arr2.indexOf(evidence) !== -1) {
-            evidenceToArray(arr2, evidence, "remove");
+            manageEvidenceArray(arr2, evidence, "remove");
         }
 
         if (arr.indexOf(evidence) === -1) {
             if ((getRemainingEvidenceIds(evidenceArray, [], excludeEvidenceArray).length > 1) || (arr === evidenceArray)) {
-                evidenceToArray(arr, evidence, "add");
+                manageEvidenceArray(arr, evidence, "add");
             }
 
         } else {
-            evidenceToArray(arr, evidence, "remove");
+            manageEvidenceArray(arr, evidence, "remove");
         }
     }
 
@@ -237,33 +239,35 @@ function toggleEvidence(evidence) {
     if (evidenceArray.length == 0) {
         initPossibleGhostText();        
     } else {
-        getGhostInfoMatches(evidenceArray, [], excludeEvidenceArray).forEach(ghostInfo => { // getGhostMatches([foundEvidence], [missingEvidence])
-        document.getElementById("possibleGhosts").innerHTML += '<li>' + ghostInfo.name + '</li> <p><b>' + 
+        getGhostInfoMatches(evidenceArray, [], excludeEvidenceArray).forEach(ghostInfo => {
+        document.getElementById("possibleGhosts").innerHTML += '<li>' + ghostInfo.name + '</li><p><b>' + 
                                 getEvidencePossibilities(ghostInfo) + '</b><br />' + ghostInfo.description + '</p>';
         })
     }
-
-    document.getElementById("emf").style.backgroundImage = toUrl(cachedImages["emf"].disabled.src);
-    document.getElementById("spiritbox").style.backgroundImage = toUrl(cachedImages["spiritbox"].disabled.src);
-    document.getElementById("fingerprints").style.backgroundImage = toUrl(cachedImages["fingerprints"].disabled.src);
-    document.getElementById("ghostorb").style.backgroundImage = toUrl(cachedImages["ghostorb"].disabled.src);
-    document.getElementById("ghostwriting").style.backgroundImage = toUrl(cachedImages["ghostwriting"].disabled.src);
-    document.getElementById("freezingtemperatures").style.backgroundImage = toUrl(cachedImages["freezingtemperatures"].disabled.src);
-                    
+             
     getRemainingEvidenceIds(evidenceArray, [], excludeEvidenceArray).forEach(evidenceId => {
+        evidenceUsed.push(evidenceId);
         document.getElementById(getEvidenceByID(evidenceId)).style.backgroundImage = toUrl(cachedImages[getEvidenceByID(evidenceId)].unchecked.src);
     })
 
     for (let i = 0; i < evidenceArray.length; i++) {
+        evidenceUsed.push(evidenceArray[i]);
         document.getElementById(getEvidenceByID(evidenceArray[i])).style.backgroundImage = toUrl(cachedImages[getEvidenceByID(evidenceArray[i])].checked.src);
     }
 
     for (let i = 0; i < excludeEvidenceArray.length; i++) {
+        evidenceUsed.push(excludeEvidenceArray[i]);
         document.getElementById(getEvidenceByID(excludeEvidenceArray[i])).style.backgroundImage = toUrl(cachedImages[getEvidenceByID(excludeEvidenceArray[i])].excluded.src);
     }
+
+    for (let i = 1; i <= maxElementID; i++) {
+        if (!evidenceUsed.includes(i)) {
+            document.getElementById(elementIdTable[i]).style.backgroundImage = toUrl(cachedImages[elementIdTable[i]].disabled.src);
+        }
+    }
     
-    for (let j = 1; j < maxEvidenceID+1; j++) {
-        let element = document.getElementById(getEvidenceByID(j));
+    for (let i = 1; i <= maxEvidenceID; i++) {
+        let element = document.getElementById(getEvidenceByID(i));
 
         if (element.style.backgroundImage.includes("Disabled")) {
             element.onclick = false;
