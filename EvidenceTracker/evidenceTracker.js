@@ -82,6 +82,10 @@ function dictateNotes() {
             recObj.stop();
         };
 
+        recObj.onerror = function (e) {
+            speechStatusElement.innerHTML = "(Error: " + e.error + ")";
+        }
+
         recObj.onresult = function(e) {
             var transcript = e.results[0][0].transcript;
             var confidence = e.results[0][0].confidence;
@@ -185,7 +189,7 @@ function initializeTracker() {
         speechStatusElement = document.getElementById("notes-speechStatus");
         document.getElementById("notes-header").onclick = dictateNotes;
     })();
-    
+
     // Initialize the possible ghost text ul element
     initPossibleGhostText();
 }
