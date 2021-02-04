@@ -21,6 +21,7 @@ const ecn_tagged = "tagged";
 
 var excludeEvidence = false;
 var maxElementTypeID = 0;
+var recObj = null;
 var speechStatusElement = null;
 
 var elementTypeCache = [
@@ -68,32 +69,34 @@ function clearNotes() {
 function dictateNotes() {
     //if (SpeechRecognition !== null) {
     if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
-        var SpeechRecognition = SpeechRecognition ||
-            webkitSpeechRecognition;
+        if ( recObj === null ) {
+            var SpeechRecognition = SpeechRecognition ||
+                webkitSpeechRecognition;
 
-        var recObj = new SpeechRecognition();
+            recObj = new SpeechRecognition();
 
-        recObj.onstart = function() {
-            speechStatusElement.innerHTML = "(Listening, please speak...)";
-        };
+            recObj.onstart = function() {
+                speechStatusElement.innerHTML = "(Listening, please speak...)";
+            };
 
-        recObj.onspeechend = function () {
-            speechStatusElement.innerHTML = "(Processing what you said...)";
-            recObj.stop();
-        };
+            recObj.onspeechend = function () {
+                speechStatusElement.innerHTML = "(Processing what you said...)";
+                recObj.stop();
+            };
 
-        recObj.onerror = function (e) {
-            speechStatusElement.innerHTML = "(Error: " + e.error + ")";
+            recObj.onerror = function (e) {
+                speechStatusElement.innerHTML = "(Error: " + e.error + ")";
+            }
+
+            recObj.onresult = function(e) {
+                var transcript = e.results[0][0].transcript;
+                var confidence = e.results[0][0].confidence;
+
+                speechStatusElement.innerHTML = "(Processed with " + Math.floor(confidence * 100) + "% confidence)";
+
+                document.getElementById("notes-content").value = transcript;
+            };
         }
-
-        recObj.onresult = function(e) {
-            var transcript = e.results[0][0].transcript;
-            var confidence = e.results[0][0].confidence;
-
-            speechStatusElement.innerHTML = "(Processed with " + Math.floor(confidence * 100) + "% confidence)";
-
-            document.getElementById("notes-content").value = transcript;
-        };
 
         recObj.start();
     } else {
