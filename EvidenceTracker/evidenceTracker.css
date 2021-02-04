@@ -43,7 +43,7 @@ body {
     color: rgb(45,45,45);
 }
 
-#note {
+#remarks {
     font-family: 'Kalam', cursive;
     font-size: 1.3em;
     color: #496595;
@@ -72,11 +72,47 @@ body {
     background-size: 75px;
 }
 
-#emf.enabled:hover,#spiritbox.enabled:hover,#fingerprints.enabled:hover,#ghostorb.enabled:hover,#ghostwriting.enabled:hover,#freezingtemperatures.enabled:hover,#clear:hover {
+#notes-header {
+    width: 100px;
+    height: 35px;
+    margin-bottom: 25px;
+}
+
+#notes-div {
+    display: block;
+    font-family: 'Kalam', cursive;
+    font-size: 2.3em;
+    color: #464646;
+}
+
+#notes-speechStatus {
+    font-family: 'Kalam', light;
+    margin-top: 9px;
+    font-size: 0.75em;
+    color: #949494;
+}
+
+#notes-header-block {
+    display: flex;
+}
+
+#notes-content {
+    background: url('new-journal.jpg');
+    border: 1px solid #BABABA;
+    font-family: 'Kalam', cursive;
+    font-size: 1em;
+    width: 20%;
+    resize: none;
+}
+
+#emf.enabled:hover,#spiritbox.enabled:hover,#fingerprints.enabled:hover,#ghostorb.enabled:hover,
+                   #ghostwriting.enabled:hover,#freezingtemperatures.enabled:hover,#clear:hover,
+                   #notes-header:hover {
     cursor: pointer;
 }
 
-#emf:not(.enabled),#spiritbox:not(.enabled),#fingerprints:not(.enabled),#ghostorb:not(.enabled),#ghostwriting:not(.enabled),#freezingtemperatures:not(.enabled) {
+#emf:not(.enabled),#spiritbox:not(.enabled),#fingerprints:not(.enabled),#ghostorb:not(.enabled),
+                   #ghostwriting:not(.enabled),#freezingtemperatures:not(.enabled) {
     filter: opacity(50%);
 }
 

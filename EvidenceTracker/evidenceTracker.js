@@ -21,6 +21,7 @@ const ecn_tagged = "tagged";
 
 var excludeEvidence = false;
 var maxElementTypeID = 0;
+var speechStatusElement = null;
 
 var elementTypeCache = [
     {id: "VOID", description: "DO NOT USE!"}
@@ -56,6 +57,44 @@ function clearEvidence(e) {
     }
 
     toggleEvidence(null);
+    clearNotes();
+}
+
+function clearNotes() {
+    document.getElementById("notes-content").value = "";
+    speechStatusElement.innerHTML = "";
+}
+
+function dictateNotes() {
+    //if (SpeechRecognition !== null) {
+    if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+        var SpeechRecognition = SpeechRecognition ||
+            webkitSpeechRecognition;
+
+        var recObj = new SpeechRecognition();
+
+        recObj.onstart = function() {
+            speechStatusElement.innerHTML = "(Listening, please speak...)";
+        };
+
+        recObj.onspeechend = function () {
+            speechStatusElement.innerHTML = "(Processing what you said...)";
+            recObj.stop();
+        };
+
+        recObj.onresult = function(e) {
+            var transcript = e.results[0][0].transcript;
+            var confidence = e.results[0][0].confidence;
+
+            speechStatusElement.innerHTML = "(Processed with " + Math.floor(confidence * 100) + "% confidence)";
+
+            document.getElementById("notes-content").value = transcript;
+        };
+
+        recObj.start();
+    } else {
+        speechStatusElement.innerHTML = "Your browser does not support the Google Web Speech API, please type in the box below instead.";
+    }
 }
 
 function getEvidenceByID(id) {
@@ -142,8 +181,11 @@ function initializeTracker() {
         }
 
         document.getElementById("clear").onclick = clearEvidence;
-    })();
 
+        speechStatusElement = document.getElementById("notes-speechStatus");
+        document.getElementById("notes-header").onclick = dictateNotes;
+    })();
+    
     // Initialize the possible ghost text ul element
     initPossibleGhostText();
 }

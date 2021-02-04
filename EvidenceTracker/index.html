@@ -1,3 +1,4 @@
+<meta charset="UTF-8">
 <html>
     <head>
         <title>Evidence Tracker</title>
@@ -10,8 +11,8 @@
 
     <body onload="initializeTracker()">
     	<div id="clear"></div>
-        <div id="note">
-            <ul id="note1"><p>(Hold control key on click to exclude evidence)</p></ul>
+        <div id="remarks">
+            <ul id="remark1"><p>(Hold control key on click to exclude evidence)</p></ul>
         </div>
         <div id="wrapper">
             <div id="evidence">
@@ -27,6 +28,15 @@
                 <h1>Possible Ghosts</h1>
                 <ul id="possibleGhosts"></ul>
             </div>
+        </div>
+
+        <div id="notes-div">
+            <div id="notes-header-block">
+                <div id="notes-header">Notes:</div>
+                <div id="notes-speechStatus"></div>
+            </div>
+            <!--- <textarea id="notes-content" name="notes-content" wrap="off" rows="1" cols="35"></textarea> -->
+            <input id="notes-content">
         </div>
     </body>
 </html>
