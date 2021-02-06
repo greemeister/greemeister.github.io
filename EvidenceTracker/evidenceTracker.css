@@ -98,7 +98,7 @@ body {
 }
 
 #notes-content {
-    background: url('new-journal.jpg');
+    background: transparent;
     border: 1px solid #BABABA;
     font-family: 'Kalam', cursive;
     font-size: 1em;
