@@ -26,6 +26,7 @@ body {
     /*list-style: square inside url("x.png");*/
     list-style: none;
     text-transform: uppercase;
+    display: table;
 }
 
 #possibleGhosts li {
@@ -36,6 +37,7 @@ body {
 #possibleGhosts p {
     margin-top: -12px;
     margin-bottom: 10px;
+    font-size: 1.15em;
 }
 
 #evidence {
