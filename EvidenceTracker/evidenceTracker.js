@@ -12,6 +12,8 @@ const ghostInfos = [
     { name : "demon", evidences : [2,5,6], description: "Very aggressive. Attacks often. <span class='weakness'>Ouija board use won't affect sanity.</span>"},
     { name : "yurei", evidences : [4,5,6], description: "Strong effect on sanity. <span class='weakness'>Smudging its room contains it to that room for a while.</span>"},
     { name : "oni", evidences : [1,2,5], description: "More active with people nearby. <span class='weakness'>High activity makes it easier to find and identify.</span>"},
+    { name : "yokai", evidences : [2,4,5], description: "More active with people talking. <span class='weakness'>placeholder text</span>"},
+    { name : "hantu", evidences : [3,4,5], description: "Gains a speed boost throug lower temperatures. <span class='weakness'>placeholder text</span>"},
 ];
 
 const maxNumOfEvidences = ghostInfos[0].evidences.length;
