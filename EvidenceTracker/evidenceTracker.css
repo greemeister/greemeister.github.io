@@ -59,7 +59,7 @@ body {
     margin-bottom: 15px;
 }
 
-#emf,#spiritbox,#fingerprints,#ghostorb,#ghostwriting,#freezingtemperatures {
+#emf,#spiritbox,#fingerprints,#ghostorb,#ghostwriting,#freezingtemperatures,#excludeLatch {
     width: 355px;
     height: 38px;
     background-repeat: no-repeat;
@@ -110,7 +110,7 @@ body {
 
 #emf.enabled:hover,#spiritbox.enabled:hover,#fingerprints.enabled:hover,#ghostorb.enabled:hover,
                    #ghostwriting.enabled:hover,#freezingtemperatures.enabled:hover,#clear:hover,
-                   #notes-header:hover {
+                   #notes-header:hover,#excludeLatch:hover {
     cursor: pointer;
 }
 
@@ -143,6 +143,10 @@ body {
     background-image: url('btnsUnchecked/freezingtemperatures.png');
 }
 
+#excludeLatch {
+    background-image: url('btnsUnchecked/excludeMode.png');
+}
+
 #clear {
     background-image: url('clear.png');
 }
@@ -155,3 +159,7 @@ body {
     color: rgb(0, 88, 0);
 }
  
+input.large {
+    width: 32;
+    height: 32;
+}

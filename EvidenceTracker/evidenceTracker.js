@@ -22,6 +22,7 @@ const ecn_excluded = "excluded";
 const ecn_tagged = "tagged";
 
 var excludeEvidence = false;
+var excludeMode = false;
 var maxElementTypeID = 0;
 var recObj = null;
 var speechStatusElement = null;
@@ -154,6 +155,17 @@ function getRemainingEvidenceIds(present, notPresent, exclude) {
     return _.difference(_.flatMap(getGhostInfoMatches(present, notPresent, exclude), gi=> gi.evidences), present);
 }
 
+function handleExcludeClick(cb) {
+    excludeMode = cb.checked;
+
+    if (excludeMode)
+        excludeModeImage = cachedImages["excludeMode"].checked.src;
+    else 
+        excludeModeImage = cachedImages["excludeMode"].unchecked.src;
+    
+    document.getElementById("excludeLatch").style.backgroundImage = toUrl(excludeModeImage);
+}
+
 function initializeTracker() {
     // Build our element cache (THIS MUST BE FIRST IN THE INITIALIZATION PROCESS!!!)
     (function () {
@@ -181,6 +193,11 @@ function initializeTracker() {
             cachedImages[evidenceStr].excluded.src = 'btnsExcluded/' + evidenceStr + '.png';
             cachedImages[evidenceStr].unchecked.src = 'btnsUnchecked/' + evidenceStr + '.png';
         }
+
+        let evidenceStr = "excludeMode";
+        cachedImages[evidenceStr] = {checked: new Image(), disabled: new Image(), excluded: new Image(), unchecked: new Image()};
+        cachedImages[evidenceStr].unchecked.src = 'btnsUnchecked/' + evidenceStr + '.png';
+        cachedImages[evidenceStr].checked.src = 'btnsChecked/' + evidenceStr + '.png';
     })();
 
     // Initialize the onClick handlers
@@ -197,6 +214,13 @@ function initializeTracker() {
 
     // Initialize the possible ghost text ul element
     initPossibleGhostText();
+
+    let element = document.getElementById("excludeLatch");
+
+    if (element.onclick != onExcludeClickHandler) {
+        console.log("setting");
+        element.onclick = onExcludeClickHandler;
+    }
 }
 
 function initPossibleGhostText() {
@@ -253,6 +277,17 @@ function onClickHandler(e) {
     }
 }
 
+function onExcludeClickHandler(e) {
+    excludeMode = !excludeMode;
+
+    if (excludeMode)
+        excludeModeImage = cachedImages["excludeMode"].checked.src;
+    else 
+        excludeModeImage = cachedImages["excludeMode"].unchecked.src;
+    
+    document.getElementById("excludeLatch").style.backgroundImage = toUrl(excludeModeImage);
+}
+
 function toggleEvidence(evidence) {
     console.clear();
     evidenceUsed = [];
@@ -261,7 +296,7 @@ function toggleEvidence(evidence) {
         let arr = evidenceArray;
         let arr2 = excludeEvidenceArray;
 
-        if (excludeEvidence) {
+        if (excludeEvidence || excludeMode) {
             arr = excludeEvidenceArray;
             arr2 = evidenceArray;
         }
