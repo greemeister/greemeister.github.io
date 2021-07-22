@@ -39,7 +39,7 @@ const ghostCategories = [
     {name: "Poltergeist", 
      description: "The Poltergeist is extremely fond of playing and handling a lot objects in its vicinity. But be careful, it doesn't like the presence of other people, especially if they manipulate objects.",
      emf_evidence: [{ev:1, ex:0}, {ev:2, ex:0}, {ev:2, ex:1}],
-     entity_evidence: [{ev:1, ex:3}, {ev:1, ex:0}, {ev:2, ex:2}, {ev:2, ex:0}, {ev:3, ex:3}, {ev:3, ex:0}, {ev:4, ex:3}, {ev:4, ex:0}],
+     entity_evidence: [{ev:1, ex:3}, {ev:1, ex:0}, {ev:2, ex:2}, {ev:2, ex:0}, {ev:3, ex:2}, {ev:3, ex:0}, {ev:4, ex:3}, {ev:4, ex:0}],
      temp_evidence: [{ev:1, ex:4}, {ev:1, ex:0}, {ev:2, ex:5}, {ev:2, ex:0}],
      written_evidence: [{ev:1, ex:9}, {ev:1, ex:0}, {ev:2, ex:0}, {ev:2, ex:6}, {ev:3, ex:6}, {ev:3, ex:0}, {ev:4, ex:9}, {ev:4, ex:0}],
      audio_evidence: [{ev:1, ex:8}, {ev:1, ex:0}, {ev:2, ex:0}, {ev:2, ex:7}, {ev:3, ex:0}, {ev:3, ex:8}]
