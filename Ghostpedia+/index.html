@@ -1,0 +1,90 @@
+<meta name=”viewport” content=”width=device-width, initial-scale=1" charset="UTF-8">
+<html>
+    <head>
+        <title>Ghostpedia+</title>
+        <link rel="shortcut icon" type="image/png" href="favicon.png">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link href="ghostpediaplus.css" rel="stylesheet">
+        <script src="ghostpediaplus.js"></script>
+    </head>
+    <body onload="initializeGhostpedia()">
+        <div id="title_header">
+            <div id="title" class="vertical-center">Ghostpedia Plus (click the blue bar to reset)</div>
+        </div>
+        <div id="whole">
+            <div id="main">
+                <div id="evidence" class="section">
+                    <div id="evidence-header" class="section-header left-header">
+                        <h1>Evidence</h1>
+                        <h2>Analyze the entity to find evidence</h2>
+                    </div>
+                    <div id="emf">
+                        <div id="emf-header" class="center evidence">Electromagnetic field</div>
+                        <div id="emf-evidence-control" class="evidence-control">
+                            <div id="evidence-emf-left-selector" class="evidence-left-selector"></div>
+                            <div id="evidence-emf-selection" class="evidence-selection"></div>
+                            <div id="evidence-emf-right-selector" class="evidence-right-selector"></div>
+                        </div>
+                    </div>
+
+                    <div id="entity-scan">
+                        <div id="entity-scan-header" class="center evidence">Entity scan</div>
+                        <div id="entity-scan-evidence-control" class="evidence-control">
+                            <div id="evidence-entity-scan-left-selector" class="evidence-left-selector"></div>
+                            <div id="evidence-entity-scan-selection" class="evidence-selection"></div>
+                            <div id="evidence-entity-scan-right-selector" class="evidence-right-selector"></div>
+                        </div>
+                    </div>
+
+                    <div id="temp">
+                        <div id="temp-header" class="center evidence">Temperature near entity</div>
+                        <div id="temp-evidence-control" class="evidence-control">
+                            <div id="evidence-temp-left-selector" class="evidence-left-selector"></div>
+                            <div id="evidence-temp-selection" class="evidence-selection"></div>
+                            <div id="evidence-temp-right-selector" class="evidence-right-selector"></div>
+                        </div>
+                    </div>
+
+                    <div id="written">
+                        <div id="written-header" class="center evidence">Written evidence</div>
+                        <div id="written-evidence-control" class="evidence-control">
+                            <div id="evidence-written-left-selector" class="evidence-left-selector"></div>
+                            <div id="evidence-written-selection" class="evidence-selection"></div>
+                            <div id="evidence-written-right-selector" class="evidence-right-selector"></div>
+                        </div>
+                    </div>
+
+                    <div id="audio">
+                        <div id="audio-header" class="center evidence">Audio proof</div>
+                        <div id="audio-evidence-control" class="evidence-control">
+                            <div id="evidence-audio-left-selector" class="evidence-left-selector"></div>
+                            <div id="evidence-audio-selection" class="evidence-selection"></div>
+                            <div id="evidence-audio-right-selector" class="evidence-right-selector"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="category" class="section">
+                    <div id="category-header" class="section-header right-header">
+                        <h1>Category</h1>
+                        <h2>Observe their behavior to identify their category</h2>
+                    </div>
+                    <div id="filler"></div>
+                    <div id="category-control" class="category-control">
+                        <div id="category-left-selector" class="category-left-selector"></div>
+                        <div id="category-selection" class="category-selection"></div>
+                        <div id="category-right-selector" class="category-right-selector"></div>
+                    </div>
+                    <div id="category-description"></div>
+                </div>
+            </div>
+            <div id="exorcism">
+                <div id="exorcism-header">Exorcism</div>
+                <!-- <div id="possible-exorcism-steps"></div> -->
+                <ul id="possible-exorcism-steps" class="square"></ul>
+            </div>
+        </div>
+        
+    </body>
+</html>
