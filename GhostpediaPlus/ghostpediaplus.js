@@ -73,7 +73,7 @@ const ghostCategories = [
      emf_evidence: [{ev:1, ex:0}, {ev:2, ex:1}],
      entity_evidence: [{ev:1, ex:3}, {ev:2, ex:2}, {ev:3, ex:2}, {ev:4, ex:3}],
      temp_evidence: [{ev:1, ex:4}, {ev:2, ex:5}],
-     written_evidence: [{ev:1, ex:9}, {ev:2, ex:6}, {ev:3, ex:6}, {ev:3, ex:9}],
+     written_evidence: [{ev:1, ex:9}, {ev:2, ex:6}, {ev:3, ex:6}, {ev:4, ex:9}],
      audio_evidence: [{ev:1, ex:8}, {ev:2, ex:7}, {ev:3, ex:8}]
     }
 ];
@@ -99,6 +99,14 @@ var currentAudio = 0;
 var currentCategory = 0;
 
 var exorcismSteps = [];
+
+var CookieManager = Cookies.noConflict()
+
+function cleanupAllCookies() {
+    exorcisms.forEach(function(exorcism) {
+        CookieManager.remove(exorcism.name);
+    });
+}
 
 function initializeGhostpedia() {
     currentEMF = 0;
@@ -147,6 +155,8 @@ function initializeGhostpedia() {
     document.getElementById("category-right-selector").onclick = onClickCategorySelector;
 
     document.getElementById("title").onclick = onClickClear;
+
+    cleanupAllCookies();
 }
 
 function onClickCategorySelector(e, alt=undefined) {
@@ -186,6 +196,7 @@ function onClickClear(e) {
     onClickSelector("", "evidence-written-selection");
     onClickSelector("", "evidence-entity-scan-selection");
     onClickCategorySelector("", "");
+    cleanupAllCookies();
 }
 
 function onClickSelector(e, alt=undefined) {
@@ -317,11 +328,26 @@ function refreshExorcisms() {
         }
 
         for (let i = 0; i < exorcismSteps.length; i++) {
-            element.innerHTML += "<li>" + exorcisms[exorcismSteps[i]].description + "</li>";
-            /*
-            element.innerHTML += "<input type=\"checkbox\" class=\"large\" id=\"step" + i + "\" name=\"step" + i + "\" value=\"\">";
+            //element.innerHTML += "<li>" + exorcisms[exorcismSteps[i]].description + "</li>";
+            
+            element.innerHTML += "<input type=\"checkbox\" class=\"large\" id=\"" + exorcisms[exorcismSteps[i]].name + "\" name=\"" + exorcisms[exorcismSteps[i]].name + "\" value=\"\">";
             element.innerHTML += "<label for=\"step" + i + "\">" + exorcisms[exorcismSteps[i]].description + "</label><br>";
-            */
         }
+
+        var checkboxes = document.querySelectorAll("input[type=checkbox]");
+
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                if (checkbox.checked)
+                    CookieManager.set(checkbox.name, '1');
+                else
+                    CookieManager.remove(checkbox.name);
+            })
+
+            var cookie = CookieManager.get(checkbox.name);
+
+            if (cookie != undefined)
+                checkbox.checked = true;
+        });
     }
 }
