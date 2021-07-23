@@ -78,6 +78,7 @@ const ghostCategories = [
     }
 ];
 
+// Exorcism types
 const exorcisms = [
     {name: "ENTITY_NEUTRINO_GUN", description: "Shoot the entity with neutrino-gun."}, // 0
     {name: "ENTITY_SALT", description: "Use a salt crystal with the salt shotgun or by directly throwing it. You can throw the crystal directly at the entity or put it on the ground so that it can walk on it."}, // 1
