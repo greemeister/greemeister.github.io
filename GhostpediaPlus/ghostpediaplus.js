@@ -48,7 +48,7 @@ const ghostCategories = [
      description: "This category of entity loves to hide in the shadow. It is not particularly afraid of light but will try to extiguish surrounding lights if possible. By its consistency, it is rather dark or black when it appears.",
      emf_evidence: [{ev:1, ex:0}, {ev:1, ex:2}, {ev:2, ex:2}, {ev:2, ex:1}],
      entity_evidence: [{ev:1, ex:3}, {ev:1, ex:2}, {ev:2, ex:2}, {ev:3, ex:2}, {ev:4, ex:2}, {ev:4, ex:3}],
-     temp_evidence: [{ev:1, ex:4}, {ev:1, ex:2}, {ev:2, ex:4}, {ev:2, ex:2}],
+     temp_evidence: [{ev:1, ex:4}, {ev:1, ex:2}, {ev:2, ex:5}, {ev:2, ex:2}],
      written_evidence: [{ev:1, ex:9}, {ev:1, ex:2}, {ev:2, ex:6}, {ev:2, ex:2}, {ev:3, ex:6}, {ev:3, ex:2}, {ev:4, ex:9}, {ev:4, ex:2}],
      audio_evidence: [{ev:1, ex:8}, {ex:1, ex:2}, {ev:2, ex:7}, {ev:2, ex:2}, {ev:3, ex:8}, {ev:3, ex:2}]
     }, 
