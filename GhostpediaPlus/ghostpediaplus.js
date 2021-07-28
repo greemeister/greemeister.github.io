@@ -332,7 +332,7 @@ function refreshExorcisms() {
             //element.innerHTML += "<li>" + exorcisms[exorcismSteps[i]].description + "</li>";
             
             element.innerHTML += "<input type=\"checkbox\" class=\"large\" id=\"" + exorcisms[exorcismSteps[i]].name + "\" name=\"" + exorcisms[exorcismSteps[i]].name + "\" value=\"\">";
-            element.innerHTML += "<label for=\"step" + i + "\">" + exorcisms[exorcismSteps[i]].description + "</label><br>";
+            element.innerHTML += "<label for=\"" + exorcisms[exorcismSteps[i]].name + "\" class=\"strikethrough\">" + exorcisms[exorcismSteps[i]].description + "</label><br>";
         }
 
         var checkboxes = document.querySelectorAll("input[type=checkbox]");
