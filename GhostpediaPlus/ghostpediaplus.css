@@ -202,8 +202,36 @@ ul.square {
     cursor: pointer;
 }
 
+/*
 input[type=checkbox]:checked + label.strikethrough {
     text-decoration: line-through;
     font-style: italic;
     color: #797979;
+}
+*/
+
+@keyframes fancystrike{
+  0%   { width : 0; }
+  100% { width: 100%; }
+}
+
+input[type=checkbox]:checked + label.fancystrike {
+  position: relative;
+  font-style: italic;
+  color: #797979;
+}
+
+input[type=checkbox]:checked + label.fancystrike::after {
+  content: ' ';
+  position: absolute;
+  top: 50%;
+  left: 1;
+  width: 100%;
+  height: 5px;
+  background: #797979;
+  animation-name: fancystrike;
+  animation-duration: 0.25s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards; 
 }
