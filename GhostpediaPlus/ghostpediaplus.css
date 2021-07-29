@@ -202,14 +202,13 @@ ul.square {
     cursor: pointer;
 }
 
-/*
 input[type=checkbox]:checked + label.strikethrough {
     text-decoration: line-through;
     font-style: italic;
     color: #797979;
 }
-*/
 
+/*
 @keyframes fancystrike{
   0%   { width : 0; }
   100% { width: 100%; }
@@ -235,3 +234,37 @@ input[type=checkbox]:checked + label.fancystrike::after {
   animation-iteration-count: 1;
   animation-fill-mode: forwards; 
 }
+
+input[type=checkbox]:checked + label.strikethrough {
+  font-style: italic;
+  color: #797979;
+}
+
+input[type=checkbox]:checked + label.strikethrough:after {
+   text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 5px;
+    transition: background-size .3s;
+}
+
+input[type=checkbox]:checked + label.strikethrough:hover {
+    color: rgba(200,0,0,1);
+    background: rgba(255, 189, 182, 0.3);
+}
+
+input[type=checkbox]:checked + label.strikethrough:hover:after {
+    transform: scaleX(0);
+    transform-origin: center right;
+}
+
+@keyframes strikethrough {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+*/
