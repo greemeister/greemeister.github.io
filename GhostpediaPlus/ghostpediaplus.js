@@ -60,7 +60,7 @@ const ghostCategories = [
      written_evidence: [{ev:1, ex:9}, {ev:1, ex:7}, {ev:2, ex:6}, {ev:2, ex:7}, {ev:3, ex:6}, {ev:3, ex:7}, {ev:4, ex:9}, {ev:4, ex:7}],
      audio_evidence: [{ev:1, ex:8}, {ev:1, ex:7}, {ev:2, ex:7}, {ev:3, ex:8}, {ev:3, ex:7}]
     },
-    {name: "Daemon",
+    {name: "Demon",
      description: "This demonic and aggressive entity will watch you around every corner, waiting for the best time to pounce on you. The demon can laugh at your impending death and its laughter is the best way to identify it.",
      emf_evidence: [{ev:1, ex:0}, {ev:1, ex:8}, {ev:2, ex:1}, {ev:2, ex:8}],
      entity_evidence: [{ev:1, ex:3}, {ev:1, ex:8}, {ev:2, ex:2}, {ev:2, ex:8}, {ev:3, ex:2}, {ev:3, ex:8}, {ev:4, ex:3}, {ev:4, ex:8}],
