@@ -14,30 +14,30 @@ const entity_scans = [
 
 const temps = [
     "--",
-    "Zero",
-    "Negative"
+    "Temp: Zero",
+    "Temp: Negative"
 ];
 
 const written = [
     "--",
-    "Symbol/picture writing",
-    "Textual writing",
-    "Wall writing",
-    "Wall drawing"
+    "Book: Drawing",
+    "Book: Writing",
+    "Surface: Writing",
+    "Surface: Drawing"
 ];
 
 const audios = [
     "--",
-    "Spirit box EVP",
-    "Spirit box radio",
-    "Voice in the house"
+    "Spirit-box: EVP",
+    "Spirit-box: Radio",
+    "Ghostly Voice On-Site"
 ];
 
 const ghostCategories = [
     {name: "None",
      description: ""},
     {name: "Poltergeist", 
-     description: "The Poltergeist is extremely fond of playing and handling a lot objects in its vicinity. But be careful, it doesn't like the presence of other people, especially if they manipulate objects.",
+     description: "The Poltergeist is extremely fond of playing and handling a lot objects in its vicinity. Be careful, it doesn't like the presence of other people, especially if they move objects around.",
      emf_evidence: [{ev:1, ex:0}, {ev:2, ex:0}, {ev:2, ex:1}],
      entity_evidence: [{ev:1, ex:3}, {ev:1, ex:0}, {ev:2, ex:2}, {ev:2, ex:0}, {ev:3, ex:2}, {ev:3, ex:0}, {ev:4, ex:3}, {ev:4, ex:0}],
      temp_evidence: [{ev:1, ex:4}, {ev:1, ex:0}, {ev:2, ex:5}, {ev:2, ex:0}],
@@ -45,7 +45,7 @@ const ghostCategories = [
      audio_evidence: [{ev:1, ex:8}, {ev:1, ex:0}, {ev:2, ex:0}, {ev:2, ex:7}, {ev:3, ex:0}, {ev:3, ex:8}]
     },
     {name: "Shadow",
-     description: "This category of entity loves to hide in the shadow. It is not particularly afraid of light but will try to extiguish surrounding lights if possible. By its consistency, it is rather dark or black when it appears.",
+     description: "This category of entity loves to hide in the shadows. It is not particularly afraid of light but will try to turn off surrounding lights if possible. Due to the density of its form, it is rather dark or even black when it appears.",
      emf_evidence: [{ev:1, ex:0}, {ev:1, ex:2}, {ev:2, ex:2}, {ev:2, ex:1}],
      entity_evidence: [{ev:1, ex:3}, {ev:1, ex:2}, {ev:2, ex:2}, {ev:3, ex:2}, {ev:4, ex:2}, {ev:4, ex:3}],
      temp_evidence: [{ev:1, ex:4}, {ev:1, ex:2}, {ev:2, ex:5}, {ev:2, ex:2}],
@@ -53,7 +53,7 @@ const ghostCategories = [
      audio_evidence: [{ev:1, ex:8}, {ex:1, ex:2}, {ev:2, ex:7}, {ev:2, ex:2}, {ev:3, ex:8}, {ev:3, ex:2}]
     }, 
     {name: "Revenant",
-     description: "The Revenant is an entity that clings to the physical world. It has the particularity of not being able to stand up due to a lack of occult energy. It will crawl to grab you and steal your vital essence.",
+     description: "The Revenant is an entity that clings to the physical world. It is generally unable to stand up due to a lack of occult energy and can always be seen crawling to grab you and steal your life force.",
      emf_evidence: [{ev:1, ex:0}, {ev:1, ex:7}, {ev:2, ex:1}, {ev:2, ex:7}],
      entity_evidence: [{ev:1, ex:3}, {ev:1, ex:7}, {ev:2, ex:2}, {ev:2, ex:7}, {ev:3, ex:2}, {ev:3, ex:7}, {ev:4, ex:3}, {ev:4, ex:7}],
      temp_evidence: [{ev:1, ex:4}, {ev:1, ex:7}, {ev:2, ex:5}, {ev:2, ex:7}],
@@ -61,7 +61,7 @@ const ghostCategories = [
      audio_evidence: [{ev:1, ex:8}, {ev:1, ex:7}, {ev:2, ex:7}, {ev:3, ex:8}, {ev:3, ex:7}]
     },
     {name: "Demon",
-     description: "This demonic and aggressive entity will watch you around every corner, waiting for the best time to pounce on you. The demon can laugh at your impending death and its laughter is the best way to identify it.",
+     description: "This demonic and aggressive entity will watch you around every corner, waiting for the best time to launch its attack. The demon can laugh at your impending doom and its laughter is the best way to identify it.",
      emf_evidence: [{ev:1, ex:0}, {ev:1, ex:8}, {ev:2, ex:1}, {ev:2, ex:8}],
      entity_evidence: [{ev:1, ex:3}, {ev:1, ex:8}, {ev:2, ex:2}, {ev:2, ex:8}, {ev:3, ex:2}, {ev:3, ex:8}, {ev:4, ex:3}, {ev:4, ex:8}],
      temp_evidence: [{ev:1, ex:4}, {ev:1, ex:8}, {ev:2, ex:5}, {ev:2, ex:8}],
@@ -69,7 +69,7 @@ const ghostCategories = [
      audio_evidence: [{ev:1, ex:8}, {ev:2, ex:8}, {ev:2, ex:7}, {ev:3, ex:8}]
     }, 
     {name: "Child",
-     description: "This category of entity is easily identifiable by its childlike appearance. It is formed from the soul of a child who escaped limbo after losing their life in a monstrous and mysterious way.",
+     description: "This category of entity is easily identifiable by its childlike appearance. It is formed from the soul of a child who escaped limbo after losing their life in a brutal and devastating way.",
      emf_evidence: [{ev:1, ex:0}, {ev:2, ex:1}],
      entity_evidence: [{ev:1, ex:3}, {ev:2, ex:2}, {ev:3, ex:2}, {ev:4, ex:3}],
      temp_evidence: [{ev:1, ex:4}, {ev:2, ex:5}],
@@ -80,16 +80,16 @@ const ghostCategories = [
 
 // Exorcism types
 const exorcisms = [
-    {name: "ENTITY_NEUTRINO_GUN", description: "Shoot the entity with neutrino-gun."}, // 0
-    {name: "ENTITY_SALT", description: "Use a salt crystal with the salt shotgun or by directly throwing it. You can throw the crystal directly at the entity or put it on the ground so that it can walk on it."}, // 1
-    {name: "ENTITY_FLASH", description: "Do a flash close to the entity with the instant camera."}, // 2
-    {name: "ENTITY_TIGER_EYE", description: "Bring the entity close to a tiger-eye stone."}, // 3
-    {name: "ENTITY_INCENSE_STICK", description: "Use an incense stick close to the entity."}, // 4
-    {name: "ACTIVATE_INCENSE_STICK", description: "Activate an incense stick in the entity haunting room until it finishes. This room contains many orbs visible by camera."}, // 5
-    {name: "NEUTRALIZE_SUMMON_PENTACLE", description: "Neutralize the summoning pentacle with a bottle of holy water. To do this, find it with a camera then make it visible with the flash of an instant camera."}, // 6
-    {name: "OBJECT_CURSED_HAUNT", description: "Destroy the haunt of a cursed object with the neutrino-gun, the latter emits a powerful OCC value measurable with the MEL."}, // 7
-    {name: "RECITE_EXORCISM", description: "Recite the exorcism of the exorcism book without interruption several times."}, // 8
-    {name: "THROW_HOLY_WATER", description: "Throw the holy water on the entity."} // 9
+    {name: "ENTITY_NEUTRINO_GUN", description: "Shoot the entity with Neutrino-Gun."}, // 0
+    {name: "ENTITY_SALT", description: "Fire Salt Crystals with a Salt Shotfgun at the entity. You can even throw salt directly at the entity or place it on the ground to be walked over like a trap."}, // 1
+    {name: "ENTITY_FLASH", description: "Flash the entity with an Instant Camera at close range."}, // 2
+    {name: "ENTITY_TIGER_EYE", description: "Bring a Tiger Eye stone into contact with the entity."}, // 3
+    {name: "ENTITY_INCENSE_STICK", description: "Bring a burning Incense Stick into contact with the entity."}, // 4
+    {name: "ACTIVATE_INCENSE_STICK", description: "Burn an Incense Stick in the Dread Room. The Dread Room will contain several ghost orbs that are only visible to cameras."}, // 5
+    {name: "NEUTRALIZE_SUMMON_PENTACLE", description: "Destroy the Summoning Pentagram with a bottle of Holy Water. To do this, locate it with a camera then make it visible with the flash of an Instant Camera."}, // 6
+    {name: "OBJECT_CURSED_HAUNT", description: "Destroy the power of the corrupt object with the Neutrino-Gun. A corrupt object will emit an extremely powerful OCC value (measurable with the MEL). Note: this is different from a standard cursed object."}, // 7
+    {name: "RECITE_EXORCISM", description: "Recite an Exorcism Book within the haunted location."}, // 8
+    {name: "THROW_HOLY_WATER", description: "Throw Holy Water on the entity."} // 9
 ];
 
 var currentEMF = 0;
