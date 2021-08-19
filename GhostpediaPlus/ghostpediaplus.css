@@ -181,6 +181,16 @@ body {
     font-weight: bold;
 }
 
+#ward-object {
+    font-size: 28px;
+    margin: 10px;
+    position: fixed;
+    top: 635px;
+    text-align: center;
+    font-weight: bold;
+    color: #3944BC;
+}
+
 #exorcism {
     font-size: 32px;
     font-weight: bold;

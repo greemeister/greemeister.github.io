@@ -33,6 +33,12 @@ const audios = [
     "Ghostly Voice On-Site"
 ];
 
+const wardObjects = [
+    "",
+    "Crucifix",
+    "Mary Statue"
+];
+
 const ghostCategories = [
     {name: "None",
      description: ""},
@@ -42,7 +48,8 @@ const ghostCategories = [
      entity_evidence: [{ev:1, ex:3}, {ev:1, ex:0}, {ev:2, ex:2}, {ev:2, ex:0}, {ev:3, ex:2}, {ev:3, ex:0}, {ev:4, ex:3}, {ev:4, ex:0}],
      temp_evidence: [{ev:1, ex:4}, {ev:1, ex:0}, {ev:2, ex:5}, {ev:2, ex:0}],
      written_evidence: [{ev:1, ex:9}, {ev:1, ex:0}, {ev:2, ex:0}, {ev:2, ex:6}, {ev:3, ex:6}, {ev:3, ex:0}, {ev:4, ex:9}, {ev:4, ex:0}],
-     audio_evidence: [{ev:1, ex:8}, {ev:1, ex:0}, {ev:2, ex:0}, {ev:2, ex:7}, {ev:3, ex:0}, {ev:3, ex:8}]
+     audio_evidence: [{ev:1, ex:8}, {ev:1, ex:0}, {ev:2, ex:0}, {ev:2, ex:7}, {ev:3, ex:0}, {ev:3, ex:8}],
+     ward_object: 1
     },
     {name: "Shadow",
      description: "This category of entity loves to hide in the shadows. It is not particularly afraid of light but will try to turn off surrounding lights if possible. Due to the density of its form, it is rather dark or even black when it appears.",
@@ -50,7 +57,8 @@ const ghostCategories = [
      entity_evidence: [{ev:1, ex:3}, {ev:1, ex:2}, {ev:2, ex:2}, {ev:3, ex:2}, {ev:4, ex:2}, {ev:4, ex:3}],
      temp_evidence: [{ev:1, ex:4}, {ev:1, ex:2}, {ev:2, ex:5}, {ev:2, ex:2}],
      written_evidence: [{ev:1, ex:9}, {ev:1, ex:2}, {ev:2, ex:6}, {ev:2, ex:2}, {ev:3, ex:6}, {ev:3, ex:2}, {ev:4, ex:9}, {ev:4, ex:2}],
-     audio_evidence: [{ev:1, ex:8}, {ex:1, ex:2}, {ev:2, ex:7}, {ev:2, ex:2}, {ev:3, ex:8}, {ev:3, ex:2}]
+     audio_evidence: [{ev:1, ex:8}, {ex:1, ex:2}, {ev:2, ex:7}, {ev:2, ex:2}, {ev:3, ex:8}, {ev:3, ex:2}],
+     ward_object: 1
     }, 
     {name: "Revenant",
      description: "The Revenant is an entity that clings to the physical world. It is generally unable to stand up due to a lack of occult energy and can always be seen crawling to grab you and steal your life force.",
@@ -58,7 +66,8 @@ const ghostCategories = [
      entity_evidence: [{ev:1, ex:3}, {ev:1, ex:7}, {ev:2, ex:2}, {ev:2, ex:7}, {ev:3, ex:2}, {ev:3, ex:7}, {ev:4, ex:3}, {ev:4, ex:7}],
      temp_evidence: [{ev:1, ex:4}, {ev:1, ex:7}, {ev:2, ex:5}, {ev:2, ex:7}],
      written_evidence: [{ev:1, ex:9}, {ev:1, ex:7}, {ev:2, ex:6}, {ev:2, ex:7}, {ev:3, ex:6}, {ev:3, ex:7}, {ev:4, ex:9}, {ev:4, ex:7}],
-     audio_evidence: [{ev:1, ex:8}, {ev:1, ex:7}, {ev:2, ex:7}, {ev:3, ex:8}, {ev:3, ex:7}]
+     audio_evidence: [{ev:1, ex:8}, {ev:1, ex:7}, {ev:2, ex:7}, {ev:3, ex:8}, {ev:3, ex:7}],
+     ward_object: 2
     },
     {name: "Demon",
      description: "This demonic and aggressive entity will watch you around every corner, waiting for the best time to launch its attack. The demon can laugh at your impending doom and its laughter is the best way to identify it.",
@@ -66,7 +75,8 @@ const ghostCategories = [
      entity_evidence: [{ev:1, ex:3}, {ev:1, ex:8}, {ev:2, ex:2}, {ev:2, ex:8}, {ev:3, ex:2}, {ev:3, ex:8}, {ev:4, ex:3}, {ev:4, ex:8}],
      temp_evidence: [{ev:1, ex:4}, {ev:1, ex:8}, {ev:2, ex:5}, {ev:2, ex:8}],
      written_evidence: [{ev:1, ex:9}, {ev:1, ex:8}, {ev:2, ex:6}, {ev:2, ex:8}, {ev:3, ex:6}, {ev:3, ex:8}, {ev:4, ex:9}, {ev:4, ex:8}],
-     audio_evidence: [{ev:1, ex:8}, {ev:2, ex:8}, {ev:2, ex:7}, {ev:3, ex:8}]
+     audio_evidence: [{ev:1, ex:8}, {ev:2, ex:8}, {ev:2, ex:7}, {ev:3, ex:8}],
+     ward_object: 1
     }, 
     {name: "Child",
      description: "This category of entity is easily identifiable by its childlike appearance. It is formed from the soul of a child who escaped limbo after losing their life in a brutal and devastating way.",
@@ -74,7 +84,8 @@ const ghostCategories = [
      entity_evidence: [{ev:1, ex:3}, {ev:2, ex:2}, {ev:3, ex:2}, {ev:4, ex:3}],
      temp_evidence: [{ev:1, ex:4}, {ev:2, ex:5}],
      written_evidence: [{ev:1, ex:9}, {ev:2, ex:6}, {ev:3, ex:6}, {ev:4, ex:9}],
-     audio_evidence: [{ev:1, ex:8}, {ev:2, ex:7}, {ev:3, ex:8}]
+     audio_evidence: [{ev:1, ex:8}, {ev:2, ex:7}, {ev:3, ex:8}],
+     ward_object: 2
     }
 ];
 
@@ -184,6 +195,13 @@ function onClickCategorySelector(e, alt=undefined) {
 
     document.getElementById("category-selection").innerHTML = ghostCategories[currentCategory].name;
     document.getElementById("category-description").innerHTML = ghostCategories[currentCategory].description;
+
+    let wardObject = document.getElementById("ward-object");
+
+    if (ghostCategories[currentCategory].name == "None")
+        wardObject.innerHTML = ""
+    else
+        wardObject.innerHTML = "Ward object: " + wardObjects[ghostCategories[currentCategory].ward_object];
 
     refreshExorcisms();
 }
