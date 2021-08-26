@@ -1,19 +1,21 @@
 // Ghost Info Defs
 const ghostInfos = [
-    { name : "spirit", evidences : [2,3,5], description: "No strengths. <span class='weakness'>Smudge sticks will pacify it for a while.</span>"},
-    { name : "wraith", evidences : [2,3,6], description: "Floats, footsteps rare. <span class='weakness'>Has toxicity to salt.</span>"},
-    { name : "phantom", evidences : [1,4,6], description: "Seeing it drops sanity fast. <span class='weakness'>Taking its photo makes it hide for a while.</span>"},
-    { name : "poltergeist", evidences : [2,3,4], description: "Can throw objects around. <span class='weakness'>Ineffective in empty rooms.</span>"},
-    { name : "banshee", evidences : [1,3,6], description: "Targets lone individuals. <span class='weakness'>Fears crucifix & less aggressive near them.</span>"},
-    { name : "jinn", evidences : [1,2,4], description: "Travels fast if victim is far. <span class='weakness'>Kill electricity to stop its powers.</span>"},
-    { name : "mare", evidences : [2,4,6], description: "More chances to attack in darkness. <span class='weakness'>Turn lights on to reduce aggression.</span>"},
-    { name : "revenant", evidences : [1,3,5], description: "Travels fast when hunting. <span class='weakness'>Moves slowly if it can't see humans.</span>"},
-    { name : "shade", evidences : [1,4,5], description: "Shy/hard to find. Less activity around groups. <span class='weakness'>Can't hunt if multiple people around.</span>"},
-    { name : "demon", evidences : [2,5,6], description: "Very aggressive. Attacks often. <span class='weakness'>Ouija board use won't affect sanity.</span>"},
-    { name : "yurei", evidences : [4,5,6], description: "Strong effect on sanity. <span class='weakness'>Smudging its room contains it to that room for a while.</span>"},
-    { name : "oni", evidences : [1,2,5], description: "More active with people nearby. <span class='weakness'>High activity makes it easier to find and identify.</span>"},
-    { name : "yokai", evidences : [2,4,5], description: "Talking near it will anger it and increase its chance of attacking. <span class='weakness'>Can only hear voices close to it while hunting.</span>"},
-    { name : "hantu", evidences : [3,4,5], description: "Lower temperatures can cause it to move at faster speeds. <span class='weakness'>Moves slower in warmer areas.</span>"},
+    { name : "spirit", evidences : [1,2,5], description: "No strengths. <span class='weakness'>Smudge sticks will pacify it for a while.</span>"},
+    { name : "wraith", evidences : [1,2,7], description: "Floats, footsteps rare. <span class='weakness'>Has toxicity to salt.</span>"},
+    { name : "phantom", evidences : [2,3,7], description: "Seeing it drops sanity fast. <span class='weakness'>Taking its photo makes it hide for a while.</span>"},
+    { name : "poltergeist", evidences : [2,3,5], description: "Can throw objects around. <span class='weakness'>Ineffective in empty rooms.</span>"},
+    { name : "banshee", evidences : [3,4,7], description: "Targets lone individuals. <span class='weakness'>Fears crucifix & less aggressive near them.</span>"},
+    { name : "jinn", evidences : [1,3,6], description: "Travels fast if victim is far. <span class='weakness'>Kill electricity to stop its powers.</span>"},
+    { name : "mare", evidences : [2,4,5], description: "More chances to attack in darkness. <span class='weakness'>Turn lights on to reduce aggression.</span>"},
+    { name : "revenant", evidences : [4,5,6], description: "Travels fast when hunting. <span class='weakness'>Moves slowly if it can't see humans.</span>"},
+    { name : "shade", evidences : [1,5,6], description: "Shy/hard to find. Less activity around groups. <span class='weakness'>Can't hunt if multiple people around.</span>"},
+    { name : "demon", evidences : [3,5,6], description: "Very aggressive. Attacks often. <span class='weakness'>Ouija board use won't affect sanity.</span>"},
+    { name : "yurei", evidences : [4,6,7], description: "Strong effect on sanity. <span class='weakness'>Smudging its room contains it to that room for a while.</span>"},
+    { name : "oni", evidences : [1,6,7], description: "More active with people nearby. <span class='weakness'>High activity makes it easier to find and identify.</span>"},
+    { name : "yokai", evidences : [2,4,7], description: "Talking near it will anger it and increase its chance of attacking. <span class='weakness'>Can only hear voices close to it while hunting.</span>"},
+    { name : "hantu", evidences : [3,4,6], description: "Lower temperatures can cause it to move at faster speeds. <span class='weakness'>Moves slower in warmer areas.</span>"},
+    { name : "myling", evidences: [1,3,5], description: "Known to be quieter when hunting. <span class='weakness'>Frequently makes more paranormal sounds.</span>"},
+    { name : "goryo", evidences: [1,3,7], description: "Will usually only show itselfs on camera if there are no people nearby. <span class='weakness'>Rarely seen far from their place of death.</span>"},
 ];
 
 const maxNumOfEvidences = ghostInfos[0].evidences.length;
@@ -218,7 +220,7 @@ function initializeTracker() {
     let element = document.getElementById("excludeLatch");
 
     if (element.onclick != onExcludeClickHandler) {
-        console.log("setting");
+        //console.log("setting");
         element.onclick = onExcludeClickHandler;
     }
 }
