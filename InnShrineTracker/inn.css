@@ -1,0 +1,48 @@
+@viewport {
+    width: device-width;
+    height: device-height;
+    zoom: 1.0;
+}
+
+body {
+    /*background-size: cover;*/
+    background-image: url("img/devour_bg.png");
+    background-repeat: no-repeat;
+}
+
+#container .symbol {
+    border: 1px;
+    border-style: none;
+    position: absolute;
+    background-repeat: no-repeat;
+}
+
+td {
+    padding-left: 25px;
+    padding-top: 50px;
+}
+
+
+.roomselect {
+    background-color: rgb(29, 28, 28);
+    font-size: 20px;
+    text-align: center;
+    color: rgb(182, 178, 178);
+}
+
+optgroup {
+    font-size: 20px;
+}
+
+#reset {
+    width: 100%;
+    height: 5%;
+    color: #91190F;
+    font-size: 32px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#container {
+    /*margin-top: 0vh;*/
+}
