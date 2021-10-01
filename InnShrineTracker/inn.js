@@ -14,41 +14,50 @@ const select_info = [
 
 const exclude_options = new Set();
 
-function initializeHandlers() {/*
+function initializeHandlers() {
     $('.roomselect').change(function() {
-        if ($(this).val() != "blank") {
-            console.log($(this).val());
+        exclude_options.clear();
+
+        var selects = document.getElementsByClassName('roomselect');
+
+        for (var i = 0; i < selects.length; i++) {
+            if (selects.item(i).value == "blank")
+                continue;
+
+            exclude_options.add(selects.item(i).value);
+            //console.log(selects.item(i).value);
         }
 
-        if (!exclude_options.has($(this).val)) {
-            console.log('adding');
-            exclude_options.add($(this).val);
-        }
+        var opts = document.getElementsByClassName('opt');
+        //console.log(opts.length);
 
-        initializeSelects();
-    });*/
+        for (var i = 0; i < opts.length; i++) {
+            opts.item(i).disabled = exclude_options.has(opts.item(i).value);
+        }
+    });
 
     $('#reset').on('click', function() {
         $('.roomselect').val("blank");
+
+        //Only call the change for one roomselect and not all since we want to clear the disabled flag
+        $('.roomselect').first().change();
     });
 }
 
-function initializeSelects(select) {
+function initializeSelects() {
     var selects = document.getElementsByClassName('roomselect');
-    
+    //console.log(selects.item(0).value);
     $('.roomselect').children().remove();
 
     for (var i = 0, len = selects.length|0; i < len; i=i+1|0) {
         var optgroup = document.createElement('optgroup');
 
         select_info.forEach(sel => {
-            if (!exclude_options.has(sel.name)) {
                 var opt = document.createElement('option');
                 opt.classList = 'opt';
                 opt.value = sel.name;
                 opt.innerHTML = sel.value;
                 optgroup.appendChild(opt);
-            }
         });
 
         selects[i].appendChild(optgroup);
