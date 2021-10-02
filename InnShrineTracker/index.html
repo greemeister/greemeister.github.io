@@ -6,15 +6,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="inn.css">
     </head>
-    <body>        
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <body>
+        <div id="maps" class="cursor-pointer">
+            <div id="firstfloormap" class="map"><a href="#">First Floor Map</a></div>
+            <div id="secondfloormap" class="map"><a href="#">Second Floor Map</a></div>
+        </div>
+
         <div id="container">
             <table id="shrine_table" border="0" bordercolor="red" align="center" border-spacing="10" cellpadding="5">
             </table>
         </div>
         
-        <div id="reset">Reset</div>
-        
+        <div id="reset" class="cursor-pointer"><a href="#">Reset</a></div>
+
+        <div id="image-viewer">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="full-image"></img>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="inn.js"></script>
     </body>
 </html>

@@ -45,14 +45,14 @@ function initializeHandlers() {
     });
 
     $(document).ready(function() {
-        console.log("document is ready");
+        //console.log("document is ready");
         tableBody = $('#shrine_table');
 
         for (var i = 0; i < shrine_symbols.length; i += 2) {
             var markup = "<tr>";
 
             for (var c = i, max = c + 2; c < max; c++) {
-                markup += "<td><img class=\"shrine_img\" src=\"img/" + shrine_symbols[c] + ".png\" alt=\"" + shrine_symbols[c] + "\" width=100></img></td>";
+                markup += "<td><img class=\"cursor-pointer shrine_img\" src=\"img/" + shrine_symbols[c] + ".png\" alt=\"" + shrine_symbols[c] + "\" width=100></img></td>";
                 markup += "<td>";
                 markup += "<select name =\"" + shrine_symbols[c] + "_room\" id=\"" + shrine_symbols[c] + "_room\" class=\"roomselect\"></select>";
                 markup += "</td>";
@@ -86,8 +86,24 @@ function initializeHandlers() {
         });
 
         $('.shrine_img').on('click', function() {
-            console.log($(this));
+            //console.log($(this));
             $(this).toggleClass('burned');
+        });
+
+        $('#firstfloormap').on('click', function() {
+            console.log("first floor");
+            $('#full-image').attr("src", "img/TheInnFirstFloor.png");
+            $('#image-viewer').show();
+        });
+
+        $('#secondfloormap').on('click', function() {
+            console.log("second floor");
+            $('#full-image').attr("src", "img/TheInnSecondFloor.png");
+            $('#image-viewer').show();
+        });
+
+        $("#image-viewer .close").on('click', function() {
+            $('#image-viewer').hide();
         });
     });
 }
