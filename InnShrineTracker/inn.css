@@ -34,6 +34,22 @@ td {
     color: rgb(182, 178, 178);
 }
 
+.shrine_img {
+    cursor: pointer;
+}
+
+.shrine_img.burned {
+    filter: grayscale(100%);
+}
+
+.shrine_img.burned:hover {
+    filter: brightness(60%);
+}
+
+.shrine_img:not(.burned):hover, #reset:hover {
+    filter: brightness(150%);
+}
+
 optgroup {
     font-size: 20px;
 }
@@ -48,4 +64,8 @@ optgroup {
     margin-top: 25px;
     text-align: center;
     cursor: pointer;
+}
+
+#reset:active {
+    filter: brightness(60%);
 }

@@ -1,21 +1,29 @@
 const select_info = [
     {name: "blank", value: ""},
-    {name: "one", value: "1"},
-    {name: "two", value: "2"},
-    {name: "three", value: "3"},
-    {name: "four", value: "4"},
-    {name: "five", value: "5"},
-    {name: "six", value: "6"},
-    {name: "seven", value: "7"},
-    {name: "eight", value: "8"},
+    {name: "backyard", value: "Backyard"},
+    {name: "bathroom", value: "Bathroom"},
     {name: "cave", value: "Cave"},
-    {name: "storeroom", value: "Storeroom"}
+    {name: "dining", value: "Dining Room"},
+    {name: "laundry", value: "Laundry"},
+    {name: "kitchen", value: "Kitchen"},
+    {name: "onsen", value: "Onsen"},
+    {name: "reading", value: "Reading Room"},
+    {name: "rec", value: "Recreation Room"},
+    {name: "one", value: "Room #1"},
+    {name: "two", value: "Room #2"},
+    {name: "three", value: "Room #3"},
+    {name: "four", value: "Room #4"},
+    {name: "five", value: "Room #5"},
+    {name: "six", value: "Room #6"},
+    {name: "seven", value: "Room #7"},
+    {name: "eight", value: "Room #8"},
+    {name: "storage", value: "Storage (Upstairs)"}
 ];
 
 const shrine_symbols = [
                         "ouroboros",
                         "skull",
-                        "helmet",
+                        "pyramid",
                         "pentagram",
                         "hourglass",
                         "bull",
@@ -29,6 +37,7 @@ const exclude_options = new Set();
 
 function initializeHandlers() {
     $('#reset').on('click', function() {
+        $('.shrine_img').removeClass('burned');
         $('.roomselect').val("blank");
 
         //Only call the change for one roomselect and not all since we want to clear the disabled flag
@@ -43,7 +52,7 @@ function initializeHandlers() {
             var markup = "<tr>";
 
             for (var c = i, max = c + 2; c < max; c++) {
-                markup += "<td><img src=\"img/" + shrine_symbols[c] + ".png\" alt=\"" + shrine_symbols[c] + "\" width=100></img></td>";
+                markup += "<td><img class=\"shrine_img\" src=\"img/" + shrine_symbols[c] + ".png\" alt=\"" + shrine_symbols[c] + "\" width=100></img></td>";
                 markup += "<td>";
                 markup += "<select name =\"" + shrine_symbols[c] + "_room\" id=\"" + shrine_symbols[c] + "_room\" class=\"roomselect\"></select>";
                 markup += "</td>";
@@ -74,6 +83,11 @@ function initializeHandlers() {
             for (var i = 0; i < opts.length; i++) {
                 opts.item(i).disabled = exclude_options.has(opts.item(i).value);
             }
+        });
+
+        $('.shrine_img').on('click', function() {
+            console.log($(this));
+            $(this).toggleClass('burned');
         });
     });
 }
