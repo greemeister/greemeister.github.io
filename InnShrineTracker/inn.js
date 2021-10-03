@@ -31,9 +31,15 @@ const shrine_symbols = [
                         "sword",
                         "cross",
                         "flame"
-                       ];
+];
+
+const maps = [
+              "TheInnFirstFloor",
+              "TheInnSecondFloor"
+];
 
 const exclude_options = new Set();
+var cachedImages = [];
 
 function initializeHandlers() {
     $('#reset').on('click', function() {
@@ -45,13 +51,23 @@ function initializeHandlers() {
     });
 
     $(document).ready(function() {
+        for (var i = 0; i < shrine_symbols.length; i++) {
+            cachedImages[shrine_symbols[i]] = new Image();
+            cachedImages[shrine_symbols[i]].src = 'img/' + shrine_symbols[i] + '.png';
+        }
+        
+        for (var i = 0; i < maps.length; i++) {
+            cachedImages[maps[i]] = new Image();
+            cachedImages[maps[i]].src = 'img/' + maps[i] + '.png';
+        }
+
         tableBody = $('#shrine_table');
 
         for (var i = 0; i < shrine_symbols.length; i += 2) {
             var markup = "<tr>";
 
             for (var c = i, max = c + 2; c < max; c++) {
-                markup += "<td><img class=\"cursor-pointer shrine_img\" src=\"img/" + shrine_symbols[c] + ".png\" alt=\"" + shrine_symbols[c] + "\" width=100></img></td>";
+                markup += "<td><img class=\"cursor-pointer shrine_img\" src="+ cachedImages[shrine_symbols[c]].src + " alt=\"" + shrine_symbols[c] + "\" width=100></img></td>";
                 markup += "<td>";
                 markup += "<select name =\"" + shrine_symbols[c] + "_room\" id=\"" + shrine_symbols[c] + "_room\" class=\"roomselect\"></select>";
                 markup += "</td>";
@@ -87,12 +103,12 @@ function initializeHandlers() {
         });
 
         $('#firstfloormap').on('click', function() {
-            $('#full-image').attr("src", "img/TheInnFirstFloor.png");
+            $('#full-image').attr("src", cachedImages[maps[0]].src);
             $('#image-viewer').show();
         });
 
         $('#secondfloormap').on('click', function() {
-            $('#full-image').attr("src", "img/TheInnSecondFloor.png");
+            $('#full-image').attr("src", cachedImages[maps[1]].src);
             $('#image-viewer').show();
         });
 
