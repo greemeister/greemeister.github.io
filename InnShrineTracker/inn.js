@@ -43,7 +43,7 @@ var cachedImages = [];
 
 function initializeHandlers() {
     $('#reset').on('click', function() {
-        $('.shrine-img').removeClass('burned');
+        $('.flip-card-inner').removeClass('burned');
         $('.roomselect').val("blank");
 
         //Only call the change for one roomselect and not all since we want to clear the disabled flag
@@ -73,7 +73,15 @@ function initializeHandlers() {
                 markup += "<div id=\"container__row__col_" + ((c % step) + 1) + "\" class=\"container__column\">";
                 markup += "<ul class=\"container__column__symbol\">";
                 markup += "<li>";
+                markup += "<div class=\"flip-card\">";
+                markup += "<div class=\"flip-card-inner\">";
+                markup += "<div class=\"flip-card-front\">";
                 markup += "<img class=\"shrine-img\" src=" + cachedImages[shrine_symbols[c]].src + " alt=\"" + shrine_symbols[c] + "\">";
+                markup += "</div>"
+                markup += "<div class=\"flip-card-back\">";
+                markup += "<img class=\"shrine-img\" src=" + cachedImages[shrine_symbols[c]].src + " alt=\"" + shrine_symbols[c] + "\">";
+                markup += "</div>";
+                markup += "</div></div>";
                 markup += "</li>";
                 markup += "<li>";
                 markup += "<div class=\"box\">";
@@ -110,7 +118,7 @@ function initializeHandlers() {
             }
         });
 
-        $('.shrine-img').on('click', function() {
+        $('.flip-card-inner').on('click', function() {
             $(this).toggleClass('burned');
         });
 
