@@ -144,17 +144,17 @@ function initializeSelects() {
     $('.roomselect').children().remove();
 
     for (var i = 0, len = selects.length|0; i < len; i=i+1|0) {
-        var optgroup = document.createElement('optgroup');
+        //var optgroup = document.createElement('optgroup');
 
         select_info.forEach(sel => {
                 var opt = document.createElement('option');
                 opt.classList = 'opt';
                 opt.value = sel.name;
                 opt.innerHTML = sel.value;
-                optgroup.appendChild(opt);
+                selects[i].appendChild(opt);
         });
 
-        selects[i].appendChild(optgroup);
+        //selects[i].appendChild(optgroup);
     };
 }
 
