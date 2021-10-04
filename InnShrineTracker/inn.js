@@ -26,9 +26,9 @@ const shrine_symbols = [
                         "pyramid",
                         "pentagram",
                         "hourglass",
-                        "bull",
+                        "goat",
                         "eye",
-                        "sword",
+                        "dagger",
                         "cross",
                         "flame"
 ];
@@ -43,7 +43,7 @@ var cachedImages = [];
 
 function initializeHandlers() {
     $('#reset').on('click', function() {
-        $('.shrine_img').removeClass('burned');
+        $('.shrine-img').removeClass('burned');
         $('.roomselect').val("blank");
 
         //Only call the change for one roomselect and not all since we want to clear the disabled flag
@@ -61,20 +61,32 @@ function initializeHandlers() {
             cachedImages[maps[i]].src = 'img/' + maps[i] + '.png';
         }
 
-        tableBody = $('#shrine_table');
+        const step = 5;
+        var row = 1;
 
-        for (var i = 0; i < shrine_symbols.length; i += 2) {
-            var markup = "<tr>";
+        containerBody = $('#container');
 
-            for (var c = i, max = c + 2; c < max; c++) {
-                markup += "<td><img class=\"cursor-pointer shrine_img\" src="+ cachedImages[shrine_symbols[c]].src + " alt=\"" + shrine_symbols[c] + "\" width=100></img></td>";
-                markup += "<td>";
+        for (var i = 0; i < shrine_symbols.length; i += step) {
+            var markup = "<div id=\"container__row_" + row + "\" class=\"container__row\">";
+
+            for (var c = i, max = c + step; c < max; c++) {
+                markup += "<div id=\"container__row__col_" + ((c % step) + 1) + "\" class=\"container__column\">";
+                markup += "<ul class=\"container__column__symbol\">";
+                markup += "<li>";
+                markup += "<img class=\"shrine-img\" src=" + cachedImages[shrine_symbols[c]].src + " alt=\"" + shrine_symbols[c] + "\">";
+                markup += "</li>";
+                markup += "<li>";
+                markup += "<div class=\"box\">";
                 markup += "<select name =\"" + shrine_symbols[c] + "_room\" id=\"" + shrine_symbols[c] + "_room\" class=\"roomselect\"></select>";
-                markup += "</td>";
+                markup += "</div>";
+                markup += "</li>";
+                markup += "</ul>";
+                markup += "</div>";
             }
 
-            markup += "</tr>";
-            tableBody.append(markup);
+            markup += "</div>";
+            containerBody.append(markup);
+            row++;
         }
 
         initializeSelects();
@@ -98,7 +110,7 @@ function initializeHandlers() {
             }
         });
 
-        $('.shrine_img').on('click', function() {
+        $('.shrine-img').on('click', function() {
             $(this).toggleClass('burned');
         });
 

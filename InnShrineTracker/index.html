@@ -1,30 +1,36 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>The Inn Shrine Tracker</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="inn.css">
-    </head>
-    <body>
-        <div id="maps" class="cursor-pointer">
-            <div id="firstfloormap" class="map"><a href="#">First Floor Map</a></div>
-            <div id="secondfloormap" class="map"><a href="#">Second Floor Map</a></div>
-        </div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devour Inn Shrine Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="navbar">
+        <img src="img/spookies-transparent.png" alt="" id="navbar__logo">
 
-        <div id="container">
-            <table id="shrine_table" border="0" bordercolor="red" align="center" border-spacing="10" cellpadding="5">
-            </table>
-        </div>
-        
-        <div id="reset" class="cursor-pointer"><a href="#">Reset</a></div>
+        <nav>
+            <ul id="navbar__bar">
+                <li><a id="firstfloormap" class="active-hover" href="#">First Floor</a></li>
+                <li><a id="secondfloormap" class="active-hover" href="#">Second Floor</a></li>
+            </ul>
+        </nav>
+    </div>
 
-        <div id="image-viewer">
-            <span class="close">&times;</span>
-            <img class="modal-content" id="full-image"></img>
-        </div>
+    <div id="container">
+    </div>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="inn.js"></script>
-    </body>
+    <div id="reset-container">
+        <a href="#" class="active-hover" id="reset">Reset</a>
+    </div>
+
+    <div id="image-viewer">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="full-image"></img>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="inn.js"></script>
+</body>
 </html>

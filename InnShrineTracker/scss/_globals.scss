@@ -1,0 +1,24 @@
+html {
+    font-size: 100%;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    line-height: 1.3;
+    background: url("../img/devour_bg.png") no-repeat; 
+}
+
+.active-hover:hover {
+    filter: brightness(150%);
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
