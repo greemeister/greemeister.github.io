@@ -129,10 +129,10 @@ ul {
 }
 
 .container__column .flip-card-inner {
-  -webkit-transition: -webkit-transform 0.6s;
-  transition: -webkit-transform 0.6s;
-  transition: transform 0.6s;
-  transition: transform 0.6s, -webkit-transform 0.6s;
+  -webkit-transition: -webkit-transform 0.8s;
+  transition: -webkit-transform 0.8s;
+  transition: transform 0.8s;
+  transition: transform 0.8s, -webkit-transform 0.8s;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
 }
@@ -155,8 +155,8 @@ ul {
 }
 
 .container__column .flip-card-back {
-  -webkit-transform: rotateY(180deg);
-          transform: rotateY(180deg);
+  -webkit-transform: rotateY(-180deg);
+          transform: rotateY(-180deg);
   -webkit-filter: grayscale(100%);
           filter: grayscale(100%);
 }
