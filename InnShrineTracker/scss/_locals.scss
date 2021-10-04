@@ -63,15 +63,7 @@
             width: 60%;
             cursor: pointer;
         }
-/*
-        .shrine-img.burned {
-            filter: grayscale(100%) brightness(150%);
-        }
-        
-        .shrine-img.burned:hover {
-            filter: grayscale(100%) brightness(200%);
-        } 
- */       
+    
         .shrine-img:not(.burned):hover {
             filter: brightness(150%);
         }
@@ -97,16 +89,14 @@
 
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
+            transform: rotateY(0deg);
         }
         
         .flip-card-front {
-            /*background-color: #bbb; */
-            color: black;
+            color: transparent;
         }
         
         .flip-card-back {
-            /* background-color: #2980b9;*/
-            color: black;
             transform: rotateY(180deg);
             filter: grayscale(100%);
         }    

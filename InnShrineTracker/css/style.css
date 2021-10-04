@@ -30,6 +30,10 @@ body {
           backdrop-filter: blur(4px);
 }
 
+ul {
+  list-style-type: none;
+}
+
 .active-hover:hover {
   -webkit-filter: brightness(150%);
           filter: brightness(150%);
@@ -102,15 +106,6 @@ body {
   margin-top: 10%;
   padding: 0;
   margin: auto;
-  /*
-        .shrine-img.burned {
-            filter: grayscale(100%) brightness(150%);
-        }
-        
-        .shrine-img.burned:hover {
-            filter: grayscale(100%) brightness(200%);
-        } 
- */
 }
 
 .container__column .shrine-img {
@@ -151,16 +146,15 @@ body {
   position: absolute;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
 }
 
 .container__column .flip-card-front {
-  /*background-color: #bbb; */
-  color: black;
+  color: transparent;
 }
 
 .container__column .flip-card-back {
-  /* background-color: #2980b9;*/
-  color: black;
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
   -webkit-filter: grayscale(100%);

@@ -16,6 +16,10 @@ body {
     backdrop-filter: blur(4px);
 }
 
+ul {
+    list-style-type: none;
+}
+
 .active-hover:hover {
     filter: brightness(150%);
 }
