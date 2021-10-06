@@ -2,7 +2,6 @@
 <html>
     <head>
         <title>Evidence Tracker</title>
-        <link href="https://fonts.googleapis.com/css2?family=Kalam&display=swap" rel="stylesheet">
         <link href="evidenceTracker.css" rel="stylesheet">
         
         <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
@@ -14,33 +13,42 @@
         <div id="remarks">
             <ul id="remark1"><p>(Hold control key on click to exclude evidence)</p></ul>
             <div class="button" id="excludeLatch"></div>
-
-
         </div>
         <div id="wrapper">
-            <div id="evidence">
-                <h1>Evidence found</h1>
-                <div class="button enabled" id="emf" description="EMF Level 5"></div>
-                <div class="button enabled" id="spiritbox" description="Spirit Box"></div>
-                <div class="button enabled" id="fingerprints" description="Fingerprints"></div>
-                <div class="button enabled" id="ghostorb" description="Ghost Orb"></div>
-                <div class="button enabled" id="ghostwriting" description="Ghost Writing"></div>
-                <div class="button enabled" id="freezingtemperatures" description="Freezing Temps"></div>
-                <div class="button enabled" id="dotsprojector" description="D.O.T.S. Projector"></div>
+            <div class="evidence-container">
+                <div class="evidence-wrapper enabled" id="emf">
+                    <img class="checkbox" id="emf_checkbox" alt="EMF Checkbox Image" src="checkboxes/unchecked/1.png">
+                    <span class="evidence" id="emf_text">EMF Level 5</span>
+                </div>
+                <div class="evidence-wrapper enabled" id="spiritbox">
+                    <img class="checkbox" id="spiritbox_checkbox" alt="Spiritbox Checkbox Image" src="checkboxes/unchecked/2.png">
+                    <span class="evidence" id="spiritbox_text">Spirit Box</span>
+                </div>
+                <div class="evidence-wrapper enabled" id="fingerprints">
+                    <img class="checkbox" id="fingerprints_checkbox" alt="Fingerprints Checkbox Image" src="checkboxes/unchecked/3.png">
+                    <span class="evidence" id="fingerprints_text">Fingerprints</span>
+                </div>
+                <div class="evidence-wrapper enabled" id="ghostorb">
+                    <img class="checkbox" id="ghostorb_checkbox" alt="Ghost Orbs Checkbox Image" src="checkboxes/unchecked/4.png">
+                    <span class="evidence" id="ghostorb_text">Ghost Orbs</span>
+                </div>
+                <div class="evidence-wrapper enabled" id="ghostwriting">
+                    <img class="checkbox" id="ghostwriting_checkbox" alt="Ghost Writing Checkbox Image" src="checkboxes/unchecked/5.png">
+                    <span class="evidence" id="ghostwriting_text">Ghost Writing</span>
+                </div>
+                <div class="evidence-wrapper enabled" id="freezingtemperatures">
+                    <img class="checkbox" id="freezingtemperatures_checkbox" alt="Freeze Temps Checkbox Image" src="checkboxes/unchecked/6.png">
+                    <span class="evidence" id="freezingtemperatures_text">Freezing Temps</span>
+                </div>
+                <div class="evidence-wrapper enabled" id="dotsprojector">
+                    <img class="checkbox" id="dotsprojector_checkbox" alt="DOTS Projector Checkbox Image" src="checkboxes/unchecked/7.png">
+                    <span class="evidence" id="dotsprojector_text">DOTS Projector</span>
+                </div>
             </div>
             <div id="ghosts">
                 <h1>Possible Ghosts</h1>
                 <ul id="possibleGhosts"></ul>
             </div>
-        </div>
-
-        <div id="notes-div">
-            <div id="notes-header-block">
-                <div id="notes-header">Notes:</div>
-                <div id="notes-speechStatus"></div>
-            </div>
-            <!--- <textarea id="notes-content" name="notes-content" wrap="off" rows="1" cols="35"></textarea> -->
-            <input id="notes-content">
         </div>
     </body>
 </html>

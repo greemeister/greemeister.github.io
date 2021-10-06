@@ -38,7 +38,7 @@ var excludeEvidenceArray = [];
 var cachedImages = [];
 
 document.addEventListener("keydown", function(event) {
-    if (event.keyCode == 17) {
+    if (event.key === 'Control') {
         if (!excludeEvidence) {
             excludeEvidence = true;
         }
@@ -46,7 +46,7 @@ document.addEventListener("keydown", function(event) {
 });
 
 document.addEventListener("keyup", function(event) {
-    if (event.keyCode == 17) {
+    if (event.key === 'Control') {
         if (excludeEvidence) {
             excludeEvidence = false;
         }
@@ -63,50 +63,6 @@ function clearEvidence(e) {
     }
 
     toggleEvidence(null);
-    clearNotes();
-}
-
-function clearNotes() {
-    document.getElementById("notes-content").value = "";
-    speechStatusElement.innerHTML = "";
-}
-
-function dictateNotes() {
-    //if (SpeechRecognition !== null) {
-    if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
-        if ( recObj === null ) {
-            var SpeechRecognition = SpeechRecognition ||
-                webkitSpeechRecognition;
-
-            recObj = new SpeechRecognition();
-
-            recObj.onstart = function() {
-                speechStatusElement.innerHTML = "(Listening, please speak...)";
-            };
-
-            recObj.onspeechend = function () {
-                speechStatusElement.innerHTML = "(Processing what you said...)";
-                recObj.stop();
-            };
-
-            recObj.onerror = function (e) {
-                speechStatusElement.innerHTML = "(Error: " + e.error + ")";
-            }
-
-            recObj.onresult = function(e) {
-                var transcript = e.results[0][0].transcript;
-                var confidence = e.results[0][0].confidence;
-
-                speechStatusElement.innerHTML = "(Processed with " + Math.floor(confidence * 100) + "% confidence)";
-
-                document.getElementById("notes-content").value = transcript;
-            };
-        }
-
-        recObj.start();
-    } else {
-        speechStatusElement.innerHTML = "Your browser does not support the Google Web Speech API, please type in the box below instead.";
-    }
 }
 
 function getEvidenceByID(id) {
@@ -171,16 +127,17 @@ function handleExcludeClick(cb) {
 function initializeTracker() {
     // Build our element cache (THIS MUST BE FIRST IN THE INITIALIZATION PROCESS!!!)
     (function () {
-        var goo = document.getElementById('evidence');
-        
-        for (let i = 0; i < goo.children.length; i++) {
-            if (goo.children[i].nodeName.toLowerCase() === "div") {
-                elementTypeCache.push({id: goo.children[i].attributes.getNamedItem("id").value,
-                                       description: goo.children[i].attributes.getNamedItem("description").value
-                                      });
-            }
-        }
+        let ew = Array.from(document.querySelectorAll('.evidence-wrapper'));
 
+        ew.forEach(wrapper => {
+            let evidence = wrapper.getElementsByClassName('evidence');
+            let desc = "";
+
+            (evidence && evidence.length > 0) ? desc = evidence[0].innerHTML : "";
+
+            elementTypeCache.push({id: wrapper.id, description: desc});
+        });
+        
         maxElementTypeID = elementTypeCache.length - 1;
     })();
 
@@ -190,10 +147,9 @@ function initializeTracker() {
             let evidenceStr = getEvidenceByID(i);
             cachedImages[evidenceStr] = {checked: new Image(), disabled: new Image(), excluded: new Image(), unchecked: new Image()};
 
-            cachedImages[evidenceStr].checked.src = 'btnsChecked/' + evidenceStr + '.png';
-            cachedImages[evidenceStr].disabled.src = 'btnsDisabled/' + evidenceStr + '.png';
-            cachedImages[evidenceStr].excluded.src = 'btnsExcluded/' + evidenceStr + '.png';
-            cachedImages[evidenceStr].unchecked.src = 'btnsUnchecked/' + evidenceStr + '.png';
+            cachedImages[evidenceStr].checked.src = 'checkboxes/checked/' + parseInt(i) + '.png';
+            cachedImages[evidenceStr].excluded.src = 'checkboxes/excluded/' + parseInt(i) + '.png';
+            cachedImages[evidenceStr].unchecked.src = 'checkboxes/unchecked/' + parseInt(i) + '.png';
         }
 
         let evidenceStr = "excludeMode";
@@ -209,9 +165,6 @@ function initializeTracker() {
         }
 
         document.getElementById("clear").onclick = clearEvidence;
-
-        speechStatusElement = document.getElementById("notes-speechStatus");
-        document.getElementById("notes-header").onclick = dictateNotes;
     })();
 
     // Initialize the possible ghost text ul element
@@ -272,7 +225,7 @@ function modifyEvidenceClass(evidence, classname, action="add") {
 }
 
 function onClickHandler(e) {
-    let evidenceId = getEvidenceByName(e.srcElement.id);
+    let evidenceId = getEvidenceByName(e.srcElement.parentNode.id);
     
     if (evidenceId > 0) {
         toggleEvidence(evidenceId);
@@ -292,7 +245,7 @@ function onExcludeClickHandler(e) {
 
 function toggleEvidence(evidence) {
     console.clear();
-    evidenceUsed = [];
+    let evidenceUsed = [];
 
     if (evidence) {
         let arr = evidenceArray;
@@ -332,29 +285,23 @@ function toggleEvidence(evidence) {
              
     getRemainingEvidenceIds(evidenceArray, [], excludeEvidenceArray).forEach(evidenceId => {
         evidenceUsed.push(evidenceId);
-        document.getElementById(getEvidenceByID(evidenceId)).style.backgroundImage = toUrl(cachedImages[getEvidenceByID(evidenceId)].unchecked.src);
+        document.getElementById(getEvidenceByID(evidenceId) + "_checkbox").setAttribute('src', cachedImages[getEvidenceByID(evidenceId)].unchecked.src);
     })
 
     for (let i = 0; i < evidenceArray.length; i++) {
         evidenceUsed.push(evidenceArray[i]);
-        document.getElementById(getEvidenceByID(evidenceArray[i])).style.backgroundImage = toUrl(cachedImages[getEvidenceByID(evidenceArray[i])].checked.src);
+        document.getElementById(getEvidenceByID(evidenceArray[i]) + "_checkbox").setAttribute('src', cachedImages[getEvidenceByID(evidenceArray[i])].checked.src);
     }
 
     for (let i = 0; i < excludeEvidenceArray.length; i++) {
         evidenceUsed.push(excludeEvidenceArray[i]);
-        document.getElementById(getEvidenceByID(excludeEvidenceArray[i])).style.backgroundImage = toUrl(cachedImages[getEvidenceByID(excludeEvidenceArray[i])].excluded.src);
-    }
-
-    for (let i = 1; i <= maxElementTypeID; i++) {
-        if (!evidenceUsed.includes(i)) {
-            document.getElementById(elementTypeCache[i].id).style.backgroundImage = toUrl(cachedImages[elementTypeCache[i].id].disabled.src);
-        }
+        document.getElementById(getEvidenceByID(excludeEvidenceArray[i]) + "_checkbox").setAttribute('src', cachedImages[getEvidenceByID(excludeEvidenceArray[i])].excluded.src);
     }
     
     for (let i = 1; i <= maxElementTypeID; i++) {
         let element = document.getElementById(getEvidenceByID(i));
 
-        if (element.style.backgroundImage.includes("Disabled")) {
+        if (!evidenceUsed.includes(i)) {
             element.onclick = false;
             element.classList.remove(ecn_enabled);
         } else {

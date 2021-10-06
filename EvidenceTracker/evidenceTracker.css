@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Nanum Pen Script';
+    src: url('font/NanumPenScript-Regular.ttf');
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +11,8 @@
 body {
     background: url('new-journal.jpg');
     background-repeat: no-repeat;
-    background-size: cover;
+    /*background-size: cover;*/
+    filter: opacity(85%);
 }
 
 #wrapper {
@@ -14,8 +20,68 @@ body {
     display: flex;
 }
 
+.button {
+    margin-bottom: 15px;
+}
+
+.evidence-container {
+    width: 370px;
+    min-width: 370px;
+    height: 100%;
+    position: relative;
+}
+.evidence-wrapper {
+    display: flex;
+    align-items: center;
+    user-select: none;
+}
+
+.evidence-wrapper:not(:first-child) {
+    margin-top: .5em;
+}
+
+.evidence-wrapper.disabled {
+    filter: opacity(50%);
+}
+
+.evidence-wrapper:not(.enabled)::before {
+    top: 45%; /*tweak this to adjust the vertical position if it's off a bit due to your font family */
+    background: #363636; /*this is the color of the line*/
+    opacity:.9;
+    content: '';
+    width: 100%;
+    position: absolute;
+    height:.5em;
+    border-radius:.2em;
+    left: -2%;
+    white-space:nowrap;
+    display: block;
+    transform: rotate(0deg); 
+}
+
+.checkbox {
+    width: 37px;
+}
+
+.evidence {
+    font-family: 'Nanum Pen Script';
+    font-size: 41pt;
+    line-height: 37px; 
+    margin-left: .20em;
+    margin-top: .15em;
+    color: #363636;
+}
+
+#excludeLatch {
+    width: 355px;
+    height: 38px;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
 #ghosts {
-    font-family: 'Kalam', cursive;
+    font-family: 'Nanum Pen Script';
+    font-size: 1.35em;
     color: rgb(45,45,45);
     border-left: solid rgb(45,45,45) 3px;
     margin-left: 5px;
@@ -23,7 +89,6 @@ body {
 }
 
 #possibleGhosts {
-    /*list-style: square inside url("x.png");*/
     list-style: none;
     text-transform: uppercase;
     display: table;
@@ -41,7 +106,8 @@ body {
 }
 
 #evidence {
-    font-family: 'Kalam', cursive;
+    font-family: 'Nanum Pen Script';
+    font-size: 24px;
     color: rgb(45,45,45);
 }
 
@@ -49,21 +115,6 @@ body {
     font-family: 'Kalam', cursive;
     font-size: 1.3em;
     color: #496595;
-}
-
-#evidence h1 {
-    margin-bottom: 15px;
-}
-
-#evidence .button {
-    margin-bottom: 15px;
-}
-
-#emf,#spiritbox,#fingerprints,#ghostorb,#ghostwriting,#freezingtemperatures,#dotsprojector,#excludeLatch {
-    width: 355px;
-    height: 38px;
-    background-repeat: no-repeat;
-    background-position: left;
 }
 
 #clear {
@@ -74,43 +125,13 @@ body {
     background-size: 75px;
 }
 
-#notes-header {
-    width: 100px;
-    height: 35px;
-    margin-bottom: 25px;
-    text-decoration: underline;
-}
-
-#notes-div {
-    display: block;
-    font-family: 'Kalam', cursive;
-    font-size: 2.3em;
-    color: #464646;
-}
-
-#notes-speechStatus {
-    font-family: 'Kalam', light;
-    margin-top: 9px;
-    font-size: 0.75em;
-    color: #949494;
-}
-
-#notes-header-block {
-    display: flex;
-}
-
-#notes-content {
-    background: transparent;
-    border: 1px solid #BABABA;
-    font-family: 'Kalam', cursive;
-    font-size: 1em;
-    width: 20%;
-    resize: none;
+#clear:hover {
+    filter: opacity(100%);
 }
 
 #emf.enabled:hover,#spiritbox.enabled:hover,#fingerprints.enabled:hover,#ghostorb.enabled:hover,
                    #ghostwriting.enabled:hover,#freezingtemperatures.enabled:hover,#dotsprojector.enabled:hover,
-                   #clear:hover,#notes-header:hover,#excludeLatch:hover {
+                   #clear:hover,#excludeLatch:hover {
     cursor: pointer;
 }
 
@@ -119,44 +140,12 @@ body {
     filter: opacity(50%);
 }
 
-#emf {
-    background-image: url('btnsUnchecked/emf.png');
-}
-
-#spiritbox {
-    background-image: url('btnsUnchecked/spiritbox.png');
-}
-
-#fingerprints {
-    background-image: url('btnsUnchecked/fingerprints.png');
-}
-
-#ghostorb {
-    background-image: url('btnsUnchecked/ghostorb.png');
-}
-
-#ghostwriting {
-    background-image: url('btnsUnchecked/ghostwriting.png');
-}
-
-#freezingtemperatures {
-    background-image: url('btnsUnchecked/freezingtemperatures.png');
-}
-
-#dotsprojector {
-    background-image: url('btnsUnchecked/dotsprojector.png');
-}
-
 #excludeLatch {
     background-image: url('btnsUnchecked/excludeMode.png');
 }
 
 #clear {
     background-image: url('clear.png');
-}
-
-#clear:hover {
-	/*background-image: url('clear-highlighted.png');*/
 }
 
 .weakness {
