@@ -1,7 +1,7 @@
 #remarks {
     font-family: 'Kalam', cursive;
     font-size: 1.3em;
-    color: #496595;
+    color: var(--remark-color);
 
     #excludeLatch {
         width: 355px;
@@ -72,12 +72,12 @@
             padding: 0;
         
             .evidence {
-                font-family: 'Nanum Pen Script';
+                font-family: var(--main-font);
                 font-size: 41pt;
                 line-height: 37px; 
                 margin-left: .20em;
                 margin-top: .15em;
-                color: #363636;
+                color: var(--evidence-color);
             }
         
             &::before {
@@ -92,7 +92,7 @@
             }
         
             &:not(.enabled)::before {
-                background: #363636; /*this is the color of the line*/
+                background: var(--evidence-color); /*this is the color of the line*/
                 opacity: .9;
                 border-radius: .3em;
                 left: -15%;
@@ -102,10 +102,10 @@
     }
     
     #ghosts {
-        font-family: 'Nanum Pen Script';
+        font-family: var(--main-font);
         font-size: 1.35em;
-        color: rgb(45,45,45);
-        border-left: solid rgb(45,45,45) 3px;
+        color: var(--ghost-info-color);
+        border-left: solid var(--ghost-info-color) 3px;
         margin-left: 5px;
         padding-left: 25px;
     
@@ -116,7 +116,7 @@
         
             li {
                 font-size: 2em;
-                color: rgb(100,50,50);
+                color: var(--ghost-name-color);
             }
         
             p {
@@ -126,10 +126,8 @@
             }
     
             .weakness {
-                color: rgb(0, 88, 0);
+                color: var(--ghost-weakness-color);
             }
         }
     }
 }
-
-

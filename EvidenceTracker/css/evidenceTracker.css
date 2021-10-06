@@ -1,3 +1,12 @@
+:root {
+  --evidence-color: #363636;
+  --ghost-info-color: #2D2D2D;
+  --ghost-name-color: #643232;
+  --ghost-weakness-color: #005800;
+  --main-font: 'Nanum Pen Script';
+  --remark-color: #496595;
+}
+
 @font-face {
   font-family: 'Nanum Pen Script';
   src: url("../font/NanumPenScript-Regular.ttf");
@@ -36,7 +45,7 @@ body {
 #remarks {
   font-family: 'Kalam', cursive;
   font-size: 1.3em;
-  color: #496595;
+  color: var(--remark-color);
 }
 
 #remarks #excludeLatch {
@@ -122,12 +131,12 @@ body {
 }
 
 #wrapper .evidence-wrapper .evidence-envelope .evidence {
-  font-family: 'Nanum Pen Script';
+  font-family: var(--main-font);
   font-size: 41pt;
   line-height: 37px;
   margin-left: .20em;
   margin-top: .15em;
-  color: #363636;
+  color: var(--evidence-color);
 }
 
 #wrapper .evidence-wrapper .evidence-envelope::before {
@@ -142,7 +151,7 @@ body {
 }
 
 #wrapper .evidence-wrapper .evidence-envelope:not(.enabled)::before {
-  background: #363636;
+  background: var(--evidence-color);
   /*this is the color of the line*/
   opacity: .9;
   border-radius: .3em;
@@ -152,10 +161,10 @@ body {
 }
 
 #wrapper #ghosts {
-  font-family: 'Nanum Pen Script';
+  font-family: var(--main-font);
   font-size: 1.35em;
-  color: #2d2d2d;
-  border-left: solid #2d2d2d 3px;
+  color: var(--ghost-info-color);
+  border-left: solid var(--ghost-info-color) 3px;
   margin-left: 5px;
   padding-left: 25px;
 }
@@ -168,7 +177,7 @@ body {
 
 #wrapper #ghosts #possibleGhosts li {
   font-size: 2em;
-  color: #643232;
+  color: var(--ghost-name-color);
 }
 
 #wrapper #ghosts #possibleGhosts p {
@@ -178,6 +187,6 @@ body {
 }
 
 #wrapper #ghosts #possibleGhosts .weakness {
-  color: #005800;
+  color: var(--ghost-weakness-color);
 }
 /*# sourceMappingURL=evidenceTracker.css.map */
