@@ -1,0 +1,183 @@
+@font-face {
+  font-family: 'Nanum Pen Script';
+  src: url("../font/NanumPenScript-Regular.ttf");
+}
+
+@-webkit-keyframes strike {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes strike {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: url("../new-journal.jpg");
+  background-repeat: no-repeat;
+  -webkit-filter: opacity(85%);
+          filter: opacity(85%);
+}
+
+#remarks {
+  font-family: 'Kalam', cursive;
+  font-size: 1.3em;
+  color: #496595;
+}
+
+#remarks #excludeLatch {
+  width: 355px;
+  height: 38px;
+  margin-bottom: 15px;
+  background-repeat: no-repeat;
+  background-position: left;
+  background-image: url("../btnsUnchecked/excludeMode.png");
+}
+
+#remarks #excludeLatch:hover {
+  cursor: pointer;
+}
+
+#clear {
+  width: 425px;
+  height: 75px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100px;
+  background-image: url("../clear.png");
+}
+
+#clear:hover {
+  -webkit-filter: opacity(100%);
+          filter: opacity(100%);
+  cursor: pointer;
+}
+
+#wrapper {
+  padding: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#wrapper .evidence-container {
+  width: 370px;
+  min-width: 370px;
+  height: 100%;
+  position: relative;
+}
+
+#wrapper .evidence-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+#wrapper .evidence-wrapper .checkbox {
+  width: 37px;
+}
+
+#wrapper .evidence-wrapper.enabled {
+  cursor: pointer;
+}
+
+#wrapper .evidence-wrapper:not(.enabled) {
+  -webkit-filter: opacity(50%);
+          filter: opacity(50%);
+}
+
+#wrapper .evidence-wrapper:not(:first-child) {
+  margin-top: .35em;
+}
+
+#wrapper .evidence-wrapper.disabled {
+  -webkit-filter: opacity(50%);
+          filter: opacity(50%);
+}
+
+#wrapper .evidence-wrapper .evidence-envelope {
+  margin: 0;
+  padding: 0;
+}
+
+#wrapper .evidence-wrapper .evidence-envelope .evidence {
+  font-family: 'Nanum Pen Script';
+  font-size: 41pt;
+  line-height: 37px;
+  margin-left: .20em;
+  margin-top: .15em;
+  color: #363636;
+}
+
+#wrapper .evidence-wrapper .evidence-envelope::before {
+  top: 20px;
+  content: '';
+  width: 115%;
+  height: .5em;
+  display: inline-block;
+  position: relative;
+  white-space: nowrap;
+  line-height: 37px;
+}
+
+#wrapper .evidence-wrapper .evidence-envelope:not(.enabled)::before {
+  background: #363636;
+  /*this is the color of the line*/
+  opacity: .9;
+  border-radius: .3em;
+  left: -15%;
+  -webkit-transform: rotate(1deg);
+          transform: rotate(1deg);
+}
+
+#wrapper #ghosts {
+  font-family: 'Nanum Pen Script';
+  font-size: 1.35em;
+  color: #2d2d2d;
+  border-left: solid #2d2d2d 3px;
+  margin-left: 5px;
+  padding-left: 25px;
+}
+
+#wrapper #ghosts #possibleGhosts {
+  list-style: none;
+  text-transform: uppercase;
+  display: table;
+}
+
+#wrapper #ghosts #possibleGhosts li {
+  font-size: 2em;
+  color: #643232;
+}
+
+#wrapper #ghosts #possibleGhosts p {
+  margin-top: -12px;
+  margin-bottom: 10px;
+  font-size: 1.15em;
+}
+
+#wrapper #ghosts #possibleGhosts .weakness {
+  color: #005800;
+}
+/*# sourceMappingURL=evidenceTracker.css.map */

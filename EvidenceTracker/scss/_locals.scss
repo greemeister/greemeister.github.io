@@ -1,0 +1,135 @@
+#remarks {
+    font-family: 'Kalam', cursive;
+    font-size: 1.3em;
+    color: #496595;
+
+    #excludeLatch {
+        width: 355px;
+        height: 38px;
+        margin-bottom: 15px;
+        background-repeat: no-repeat;
+        background-position: left;
+        background-image: url('../btnsUnchecked/excludeMode.png');
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+#clear {
+    width: 425px;
+    height: 75px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100px;
+    background-image: url('../clear.png');
+
+    &:hover {
+        filter: opacity(100%);
+        cursor: pointer;
+    }
+}
+
+#wrapper {
+    padding: 25px;
+    display: flex;
+
+    .evidence-container {
+        width: 370px;
+        min-width: 370px;
+        height: 100%;
+        position: relative;
+    }
+    
+    .evidence-wrapper {
+        display: flex;
+        align-items: center;
+        user-select: none;
+    
+        .checkbox {
+            width: 37px;
+        }
+    
+        &.enabled {
+            cursor: pointer;
+        }
+    
+        &:not(.enabled) {
+            filter: opacity(50%);
+        }
+    
+        &:not(:first-child) {
+            margin-top: .35em;    
+        }
+    
+        &.disabled {
+            filter: opacity(50%);
+        }
+    
+        .evidence-envelope {
+            margin: 0;
+            padding: 0;
+        
+            .evidence {
+                font-family: 'Nanum Pen Script';
+                font-size: 41pt;
+                line-height: 37px; 
+                margin-left: .20em;
+                margin-top: .15em;
+                color: #363636;
+            }
+        
+            &::before {
+                top: 20px;
+                content: '';
+                width: 115%;
+                height: .5em;
+                display: inline-block;
+                position: relative;
+                white-space: nowrap;
+                line-height: 37px; 
+            }
+        
+            &:not(.enabled)::before {
+                background: #363636; /*this is the color of the line*/
+                opacity: .9;
+                border-radius: .3em;
+                left: -15%;
+                transform: rotate(1.0deg); 
+            }
+        }
+    }
+    
+    #ghosts {
+        font-family: 'Nanum Pen Script';
+        font-size: 1.35em;
+        color: rgb(45,45,45);
+        border-left: solid rgb(45,45,45) 3px;
+        margin-left: 5px;
+        padding-left: 25px;
+    
+        #possibleGhosts {
+            list-style: none;
+            text-transform: uppercase;
+            display: table;
+        
+            li {
+                font-size: 2em;
+                color: rgb(100,50,50);
+            }
+        
+            p {
+                margin-top: -12px;
+                margin-bottom: 10px;
+                font-size: 1.15em; 
+            }
+    
+            .weakness {
+                color: rgb(0, 88, 0);
+            }
+        }
+    }
+}
+
+
