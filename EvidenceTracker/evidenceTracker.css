@@ -11,7 +11,6 @@
 body {
     background: url('new-journal.jpg');
     background-repeat: no-repeat;
-    /*background-size: cover;*/
     filter: opacity(85%);
 }
 
@@ -37,26 +36,35 @@ body {
 }
 
 .evidence-wrapper:not(:first-child) {
-    margin-top: .5em;
+    margin-top: .65em;
 }
 
 .evidence-wrapper.disabled {
     filter: opacity(50%);
 }
 
-.evidence-wrapper:not(.enabled)::before {
-    top: 45%; /*tweak this to adjust the vertical position if it's off a bit due to your font family */
-    background: #363636; /*this is the color of the line*/
-    opacity:.9;
+.evidence-envelope {
+    margin: 0;
+    padding: 0;
+}
+
+.evidence-envelope::before {
+    top: 20px;
     content: '';
-    width: 100%;
-    position: absolute;
-    height:.5em;
-    border-radius:.2em;
-    left: -2%;
-    white-space:nowrap;
-    display: block;
-    transform: rotate(0deg); 
+    width: 115%;
+    height: .5em;
+    display: inline-block;
+    position: relative;
+    white-space: nowrap;
+    line-height: 37px;
+}
+
+.evidence-envelope:not(.enabled)::before {
+    background: #363636; /*this is the color of the line*/
+    opacity: .9;
+    border-radius: .3em;
+    left: -15%;
+    transform: rotate(1.0deg);
 }
 
 .checkbox {

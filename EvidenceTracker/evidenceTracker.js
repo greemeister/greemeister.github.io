@@ -161,6 +161,7 @@ function initializeTracker() {
     // Initialize the onClick handlers
     (function () {
         for (let i = 1; i <= maxElementTypeID; i++) {
+            console.log(getEvidenceByID(i));
             document.getElementById(getEvidenceByID(i)).onclick = onClickHandler;
         }
 
@@ -225,7 +226,7 @@ function modifyEvidenceClass(evidence, classname, action="add") {
 }
 
 function onClickHandler(e) {
-    let evidenceId = getEvidenceByName(e.srcElement.parentNode.id);
+    let evidenceId = getEvidenceByName(e.srcElement.parentNode.id.replace(/_[a-zA-Z0-9]*/,''));
     
     if (evidenceId > 0) {
         toggleEvidence(evidenceId);
@@ -300,10 +301,12 @@ function toggleEvidence(evidence) {
     
     for (let i = 1; i <= maxElementTypeID; i++) {
         let element = document.getElementById(getEvidenceByID(i));
+        let envelope = document.getElementById(getEvidenceByID(i) + '_envelope');
 
         if (!evidenceUsed.includes(i)) {
             element.onclick = false;
             element.classList.remove(ecn_enabled);
+            envelope.classList.remove(ecn_enabled);
         } else {
             if (element.onclick != onClickHandler) {
                 element.onclick = onClickHandler;
@@ -311,6 +314,7 @@ function toggleEvidence(evidence) {
             
             if (!element.classList.contains(ecn_enabled)) {
                 element.classList.add(ecn_enabled);
+                envelope.classList.add(ecn_enabled);
             }
         }    
     }
