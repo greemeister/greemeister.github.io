@@ -77,7 +77,8 @@ body {
 }
 
 #wrapper {
-  padding: 25px;
+  padding-left: 25px;
+  padding-top: 25px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
