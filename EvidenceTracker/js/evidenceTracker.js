@@ -130,7 +130,7 @@ function initializeTracker() {
         let ew = Array.from(document.querySelectorAll('.evidence-wrapper'));
 
         ew.forEach(wrapper => {
-            let evidence = wrapper.getElementsByClassName('evidence');
+            let evidence = wrapper.getElementsByClassName('checkbox-text');
             let desc = "";
 
             (evidence && evidence.length > 0) ? desc = evidence[0].innerHTML : "";
@@ -164,7 +164,7 @@ function initializeTracker() {
             document.getElementById(getEvidenceByID(i)).onclick = onClickHandler;
         }
 
-        document.getElementById("clear").onclick = clearEvidence;
+        document.getElementById("clear-button").onclick = clearEvidence;
     })();
 
     // Initialize the possible ghost text ul element

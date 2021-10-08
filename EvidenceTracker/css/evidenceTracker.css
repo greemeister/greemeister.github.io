@@ -42,77 +42,7 @@ body {
           filter: opacity(85%);
 }
 
-.checkbox {
-  width: 37px;
-}
-
-#remarks {
-  font-family: var(--main-font);
-}
-
-#remarks #remark1 {
-  font-size: 28pt;
-  color: var(--remark-color);
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-
-#remarks #exclude_remark_wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-#remarks #exclude_remark_wrapper:hover {
-  cursor: pointer;
-}
-
-#remarks #exclude_remark_wrapper #excludeLatch .remark {
-  font-family: var(--main-font);
-  font-size: 28pt;
-  line-height: 37px;
-  margin-left: .20em;
-  margin-top: .15em;
-  color: var(--evidence-color);
-}
-
-#clear {
-  width: 105px;
-  margin-left: 225px;
-  text-align: center;
-  font-family: var(--main-font);
-  font-size: 4em;
-  color: var(--evidence-color);
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-
-#clear:hover {
-  -webkit-filter: opacity(100%);
-          filter: opacity(100%);
-  cursor: pointer;
-}
-
-#wrapper {
-  padding-left: 25px;
-  padding-top: 25px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-#wrapper .evidence-container {
-  width: 370px;
-  min-width: 370px;
-  height: 100%;
-  position: relative;
-}
-
-#wrapper .evidence-wrapper {
+.checkbox-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -125,30 +55,20 @@ body {
           user-select: none;
 }
 
-#wrapper .evidence-wrapper.enabled {
+.checkbox-wrapper.enabled:hover {
   cursor: pointer;
 }
 
-#wrapper .evidence-wrapper:not(.enabled) {
-  -webkit-filter: opacity(50%);
-          filter: opacity(50%);
+.checkbox-wrapper .checkbox {
+  width: 37px;
 }
 
-#wrapper .evidence-wrapper:not(:first-child) {
-  margin-top: .35em;
-}
-
-#wrapper .evidence-wrapper.disabled {
-  -webkit-filter: opacity(50%);
-          filter: opacity(50%);
-}
-
-#wrapper .evidence-wrapper .evidence-envelope {
+.checkbox-wrapper .checkbox-envelope {
   margin: 0;
   padding: 0;
 }
 
-#wrapper .evidence-wrapper .evidence-envelope .evidence {
+.checkbox-wrapper .checkbox-envelope .checkbox-text {
   font-family: var(--main-font);
   font-size: 41pt;
   line-height: 37px;
@@ -157,7 +77,70 @@ body {
   color: var(--evidence-color);
 }
 
-#wrapper .evidence-wrapper .evidence-envelope::before {
+#remarks-wrapper {
+  font-family: var(--main-font);
+}
+
+#remarks-wrapper #remark1 {
+  font-size: 28pt;
+  color: var(--remark-color);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+#remarks-wrapper .checkbox-wrapper .checkbox-envelope .checkbox-text {
+  font-size: 28pt;
+}
+
+#clear-button {
+  width: 105px;
+  margin-left: 225px;
+  text-align: center;
+  font-family: var(--main-font);
+  font-size: 4em;
+  color: var(--evidence-color);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+#clear-button:hover {
+  cursor: pointer;
+}
+
+#section-wrapper {
+  padding-left: 25px;
+  padding-top: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#section-wrapper .evidence-container {
+  width: 370px;
+  min-width: 370px;
+  height: 100%;
+  position: relative;
+}
+
+#section-wrapper .evidence-container .checkbox-wrapper:not(.enabled) {
+  -webkit-filter: opacity(50%);
+          filter: opacity(50%);
+}
+
+#section-wrapper .evidence-container .checkbox-wrapper:not(:first-child) {
+  margin-top: .35em;
+}
+
+#section-wrapper .evidence-container .checkbox-wrapper.disabled {
+  -webkit-filter: opacity(50%);
+          filter: opacity(50%);
+}
+
+#section-wrapper .evidence-container .checkbox-wrapper .checkbox-envelope::before {
   top: 20px;
   content: '';
   width: 115%;
@@ -168,7 +151,7 @@ body {
   line-height: 37px;
 }
 
-#wrapper .evidence-wrapper .evidence-envelope:not(.enabled)::before {
+#section-wrapper .evidence-container .checkbox-wrapper .checkbox-envelope:not(.enabled)::before {
   background: var(--evidence-color);
   /*this is the color of the line*/
   opacity: .9;
@@ -178,7 +161,7 @@ body {
           transform: rotate(1deg);
 }
 
-#wrapper #ghosts {
+#section-wrapper #ghosts-wrapper {
   font-family: var(--main-font);
   font-size: 1.35em;
   color: var(--ghost-info-color);
@@ -187,24 +170,24 @@ body {
   padding-left: 25px;
 }
 
-#wrapper #ghosts #possibleGhosts {
+#section-wrapper #ghosts-wrapper #possibleGhosts {
   list-style: none;
   text-transform: uppercase;
   display: table;
 }
 
-#wrapper #ghosts #possibleGhosts li {
+#section-wrapper #ghosts-wrapper #possibleGhosts li {
   font-size: 2em;
   color: var(--ghost-name-color);
 }
 
-#wrapper #ghosts #possibleGhosts p {
+#section-wrapper #ghosts-wrapper #possibleGhosts p {
   margin-top: -12px;
   margin-bottom: 10px;
   font-size: 1.15em;
 }
 
-#wrapper #ghosts #possibleGhosts .weakness {
+#section-wrapper #ghosts-wrapper #possibleGhosts .weakness {
   color: var(--ghost-weakness-color);
 }
 /*# sourceMappingURL=evidenceTracker.css.map */

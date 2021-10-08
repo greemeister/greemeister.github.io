@@ -19,6 +19,30 @@ body {
     filter: opacity(85%);
 }
 
-.checkbox {
-    width: 37px;
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    user-select: none;
+
+    &.enabled:hover {
+        cursor: pointer;
+    }
+
+    .checkbox {
+        width: 37px;
+    }
+
+    .checkbox-envelope {
+        margin: 0;
+        padding: 0;
+    
+        .checkbox-text {
+            font-family: var(--main-font);
+            font-size: 41pt;
+            line-height: 37px; 
+            margin-left: .20em;
+            margin-top: .15em;
+            color: var(--evidence-color);
+        }
+    }
 }

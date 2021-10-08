@@ -9,46 +9,46 @@
     </head>
 
     <body>
-    	<div id="clear">CLEAR</div>
-        <div id="remarks">
+    	<div id="clear-button">CLEAR</div>
+        <div id="remarks-wrapper">
             <span id="remark1">(Hold control key on click to exclude evidence)</span>
-            <div class="remark-wrapper" id="exclude_remark_wrapper">
+            <div class="checkbox-wrapper enabled" id="exclude_remark_wrapper">
                 <img class="checkbox" id="exclude_evidence_checkbox" alt="Exclude Evidence Checkbox Image" src="checkboxes/unchecked/6.png">
-                <div id="excludeLatch"><span class="remark" id="excludeRemark">Latch/Unlatch Evidence Exclusion</span></div>
+                <div class="checkbox-envelope" id="excludeLatch"><span class="checkbox-text" id="excludeRemark">Latch/Unlatch Evidence Exclusion</span></div>
             </div>
         </div>
-        <div id="wrapper">
+        <div id="section-wrapper">
             <div class="evidence-container">
-                <div class="evidence-wrapper enabled" id="emf">
+                <div class="evidence-wrapper checkbox-wrapper enabled" id="emf">
                     <img class="checkbox" id="emf_checkbox" alt="EMF Checkbox Image" src="checkboxes/unchecked/1.png">
-                    <div class="evidence-envelope enabled" id="emf_envelope"><span class="evidence" id="emf_text">EMF Level 5</span></div>
+                    <div class="checkbox-envelope enabled" id="emf_envelope"><span class="checkbox-text" id="emf_text">EMF Level 5</span></div>
                 </div>
-                <div class="evidence-wrapper enabled" id="spiritbox">
+                <div class="evidence-wrapper checkbox-wrapper enabled" id="spiritbox">
                     <img class="checkbox" id="spiritbox_checkbox" alt="Spiritbox Checkbox Image" src="checkboxes/unchecked/2.png">
-                    <div class="evidence-envelope enabled" id="spiritbox_envelope"><span class="evidence" id="spiritbox_text">Spirit Box</span></div>
+                    <div class="checkbox-envelope enabled" id="spiritbox_envelope"><span class="checkbox-text" id="spiritbox_text">Spirit Box</span></div>
                 </div>
-                <div class="evidence-wrapper enabled" id="fingerprints">
+                <div class="evidence-wrapper checkbox-wrapper enabled" id="fingerprints">
                     <img class="checkbox" id="fingerprints_checkbox" alt="Fingerprints Checkbox Image" src="checkboxes/unchecked/3.png">
-                    <div class="evidence-envelope enabled" id="fingerprints_envelope"><span class="evidence" id="fingerprints_text">Fingerprints</span></div>
+                    <div class="checkbox-envelope enabled" id="fingerprints_envelope"><span class="checkbox-text" id="fingerprints_text">Fingerprints</span></div>
                 </div>
-                <div class="evidence-wrapper enabled" id="ghostorb">
+                <div class="evidence-wrapper checkbox-wrapper enabled" id="ghostorb">
                     <img class="checkbox" id="ghostorb_checkbox" alt="Ghost Orbs Checkbox Image" src="checkboxes/unchecked/4.png">
-                    <div class="evidence-envelope enabled" id="ghostorb_envelope"><span class="evidence" id="ghostorb_text">Ghost Orbs</span></div>
+                    <div class="checkbox-envelope enabled" id="ghostorb_envelope"><span class="checkbox-text" id="ghostorb_text">Ghost Orbs</span></div>
                 </div>
-                <div class="evidence-wrapper enabled" id="ghostwriting">
+                <div class="evidence-wrapper checkbox-wrapper enabled" id="ghostwriting">
                     <img class="checkbox" id="ghostwriting_checkbox" alt="Ghost Writing Checkbox Image" src="checkboxes/unchecked/5.png">
-                    <div class="evidence-envelope enabled" id="ghostwriting_envelope"><span class="evidence" id="ghostwriting_text">Ghost Writing</span></div>
+                    <div class="checkbox-envelope enabled" id="ghostwriting_envelope"><span class="checkbox-text" id="ghostwriting_text">Ghost Writing</span></div>
                 </div>
-                <div class="evidence-wrapper enabled" id="freezingtemperatures">
+                <div class="evidence-wrapper checkbox-wrapper enabled" id="freezingtemperatures">
                     <img class="checkbox" id="freezingtemperatures_checkbox" alt="Freeze Temps Checkbox Image" src="checkboxes/unchecked/6.png">
-                    <div class="evidence-envelope enabled" id="freezingtemperatures_envelope"><span class="evidence" id="freezingtemperatures_text">Freezing Temps</span></div>
+                    <div class="checkbox-envelope enabled" id="freezingtemperatures_envelope"><span class="checkbox-text" id="freezingtemperatures_text">Freezing Temps</span></div>
                 </div>
-                <div class="evidence-wrapper enabled" id="dotsprojector">
+                <div class="evidence-wrapper checkbox-wrapper enabled" id="dotsprojector">
                     <img class="checkbox" id="dotsprojector_checkbox" alt="DOTS Projector Checkbox Image" src="checkboxes/unchecked/7.png">
-                    <div class="evidence-envelope enabled" id="dotsprojector_envelope"><span class="evidence" id="dotsprojector_text">DOTS Projector</span></div>
+                    <div class="checkbox-envelope enabled" id="dotsprojector_envelope"><span class="checkbox-text" id="dotsprojector_text">DOTS Projector</span></div>
                 </div>
             </div>
-            <div id="ghosts">
+            <div id="ghosts-wrapper">
                 <h1>Possible Ghosts</h1>
                 <ul id="possibleGhosts"></ul>
             </div>
