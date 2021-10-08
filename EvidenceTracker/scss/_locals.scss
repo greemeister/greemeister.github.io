@@ -1,29 +1,42 @@
 #remarks {
-    font-family: 'Kalam', cursive;
-    font-size: 1.3em;
-    color: var(--remark-color);
+    font-family: var(--main-font);
 
-    #excludeLatch {
-        width: 355px;
-        height: 38px;
-        margin-bottom: 15px;
-        background-repeat: no-repeat;
-        background-position: left;
-        background-image: url('../btnsUnchecked/excludeMode.png');
+    #remark1 {
+        font-size: 28pt;
+        color: var(--remark-color);
+        user-select: none;
+    }
+
+    #exclude_remark_wrapper {
+        display: flex;
 
         &:hover {
             cursor: pointer;
         }
+
+        #excludeLatch {
+            .remark {
+                font-family: var(--main-font);
+                font-size: 28pt;
+                line-height: 37px; 
+                margin-left: .20em;
+                margin-top: .15em;
+                color: var(--evidence-color);
+            }
+        }
     }
+
+
 }
 
 #clear {
-    width: 425px;
-    height: 75px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100px;
-    background-image: url('../clear.png');
+    width: 105px;
+    margin-left: 225px;
+    text-align: center;
+    font-family: var(--main-font);
+    font-size: 4em;
+    color: var(--evidence-color);
+    user-select: none;
 
     &:hover {
         filter: opacity(100%);
@@ -47,10 +60,6 @@
         display: flex;
         align-items: center;
         user-select: none;
-    
-        .checkbox {
-            width: 37px;
-        }
     
         &.enabled {
             cursor: pointer;

@@ -9,10 +9,13 @@
     </head>
 
     <body>
-    	<div id="clear"></div>
+    	<div id="clear">CLEAR</div>
         <div id="remarks">
-            <ul id="remark1"><p>(Hold control key on click to exclude evidence)</p></ul>
-            <div id="excludeLatch"></div>
+            <span id="remark1">(Hold control key on click to exclude evidence)</span>
+            <div class="remark-wrapper" id="exclude_remark_wrapper">
+                <img class="checkbox" id="exclude_evidence_checkbox" alt="Exclude Evidence Checkbox Image" src="checkboxes/unchecked/6.png">
+                <div id="excludeLatch"><span class="remark" id="excludeRemark">Latch/Unlatch Evidence Exclusion</span></div>
+            </div>
         </div>
         <div id="wrapper">
             <div class="evidence-container">
