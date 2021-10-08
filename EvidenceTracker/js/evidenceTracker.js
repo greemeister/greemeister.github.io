@@ -305,6 +305,8 @@ function toggleEvidence(evidence) {
             element.onclick = false;
             element.classList.remove(ecn_enabled);
             envelope.classList.remove(ecn_enabled);
+
+            document.getElementById(getEvidenceByID(i) + "_checkbox").setAttribute('src', cachedImages[getEvidenceByID(i)].unchecked.src);
         } else {
             if (element.onclick != onClickHandler) {
                 element.onclick = onClickHandler;
