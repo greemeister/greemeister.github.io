@@ -3,6 +3,11 @@
     src: url('font/ReneLevesque-Regular.ttf');
 }
 
+* {
+    margin: 0;
+    padding: 0;
+}
+
 :root {
     --main-text-color: #B97C00;
 }
@@ -14,11 +19,13 @@ a {
 body {
     font-family: 'Rene Levesque';
     display: grid;
-    height: 50vh;
+    height: 100vh;
     place-items: center;
     background-image: url('img/forewarned.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
+    
     color: var(--main-text-color);
 
     -webkit-touch-callout: none; /* iOS Safari */
@@ -32,8 +39,6 @@ body {
 }
 
 #modes {
-    padding: 0;
-    margin: 0;
     display: flex;
     font-size: 44px;
 }
