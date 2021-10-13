@@ -17,8 +17,8 @@ body {
     height: 50vh;
     place-items: center;
     background-image: url('img/forewarned.jpg');
-    background-position: cover;
     background-repeat: no-repeat;
+    background-size: cover;
     color: var(--main-text-color);
 
     -webkit-touch-callout: none; /* iOS Safari */
