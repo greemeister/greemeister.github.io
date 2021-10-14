@@ -14,7 +14,19 @@ const COLOR_CODES = {
       color: "red",
       threshold: ALERT_THRESHOLD
     }
-  };
+};
+
+const MODE_TIMES = {
+  normal: {
+    limit: 10 * 60
+  },
+  hard: {
+    limit: 6.5 * 60
+  },
+  brutal: {
+    limit: 4 * 60
+  }
+};
   
 let timeLimit = 0;
 let timePassed = 0;
@@ -51,18 +63,8 @@ $('.mode').click(function() {modeClickHandler($(this));});
 function modeClickHandler(element) {
   let timeout = 0;
 
-  switch (element.attr('id')) {
-    case 'normal':
-      timeout = 10 * 60;
-      break;
-    case 'hard':
-      timeout = 6.5 * 60;
-      break;
-    case 'brutal':
-      timeout = 4 * 60;
-      break;
-  }
-  
+  timeout = MODE_TIMES[element.attr('id')].limit;
+
   if (timeout !== 0) {
     startTimer(timeout);
 
@@ -83,18 +85,18 @@ function startTimer(limit) {
     }
 
     if (timerInterval === null) {
+      timeLimit = limit;
+      $('#base-timer-label').removeClass('blink');
+      updateLabel(timeLimit);
+
       timerInterval = setInterval(() => {
-          timeLimit = limit;
           timePassed = timePassed += 1;
           timeLeft = timeLimit - timePassed;
-          document.getElementById("base-timer-label").innerHTML = formatTime(
-              timeLeft
-          );
-          setCircleDasharray();
-          setRemainingPathColor(timeLeft);
+          updateLabel(timeLeft);
       
           if (timeLeft === 0) {
               onTimesUp();
+              $('#base-timer-label').addClass('blink');
           }
       }, 1000);
   }
@@ -153,4 +155,10 @@ function setCircleDasharray() {
   document
     .getElementById("base-timer-path-remaining")
     .setAttribute("stroke-dasharray", circleDasharray);
+}
+
+function updateLabel(_timeLeft) {
+  $('#base-timer-label').html(formatTime(_timeLeft));
+  setCircleDasharray();
+  setRemainingPathColor(_timeLeft);
 }

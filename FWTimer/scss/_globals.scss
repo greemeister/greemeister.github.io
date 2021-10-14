@@ -1,0 +1,37 @@
+@font-face {
+    font-family: 'Rene Levesque';
+    src: url('../font/ReneLevesque-Regular.ttf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --main-text-color: #B97C00;
+}
+
+a {
+    color: var(--main-text-color);
+}
+
+body {
+    font-family: 'Rene Levesque';
+    display: grid;
+    height: 100vh;
+    place-items: center;
+    
+    color: var(--main-text-color);
+    user-select: none;
+}
+
+.blink {
+    animation: blinker 1.40s linear infinite;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
