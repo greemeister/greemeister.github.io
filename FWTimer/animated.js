@@ -85,7 +85,7 @@ function startTimer(limit) {
     }
 
     if (timerInterval === null) {
-      timeLimit = limit;
+      timeLimit = timeLeft = limit;
       $('#base-timer-label').removeClass('blink');
       updateLabel(timeLimit);
 
