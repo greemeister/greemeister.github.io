@@ -36,8 +36,8 @@ let remainingPathColor = COLOR_CODES.info.color;
 
 var warningAudio = new Audio('audio/warning.mp3');
 var hornAudio = new Audio('audio/horn.mp3');
-hornAudio.volume = 0.65;
-warningAudio.volume = 0.65;
+hornAudio.volume = 1.0;
+warningAudio.volume = 1.0;
 
 document.getElementById("app").innerHTML = `
 <div class="base-timer">
