@@ -34,6 +34,11 @@ let timeLeft = 0;
 let timerInterval = null;
 let remainingPathColor = COLOR_CODES.info.color;
 
+var warningAudio = new Audio('audio/warning.mp3');
+var hornAudio = new Audio('audio/horn.mp3');
+hornAudio.volume = 0.65;
+warningAudio.volume = 0.65;
+
 document.getElementById("app").innerHTML = `
 <div class="base-timer">
   <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -73,15 +78,18 @@ function modeClickHandler(element) {
   }
 }
 
-function onTimesUp() {
+function onTimesUp(playSound) {
   clearInterval(timerInterval);
   timerInterval = null;
   timePassed = 0;
+  if (playSound === true) {
+    hornAudio.play();
+  }
 }
 
 function startTimer(limit) {
     if (timerInterval !== null) {
-        onTimesUp();
+        onTimesUp(false);
     }
 
     if (timerInterval === null) {
@@ -94,8 +102,12 @@ function startTimer(limit) {
           timeLeft = timeLimit - timePassed;
           updateLabel(timeLeft);
       
+          if (timeLeft === 45) {
+            warningAudio.play();
+          }
+
           if (timeLeft === 0) {
-              onTimesUp();
+              onTimesUp(true);
               $('#base-timer-label').addClass('blink');
           }
       }, 1000);
