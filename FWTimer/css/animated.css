@@ -46,6 +46,41 @@ body {
   }
 }
 
+.hardblink {
+  -webkit-animation: hardblinker 1.85s linear infinite;
+          animation: hardblinker 1.85s linear infinite;
+}
+
+@-webkit-keyframes hardblinker {
+  0% {
+    opacity: 0.75;
+  }
+  49% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hardblinker {
+  0% {
+    opacity: 0.75;
+  }
+  49% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 .hero {
   position: relative;
   height: 100vh;

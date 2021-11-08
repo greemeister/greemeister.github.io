@@ -36,6 +36,8 @@ let remainingPathColor = COLOR_CODES.info.color;
 
 var warningAudio = new Audio('audio/warning.mp3');
 var hornAudio = new Audio('audio/horn.mp3');
+let paused = false;
+
 hornAudio.volume = 1.0;
 warningAudio.volume = 1.0;
 
@@ -64,6 +66,16 @@ document.getElementById("app").innerHTML = `
 `;
 
 $('.mode').click(function() {modeClickHandler($(this));});
+$('.base-timer').click(function() {pauseClickHandler($(this));});
+
+function pauseClickHandler(element) {
+  
+  if (timeLeft !== 0) {
+    paused = !paused;
+
+    $("#base-timer-label").toggleClass('hardblink');
+  }
+}
 
 function modeClickHandler(element) {
   let timeout = 0;
@@ -94,10 +106,18 @@ function startTimer(limit) {
 
     if (timerInterval === null) {
       timeLimit = timeLeft = limit;
-      $('#base-timer-label').removeClass('blink');
+      $('#base-timer-label').removeClass('blink hardblink');
+
+      if (paused === true)
+        paused = false;
+        
       updateLabel(timeLimit);
 
       timerInterval = setInterval(() => {
+          if (paused === true) {
+            return;
+          }
+
           timePassed = timePassed += 1;
           timeLeft = timeLimit - timePassed;
           updateLabel(timeLeft);

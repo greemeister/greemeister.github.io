@@ -35,3 +35,14 @@ body {
         opacity: 0;
     }
 }
+
+.hardblink {
+    animation: hardblinker 1.85s linear infinite;
+}
+
+@keyframes hardblinker {
+      0% { opacity: 0.75; }
+     49% { opacity: 0.75; }
+     50% { opacity: 0; }
+    100% { opacity: 0; }
+}
