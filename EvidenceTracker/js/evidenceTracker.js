@@ -19,7 +19,8 @@ const ghostInfos = [
     { name : "onryo", evidences: [2,4,6], description: "Extinquishing a flame can cause it to attack. <span class='weakness'>When threatened, this ghost will be less likely to hunt.</span>"},
     { name : "the twins", evidences: [1,2,6], description: "Either Twin can be angered and initiate an attack on their prey. <span class='weakness'>They will often interact with the environment at the same time.</span>"},
     { name : "raiju", evidences: [1,4,7], description: "Can siphon power from nearby electrical devices making it more faster. <span class='weakness'>Constantly disrupting electronic equipment making it easier to track when attacking.</span>"},
-    { name : "obake", evidences: [1,3,4], description: "Will rarely leave a trace when interacting with the environment. <span class='weakness'>Will sometimes shapeshift leaving behind unique evidence.</span>"}
+    { name : "obake", evidences: [1,3,4], description: "Will rarely leave a trace when interacting with the environment. <span class='weakness'>Will sometimes shapeshift leaving behind unique evidence.</span>"},
+    { name : "the mimic", evidences: [2,3,6], description: "Unsure what this ghost is capable of. Exercise caution! <span class='weakness'>Several reports have noted ghost orb sightings near mimics.</span>"}
 ];
 
 const maxNumOfEvidences = ghostInfos[0].evidences.length;
