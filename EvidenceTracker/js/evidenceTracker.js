@@ -1,6 +1,6 @@
 // Ghost Info Defs
 const ghostInfos = [
-    { name : "spirit", evidences : [1,2,5], description: "No strengths. <span class='weakness'>A Spirit can be temporarily stopped by burning smudge sticks near them.</span>"}
+    { name : "spirit", evidences : [1,2,5], description: "No strengths. <span class='weakness'>A Spirit can be temporarily stopped by burning smudge sticks near them.</span>"},
     { name : "wraith", evidences : [1,2,7], description: "Wraiths almost never touch the ground, meaning it can't be tracked by footsteps. <span class='weakness'>Wraiths have a toxic reaction to salt.</span>"},
     { name : "phantom", evidences : [2,3,7], description: "Looking at a Phantom will drop your sanity considerably faster. <span class='weakness'>Taking a photo of the Phantom will make it temporarily disappear.</span>"},
     { name : "poltergeist", evidences : [2,3,5], description: "Poltergeists can throw multiple objects at once. <span class='weakness'>With nothing to throw, Poltergeists become powerless.</span>"},
