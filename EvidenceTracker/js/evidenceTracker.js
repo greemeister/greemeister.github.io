@@ -1,24 +1,24 @@
 // Ghost Info Defs
 const ghostInfos = [
-    { name : "spirit", evidences : [1,2,5], description: "No strengths. <span class='weakness'>A Spirit can be temporarily stopped by a burning smudge sticks near them.</span>"},
+    { name : "spirit", evidences : [1,2,5], description: "No strengths. <span class='weakness'>A Spirit can be temporarily stopped by burning smudge sticks near them.</span>"}
     { name : "wraith", evidences : [1,2,7], description: "Wraiths almost never touch the ground, meaning it can't be tracked by footsteps. <span class='weakness'>Wraiths have a toxic reaction to salt.</span>"},
     { name : "phantom", evidences : [2,3,7], description: "Looking at a Phantom will drop your sanity considerably faster. <span class='weakness'>Taking a photo of the Phantom will make it temporarily disappear.</span>"},
     { name : "poltergeist", evidences : [2,3,5], description: "Poltergeists can throw multiple objects at once. <span class='weakness'>With nothing to throw, Poltergeists become powerless.</span>"},
     { name : "banshee", evidences : [3,4,7], description: "A Banshee will only target one person at a time. <span class='weakness'>Banshees fear the crucifix and will be less aggressive near one.</span>"},
     { name : "jinn", evidences : [1,3,6], description: "A Jinn will travel at a faster speed if its victim is far away. <span class='weakness'>Turning off the location's power source will prevent the Jinn from using its ability.</span>"},
-    { name : "mare", evidences : [2,4,5], description: "A Mare will have an increased change to attack in the dark. <span class='weakness'>Turning the lights on around the Mare will lower its chance to attack.</span>"},
+    { name : "mare", evidences : [2,4,5], description: "A Mare will have an increased chance to attack in the dark. <span class='weakness'>Turning the lights on around the Mare will lower its chance to attack.</span>"},
     { name : "revenant", evidences : [4,5,6], description: "A Revenant will travel at a significantly faster speed when hunting their prey. <span class='weakness'>Hiding from the Revenant will cause it to move very slowly.</span>"},
-    { name : "shade", evidences : [1,5,6], description: "Shaes are much harder to find. <span class='weakness'>A Shade will not enter a hunt if there are multiple people nearby.</span>"},
+    { name : "shade", evidences : [1,5,6], description: "Shades are much harder to find. <span class='weakness'>A Shade will not enter a hunt if there are multiple people nearby.</span>"},
     { name : "demon", evidences : [3,5,6], description: "Demons will initiate hunts more often than other ghosts. <span class='weakness'>Demons will drain less of your sanity when you use a cursed possession.</span>"},
     { name : "yurei", evidences : [4,6,7], description: "Yureis have been known to have a stronger effect on people's sanity. <span class='weakness'>Smudging the Yurei's place of death will trap it temporarily, reducing how much it wanders.</span>"},
     { name : "oni", evidences : [1,6,7], description: "Onis are more active when people are nearby and have been seen moving objects at great speed. <span class='weakness'>Onis are very active, making them easier to find.</span>"},
-    { name : "yokai", evidences : [2,4,7], description: "Talking near a Yokai will anger it, increasing the change of an attack. <span class='weakness'>When hunting, a Yokai can only hear voices close to it.</span>"},
+    { name : "yokai", evidences : [2,4,7], description: "Talking near a Yokai will anger it, increasing the chance of an attack. <span class='weakness'>When hunting, a Yokai can only hear voices close to it.</span>"},
     { name : "hantu", evidences : [3,4,6], description: "Lower temperatures allow the Hantu to move at faster speeds. <span class='weakness'>Hantus move slower in warmer areas.</span>"},
     { name : "myling", evidences: [1,3,5], description: "A Myling is known to be quieter when hunting. <span class='weakness'>Mylings more frequently make paranormal sounds.</span>"},
     { name : "goryo", evidences: [1,3,7], description: "A Goryo will usually only show itself on camera if there are no people nearby. <span class='weakness'>They are rarely seen far from their place of death.</span>"},
     { name : "onryo", evidences: [2,4,6], description: "Extinquishing a flame can cause an Onryo to attack. <span class='weakness'>When threatened, this ghost will be less likely to hunt.</span>"},
     { name : "the twins", evidences: [1,2,6], description: "Either Twin can be angered and initiate an attack on their prey. <span class='weakness'>The Twins will often interact with the environment at the same time.</span>"},
-    { name : "raiju", evidences: [1,4,7], description: "A Raiju can siphon power from nearby electrical devices making it more faster. <span class='weakness'>Raiju are constantly disrupting electronic equipment when attacking, making it easier to track.</span>"},
+    { name : "raiju", evidences: [1,4,7], description: "A Raiju can siphon power from nearby electrical devices making it faster. <span class='weakness'>Raiju are constantly disrupting electronic equipment when attacking, making it easier to track.</span>"},
     { name : "obake", evidences: [1,3,4], description: "When interacting with the environment, an Obake will rarely leave a trace <span class='weakness'>Sometimes this ghost will shapeshift, leaving behind unique evidence.</span>"},
     { name : "the mimic", evidences: [2,3,6], description: "Unsure what this ghost is capable of. Exercise caution! <span class='weakness'>Several reports have noted ghost orb sightings near Mimics.</span>"}
 ];
