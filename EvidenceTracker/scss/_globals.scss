@@ -17,6 +17,7 @@ body {
     background: url('../new-journal.jpg');
     background-repeat: no-repeat;
     filter: opacity(85%);
+    font-family: var(--main-font);
 }
 
 .checkbox-wrapper {
@@ -37,7 +38,6 @@ body {
         padding: 0;
     
         .checkbox-text {
-            font-family: var(--main-font);
             font-size: 41pt;
             line-height: 37px; 
             margin-left: .20em;

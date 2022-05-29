@@ -40,6 +40,7 @@ body {
   background-repeat: no-repeat;
   -webkit-filter: opacity(85%);
           filter: opacity(85%);
+  font-family: var(--main-font);
 }
 
 .checkbox-wrapper {
@@ -69,16 +70,11 @@ body {
 }
 
 .checkbox-wrapper .checkbox-envelope .checkbox-text {
-  font-family: var(--main-font);
   font-size: 41pt;
   line-height: 37px;
   margin-left: .20em;
   margin-top: .15em;
   color: var(--evidence-color);
-}
-
-#remarks-wrapper {
-  font-family: var(--main-font);
 }
 
 #remarks-wrapper #remark1 {
@@ -98,7 +94,6 @@ body {
   width: 105px;
   margin-left: 225px;
   text-align: center;
-  font-family: var(--main-font);
   font-size: 4em;
   color: var(--evidence-color);
   -webkit-user-select: none;
@@ -162,7 +157,6 @@ body {
 }
 
 #section-wrapper #ghosts-wrapper {
-  font-family: var(--main-font);
   font-size: 1.35em;
   color: var(--ghost-info-color);
   border-left: solid var(--ghost-info-color) 3px;
@@ -189,5 +183,13 @@ body {
 
 #section-wrapper #ghosts-wrapper #possibleGhosts .weakness {
   color: var(--ghost-weakness-color);
+}
+
+#update-wrapper {
+  font-size: 2em;
+  font-weight: bold;
+  opacity: .6;
+  position: absolute;
+  bottom: 0%;
 }
 /*# sourceMappingURL=evidenceTracker.css.map */

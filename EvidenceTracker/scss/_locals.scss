@@ -1,6 +1,4 @@
 #remarks-wrapper {
-    font-family: var(--main-font);
-
     #remark1 {
         font-size: 28pt;
         color: var(--remark-color);
@@ -20,7 +18,6 @@
     width: 105px;
     margin-left: 225px;
     text-align: center;
-    font-family: var(--main-font);
     font-size: 4em;
     color: var(--evidence-color);
     user-select: none;
@@ -78,7 +75,6 @@
     }
     
     #ghosts-wrapper {
-        font-family: var(--main-font);
         font-size: 1.35em;
         color: var(--ghost-info-color);
         border-left: solid var(--ghost-info-color) 3px;
@@ -106,4 +102,12 @@
             }
         }
     }
+}
+
+#update-wrapper {
+    font-size: 2em;
+    font-weight: bold;
+    opacity: .6;
+    position: absolute;
+    bottom: 0%;
 }

@@ -27,6 +27,8 @@ const maxNumOfEvidences = ghostInfos[0].evidences.length;
 const ecn_enabled = "enabled";
 const ecn_excluded = "excluded";
 const ecn_tagged = "tagged";
+const last_updated = "01/15/22"
+const phasmophobia_server_version = "0.6.1.7"
 
 var excludeEvidence = false;
 var excludeMode = false;
@@ -130,6 +132,9 @@ function handleExcludeClick(cb) {
 }
 
 function initializeTracker() {
+    // Set last update and phasmo version text
+    document.getElementById("update-wrapper").innerHTML = "Last updated: " + last_updated + "<br>Phasmophobia Server: v" + phasmophobia_server_version;
+
     // Build our element cache (THIS MUST BE FIRST IN THE INITIALIZATION PROCESS!!!)
     (function () {
         let ew = Array.from(document.querySelectorAll('.evidence-wrapper'));
