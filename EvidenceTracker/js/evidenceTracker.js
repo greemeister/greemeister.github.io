@@ -20,15 +20,19 @@ const ghostInfos = [
     { name : "the twins", evidences: [1,2,6], description: "Either Twin can be angered and initiate an attack on their prey. <span class='weakness'>The Twins will often interact with the environment at the same time.</span>"},
     { name : "raiju", evidences: [1,4,7], description: "A Raiju can siphon power from nearby electrical devices making it faster. <span class='weakness'>Raiju are constantly disrupting electronic equipment when attacking, making it easier to track.</span>"},
     { name : "obake", evidences: [1,3,4], description: "When interacting with the environment, an Obake will rarely leave a trace <span class='weakness'>Sometimes this ghost will shapeshift, leaving behind unique evidence.</span>"},
-    { name : "the mimic", evidences: [2,3,4,6], description: "Unsure what this ghost is capable of. Exercise caution! <span class='weakness'>Several reports have noted ghost orb sightings near Mimics.</span>"}
+    { name : "the mimic", evidences: [2,3,4,6], description: "Unsure what this ghost is capable of. Exercise caution! <span class='weakness'>Several reports have noted ghost orb sightings near Mimics.</span>"},
+    { name : "moroi", evidences: [2,5,6], description: "The weaker their victims, the stronger the Moroi becomes. <span class='weakness'>Moroi suffers from hyperosmia, weakening them for longer periods</span>"},
+    { name : "deogen", evidences: [2,5,7], description: "Deogen constantly sense the living. You can run but you can't hide. <span class='weakness'>Deogen require a lot of energy to form and will move very slowly</span>"},
+    { name : "thaye", evidences: [4,5,7], description: "Upon entering the location, Thaye will become active, defensive and agile. <span class='weakness'>Thaye will weaken over time, making them weaker, slower and less aggressive</span>"}
+
 ];
 
 const maxNumOfEvidences = ghostInfos[0].evidences.length;
 const ecn_enabled = "enabled";
 const ecn_excluded = "excluded";
 const ecn_tagged = "tagged";
-const last_updated = "01/15/22"
-const phasmophobia_server_version = "0.6.1.7"
+const last_updated = "06/10/22"
+const phasmophobia_server_version = "0.6.2.0"
 
 var excludeEvidence = false;
 var excludeMode = false;
