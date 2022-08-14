@@ -1,0 +1,72 @@
+<meta name=”viewport” content=”width=device-width, initial-scale=1" charset="UTF-8">
+<html>
+    <head>
+        <title>Ghost Exile Tracker</title>
+        <link href="css/evidenceTracker.css" rel="stylesheet">
+        
+        <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
+        <script src="js/evidenceTracker.js"></script>
+    </head>
+
+    <body>
+        <div id="banner"><img id="banner_image" src="img/ghost_exile_banner2.png"></div>
+    	<div id="clear-button">CLEAR</div>
+        <div id="remarks-wrapper">
+            <span id="remark1">(Hold control key on click to exclude evidence)</span>
+            <div class="checkbox-wrapper enabled" id="exclude_remark_wrapper">
+                <img class="checkbox" id="exclude_evidence_checkbox" alt="Exclude Evidence Checkbox Image" src="checkboxes/unchecked/6.png">
+                <div class="checkbox-envelope" id="excludeLatch"><span class="checkbox-text" id="excludeRemark">Latch/Unlatch Evidence Exclusion</span></div>
+            </div>
+        </div>
+        <div id="section-wrapper">
+            <div class="evidence-container">
+                <div class="evidence-wrapper checkbox-wrapper enabled" id="emf">
+                    <img class="checkbox" id="emf_checkbox" alt="EMF Checkbox Image" src="checkboxes/unchecked/1.png">
+                    <div class="checkbox-envelope enabled" id="emf_envelope"><span class="checkbox-text" id="emf_text">EMF Level 5</span></div>
+                </div>
+                <div class="evidence-wrapper checkbox-wrapper enabled" id="spiritbox">
+                    <img class="checkbox" id="spiritbox_checkbox" alt="Spiritbox Checkbox Image" src="checkboxes/unchecked/2.png">
+                    <div class="checkbox-envelope enabled" id="spiritbox_envelope"><span class="checkbox-text" id="spiritbox_text">Spirit Box</span></div>
+                </div>
+                <div class="evidence-wrapper checkbox-wrapper enabled" id="ectoplasm">
+                    <img class="checkbox" id="ectoplasm_checkbox" alt="Ectoplasm Checkbox Image" src="checkboxes/unchecked/3.png">
+                    <div class="checkbox-envelope enabled" id="ectoplasm_envelope"><span class="checkbox-text" id="ectoplasm_text">Ectoplasm</span></div>
+                </div>
+                <div class="evidence-wrapper checkbox-wrapper enabled" id="ghostorb">
+                    <img class="checkbox" id="ghostorb_checkbox" alt="Ghost Orbs Checkbox Image" src="checkboxes/unchecked/4.png">
+                    <div class="checkbox-envelope enabled" id="ghostorb_envelope"><span class="checkbox-text" id="ghostorb_text">Ghost Orb</span></div>
+                </div>
+                <div class="evidence-wrapper checkbox-wrapper enabled" id="ghostwriting">
+                    <img class="checkbox" id="ghostwriting_checkbox" alt="Ghost Writing Checkbox Image" src="checkboxes/unchecked/5.png">
+                    <div class="checkbox-envelope enabled" id="ghostwriting_envelope"><span class="checkbox-text" id="ghostwriting_text">Ghost Writing</span></div>
+                </div>
+                <div class="evidence-wrapper checkbox-wrapper enabled" id="freezingtemperatures">
+                    <img class="checkbox" id="freezingtemperatures_checkbox" alt="Freeze Temps Checkbox Image" src="checkboxes/unchecked/6.png">
+                    <div class="checkbox-envelope enabled" id="freezingtemperatures_envelope"><span class="checkbox-text" id="freezingtemperatures_text">Freezing Temps</span></div>
+                </div>
+                <div class="evidence-wrapper checkbox-wrapper enabled" id="laserprojection">
+                    <img class="checkbox" id="laserprojection_checkbox" alt="Laser Projection Checkbox Image" src="checkboxes/unchecked/7.png">
+                    <div class="checkbox-envelope enabled" id="laserprojection_envelope"><span class="checkbox-text" id="laserprojection_text">Laser Projection</span></div>
+                </div>
+                <div class="evidence-wrapper checkbox-wrapper enabled" id="haze">
+                    <img class="checkbox" id="haze_checkbox" alt="Haze Checkbox Image" src="checkboxes/unchecked/8.png">
+                    <div class="checkbox-envelope enabled" id="haze_envelope"><span class="checkbox-text" id="haze_text">Haze</span></div>
+                </div>
+                <div class="evidence-wrapper checkbox-wrapper enabled" id="infraredmotionsensor">
+                    <img class="checkbox" id="infraredmotionsensor_checkbox" alt="Infrared Motion Sensor Checkbox Image" src="checkboxes/unchecked/9.png">
+                    <div class="checkbox-envelope enabled" id="infraredmotionsensor_envelope"><span class="checkbox-text" id="infraredmotionsensor_text">Infrared Motion Sensor</span></div>
+                </div>
+                <div class="evidence-wrapper checkbox-wrapper enabled" id="voicerecorder">
+                    <img class="checkbox" id="voicerecorder_checkbox" alt="Voice Recorder Checkbox Image" src="checkboxes/unchecked/10.png">
+                    <div class="checkbox-envelope enabled" id="voicerecorder_envelope"><span class="checkbox-text" id="voicerecorder_text">Voice Recorder</span></div>
+                </div>
+            </div>
+            <div id="ghosts-wrapper">
+                <h1>Possible Ghosts</h1>
+                <ul id="possibleGhosts"></ul>
+            </div>
+        </div>
+        <div id="update-wrapper">
+        </div>
+    </body>
+</html>

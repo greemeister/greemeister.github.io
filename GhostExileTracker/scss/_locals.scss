@@ -1,0 +1,137 @@
+#banner {
+    width: 100%;
+    #banner_image {
+        display: block;
+        height: 125;
+        opacity: 0.55;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: -20;
+    }
+}
+
+#remarks-wrapper {
+    #remark1 {
+        font-size: 28pt;
+        color: var(--remark-color);
+        user-select: none;
+    }
+
+    .checkbox-wrapper {
+        .checkbox-envelope {
+            .checkbox-text {
+                display: inline-block;
+                font-size: 28pt;
+                width: 400%;
+            }
+        }
+    }
+}
+
+#clear-button {
+    width: 105px;
+    margin-left: 225px;
+    text-align: center;
+    font-size: 4em;
+    color: var(--evidence-color);
+    user-select: none;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+#section-wrapper {
+    padding-left: 25px;
+    padding-top: 25px;
+    display: flex;
+
+    .evidence-container {
+        width: 570px;
+        min-width: 570px;
+        height: 100%;
+        position: relative;
+    
+        .checkbox-wrapper {  
+            &:not(.enabled) {
+                filter: opacity(20%);
+            }
+        
+            &:not(:first-child) {
+                margin-top: .35em;    
+            }
+
+            .checkbox-envelope { 
+                &::before {
+                    top: 30px;
+                    content: '';
+                    width: 115%;
+                    height: 0.5em;
+                    display: inline-block;
+                    position: relative;
+                    white-space: nowrap;
+                    line-height: 40px; 
+                }
+            
+                &:not(.enabled)::before {
+                    background: var(--evidence-color); /*this is the color of the line*/
+                    opacity: .9;
+                    border-radius: .3em;
+                    left: -15%;
+                    transform: rotate(1.0deg);
+                    width: 345%;
+                }
+
+                .checkbox-text {
+                    display: inline-block;
+                    width: 325%;
+                }
+            }
+        }
+    }
+    
+    #ghosts-wrapper {
+        font-size: 1.35em;
+        color: var(--ghost-info-color);
+        border-left: solid var(--ghost-info-color) 3px;
+        margin-left: 5px;
+        padding-left: 25px;
+    
+        #possibleGhosts {
+            list-style: none;
+            text-transform: uppercase;
+        
+            li {
+                font-size: 2em;
+                color: var(--ghost-name-color);
+            }
+        
+            p {
+                margin-top: -12px;
+                margin-bottom: 10px;
+                font-size: 1.15em; 
+            }
+    
+            .weakness {
+                color: var(--ghost-weakness-color);
+            }
+
+            .ghost-evidence-text {
+                color: var(--ghost-evidence-color);
+            }
+
+            .ghost-description {
+                color: var(--ghost-description-color);
+            }
+        }
+    }
+}
+
+#update-wrapper {
+    font-size: 2em;
+    font-weight: bold;
+    opacity: .6;
+    position: absolute;
+    bottom: 0%;
+    color: #6a6a6a;
+}

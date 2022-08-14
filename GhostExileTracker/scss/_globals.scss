@@ -1,0 +1,49 @@
+@font-face {
+    font-family: 'Nanum Pen Script';
+    // src: url('../font/NanumPenScript-Regular.ttf');
+    src: url('../font/SourceSansPro-Light.otf');
+}
+
+@keyframes strike{
+    0%   { width : 0; }
+    100% { width: 100%; }
+  }
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: url('../img/background.jpg');
+    background-repeat: no-repeat;
+    filter: opacity(85%);
+    font-family: var(--main-font);
+    background-size: cover;
+    margin-left: 3em;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    user-select: none;
+    width: 64px;
+
+    &.enabled:hover {
+        cursor: pointer;
+    }
+
+    .checkbox-envelope {
+        margin: 0;
+        padding: 0;
+        width: 128px;
+    
+        .checkbox-text {
+            font-size: 32pt;
+            line-height: 37px; 
+            margin-left: .20em;
+            margin-top: .15em;
+            color: var(--evidence-color);
+        }
+    }
+}

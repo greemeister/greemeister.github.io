@@ -1,0 +1,221 @@
+:root {
+  --evidence-color: #BCC6CC;
+  --ghost-info-color: #BCC6CC;
+  --ghost-name-color: #b14141;
+  --ghost-weakness-color: #005800;
+  --ghost-evidence-color: #04c004;
+  --ghost-description-color: #FDF5E6;
+  --main-font: 'Nanum Pen Script';
+  --remark-color: #496595;
+}
+
+@font-face {
+  font-family: 'Nanum Pen Script';
+  src: url("../font/SourceSansPro-Light.otf");
+}
+
+@-webkit-keyframes strike {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes strike {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: url("../img/background.jpg");
+  background-repeat: no-repeat;
+  -webkit-filter: opacity(85%);
+          filter: opacity(85%);
+  font-family: var(--main-font);
+  background-size: cover;
+  margin-left: 3em;
+}
+
+.checkbox-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  width: 64px;
+}
+
+.checkbox-wrapper.enabled:hover {
+  cursor: pointer;
+}
+
+.checkbox-wrapper .checkbox-envelope {
+  margin: 0;
+  padding: 0;
+  width: 128px;
+}
+
+.checkbox-wrapper .checkbox-envelope .checkbox-text {
+  font-size: 32pt;
+  line-height: 37px;
+  margin-left: .20em;
+  margin-top: .15em;
+  color: var(--evidence-color);
+}
+
+#banner {
+  width: 100%;
+}
+
+#banner #banner_image {
+  display: block;
+  height: 125;
+  opacity: 0.55;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -20;
+}
+
+#remarks-wrapper #remark1 {
+  font-size: 28pt;
+  color: var(--remark-color);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+#remarks-wrapper .checkbox-wrapper .checkbox-envelope .checkbox-text {
+  display: inline-block;
+  font-size: 28pt;
+  width: 400%;
+}
+
+#clear-button {
+  width: 105px;
+  margin-left: 225px;
+  text-align: center;
+  font-size: 4em;
+  color: var(--evidence-color);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+#clear-button:hover {
+  cursor: pointer;
+}
+
+#section-wrapper {
+  padding-left: 25px;
+  padding-top: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#section-wrapper .evidence-container {
+  width: 570px;
+  min-width: 570px;
+  height: 100%;
+  position: relative;
+}
+
+#section-wrapper .evidence-container .checkbox-wrapper:not(.enabled) {
+  -webkit-filter: opacity(20%);
+          filter: opacity(20%);
+}
+
+#section-wrapper .evidence-container .checkbox-wrapper:not(:first-child) {
+  margin-top: .35em;
+}
+
+#section-wrapper .evidence-container .checkbox-wrapper .checkbox-envelope::before {
+  top: 30px;
+  content: '';
+  width: 115%;
+  height: 0.5em;
+  display: inline-block;
+  position: relative;
+  white-space: nowrap;
+  line-height: 40px;
+}
+
+#section-wrapper .evidence-container .checkbox-wrapper .checkbox-envelope:not(.enabled)::before {
+  background: var(--evidence-color);
+  /*this is the color of the line*/
+  opacity: .9;
+  border-radius: .3em;
+  left: -15%;
+  -webkit-transform: rotate(1deg);
+          transform: rotate(1deg);
+  width: 345%;
+}
+
+#section-wrapper .evidence-container .checkbox-wrapper .checkbox-envelope .checkbox-text {
+  display: inline-block;
+  width: 325%;
+}
+
+#section-wrapper #ghosts-wrapper {
+  font-size: 1.35em;
+  color: var(--ghost-info-color);
+  border-left: solid var(--ghost-info-color) 3px;
+  margin-left: 5px;
+  padding-left: 25px;
+}
+
+#section-wrapper #ghosts-wrapper #possibleGhosts {
+  list-style: none;
+  text-transform: uppercase;
+}
+
+#section-wrapper #ghosts-wrapper #possibleGhosts li {
+  font-size: 2em;
+  color: var(--ghost-name-color);
+}
+
+#section-wrapper #ghosts-wrapper #possibleGhosts p {
+  margin-top: -12px;
+  margin-bottom: 10px;
+  font-size: 1.15em;
+}
+
+#section-wrapper #ghosts-wrapper #possibleGhosts .weakness {
+  color: var(--ghost-weakness-color);
+}
+
+#section-wrapper #ghosts-wrapper #possibleGhosts .ghost-evidence-text {
+  color: var(--ghost-evidence-color);
+}
+
+#section-wrapper #ghosts-wrapper #possibleGhosts .ghost-description {
+  color: var(--ghost-description-color);
+}
+
+#update-wrapper {
+  font-size: 2em;
+  font-weight: bold;
+  opacity: .6;
+  position: absolute;
+  bottom: 0%;
+  color: #6a6a6a;
+}
+/*# sourceMappingURL=evidenceTracker.css.map */
