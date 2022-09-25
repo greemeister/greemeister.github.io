@@ -92,7 +92,9 @@ body {
 
 #clear-button {
   width: 105px;
+  height: 55px;
   margin-left: 225px;
+  margin-top: 10px;
   text-align: center;
   font-size: 4em;
   color: var(--evidence-color);
@@ -191,5 +193,38 @@ body {
   opacity: .6;
   position: absolute;
   bottom: 0%;
+}
+
+#stopwatch-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 3em;
+  color: var(--evidence-color);
+  width: 225px;
+  margin-left: 190px;
+  text-align: center;
+}
+
+#stopwatch-wrapper #stopwatch {
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  width: 75px;
+}
+
+#stopwatch-wrapper #stopwatch-reset {
+  font-family: var(--main-font);
+  font-size: 1em;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  padding-left: 40px;
+  color: var(--evidence-color);
 }
 /*# sourceMappingURL=evidenceTracker.css.map */

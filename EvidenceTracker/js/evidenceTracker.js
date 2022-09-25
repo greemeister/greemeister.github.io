@@ -179,6 +179,57 @@ function initializeTracker() {
         }
 
         document.getElementById("clear-button").onclick = clearEvidence;
+        // Stopwatch onClick handlers
+        var seconds = 0;
+        var minutes = 0;
+        var appendSeconds = document.getElementById('stopwatch-seconds');
+        var appendMinutes = document.getElementById('stopwatch-minutes');
+        var stopwatch = document.getElementById('stopwatch');
+        var stopwatchReset = document.getElementById('stopwatch-reset');
+        var interval = null;
+
+        function pad(num, size) {
+            num = num.toString();
+            while (num.length < size) num = "0" + num;
+            return num;
+        }
+
+        function startStopWatch() {
+            seconds++;
+
+            if (seconds >= 60) {
+                seconds = 0;
+                minutes++;
+
+                if (minutes >= 60) {
+                    minutes = 0;
+                    seconds = 0;
+                }
+
+                appendMinutes.innerHTML = pad(minutes, 2);
+            }
+            appendSeconds.innerHTML = pad(seconds, 2);
+        }
+
+        stopwatch.onclick = function() {
+            if (interval === null) {
+                interval = setInterval(startStopWatch, 1000);
+            } else {
+                clearInterval(interval);
+                interval = null;
+            }
+        }
+
+        stopwatchReset.onclick = function() {
+            if (interval !== null) {
+                clearInterval(interval);
+                interval = null;
+            }
+            seconds = 0;
+            minutes = 0;
+            appendSeconds.innerHTML = pad(seconds, 2);
+            appendMinutes.innerHTML = pad(minutes, 2);
+        }
     })();
 
     // Initialize the possible ghost text ul element
