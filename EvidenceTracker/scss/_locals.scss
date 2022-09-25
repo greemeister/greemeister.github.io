@@ -26,6 +26,7 @@
 
     &:hover {
         cursor: pointer;
+        color: rgba(var(--evidence-color-decimal), 0.75);
     }
 }
 
@@ -118,13 +119,20 @@
     display: flex;
     font-size: 3em;
     color: var(--evidence-color);
-    width: 225px;
+    width: 250px;
     margin-left: 190px;
-    text-align: center;
+    //text-align: center;
     #stopwatch {
         cursor: pointer;
         user-select: none;
-        width: 75px;
+        width: 150px;
+
+        #stopwatch-suffix {
+            position: fixed;
+            font-size: 65%;
+            top: 12px;
+            left: 275px;
+        }
     }
 
     #stopwatch-reset {
@@ -133,10 +141,13 @@
         background-color: transparent;
         background-repeat: no-repeat;
         border: none;
-        cursor: pointer;
         overflow: hidden;
         outline: none;
-        padding-left: 40px;
+        padding-left: 15px;
         color: var(--evidence-color);
+        &:hover{
+            color: rgba(var(--evidence-color-decimal), 0.75);
+            cursor: pointer;
+        }
     }
 }

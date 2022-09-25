@@ -182,8 +182,10 @@ function initializeTracker() {
         // Stopwatch onClick handlers
         var seconds = 0;
         var minutes = 0;
+        var milliseconds = 0;
         var appendSeconds = document.getElementById('stopwatch-seconds');
         var appendMinutes = document.getElementById('stopwatch-minutes');
+        var appendMilliseconds = document.getElementById('stopwatch-milliseconds');
         var stopwatch = document.getElementById('stopwatch');
         var stopwatchReset = document.getElementById('stopwatch-reset');
         var interval = null;
@@ -195,25 +197,32 @@ function initializeTracker() {
         }
 
         function startStopWatch() {
-            seconds++;
+            milliseconds += 25;
 
-            if (seconds >= 60) {
-                seconds = 0;
-                minutes++;
+            if (milliseconds >= 1000) {
+                milliseconds = 0;
+                seconds++;
 
-                if (minutes >= 60) {
-                    minutes = 0;
+                if (seconds >= 60) {
                     seconds = 0;
-                }
+                    minutes++;
 
-                appendMinutes.innerHTML = pad(minutes, 2);
+                    if (minutes >= 60) {
+                        minutes = 0;
+                        seconds = 0;
+                    }
+
+                    appendMinutes.innerHTML = pad(minutes, 2);
+                }
+                appendSeconds.innerHTML = pad(seconds, 2);
             }
-            appendSeconds.innerHTML = pad(seconds, 2);
+
+            appendMilliseconds.innerHTML = pad(milliseconds, 3);
         }
 
         stopwatch.onclick = function() {
             if (interval === null) {
-                interval = setInterval(startStopWatch, 1000);
+                interval = setInterval(startStopWatch, 25);
             } else {
                 clearInterval(interval);
                 interval = null;
@@ -227,8 +236,10 @@ function initializeTracker() {
             }
             seconds = 0;
             minutes = 0;
+            milliseconds = 0;
             appendSeconds.innerHTML = pad(seconds, 2);
             appendMinutes.innerHTML = pad(minutes, 2);
+            appendMilliseconds.innerHTML = pad(milliseconds, 3);
         }
     })();
 

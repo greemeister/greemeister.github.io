@@ -1,5 +1,6 @@
 :root {
   --evidence-color: #363636;
+  --evidence-color-decimal: 54, 54, 54;
   --ghost-info-color: #2D2D2D;
   --ghost-name-color: #643232;
   --ghost-weakness-color: #005800;
@@ -106,6 +107,7 @@ body {
 
 #clear-button:hover {
   cursor: pointer;
+  color: rgba(var(--evidence-color-decimal), 0.75);
 }
 
 #section-wrapper {
@@ -201,9 +203,8 @@ body {
   display: flex;
   font-size: 3em;
   color: var(--evidence-color);
-  width: 225px;
+  width: 250px;
   margin-left: 190px;
-  text-align: center;
 }
 
 #stopwatch-wrapper #stopwatch {
@@ -212,7 +213,14 @@ body {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  width: 75px;
+  width: 150px;
+}
+
+#stopwatch-wrapper #stopwatch #stopwatch-suffix {
+  position: fixed;
+  font-size: 65%;
+  top: 12px;
+  left: 275px;
 }
 
 #stopwatch-wrapper #stopwatch-reset {
@@ -221,10 +229,14 @@ body {
   background-color: transparent;
   background-repeat: no-repeat;
   border: none;
-  cursor: pointer;
   overflow: hidden;
   outline: none;
-  padding-left: 40px;
+  padding-left: 15px;
   color: var(--evidence-color);
+}
+
+#stopwatch-wrapper #stopwatch-reset:hover {
+  color: rgba(var(--evidence-color-decimal), 0.75);
+  cursor: pointer;
 }
 /*# sourceMappingURL=evidenceTracker.css.map */
