@@ -6,6 +6,8 @@
   --ghost-weakness-color: #005800;
   --main-font: 'Nanum Pen Script';
   --remark-color: #496595;
+  --tooltip-hunt-threshold-color: #141414;
+  --tooltip-unique-color: #252525;
 }
 
 @font-face {
@@ -38,7 +40,7 @@
 
 body {
   background: url("../new-journal.jpg");
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   -webkit-filter: opacity(85%);
           filter: opacity(85%);
   font-family: var(--main-font);
@@ -177,6 +179,57 @@ body {
 #section-wrapper #ghosts-wrapper #possibleGhosts li {
   font-size: 2em;
   color: var(--ghost-name-color);
+}
+
+#section-wrapper #ghosts-wrapper #possibleGhosts li .tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+#section-wrapper #ghosts-wrapper #possibleGhosts li .tooltip .tooltiptext {
+  visibility: hidden;
+  width: 550px;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  font-size: 0.60em;
+  position: absolute;
+  z-index: 1;
+  /*bottom: 100%;
+                        left: 50%;*/
+  top: -5px;
+  left: 205px;
+  margin-left: -60px;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  background-color: #b4b3b3;
+  /* Draw an arrow at bottom of tooltip box
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            top: 100%;
+                            left: 50%;
+                            margin-left: -5px;
+                            border-width: 5px;
+                            border-style: solid;
+                            border-color: #555 transparent transparent transparent;
+                        }
+*/
+}
+
+#section-wrapper #ghosts-wrapper #possibleGhosts li .tooltip .tooltiptext .huntThreshold {
+  color: var(--tooltip-hunt-threshold-color);
+  font-weight: bold;
+}
+
+#section-wrapper #ghosts-wrapper #possibleGhosts li .tooltip .tooltiptext .unique {
+  color: var(--tooltip-unique-color);
+}
+
+#section-wrapper #ghosts-wrapper #possibleGhosts li .tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }
 
 #section-wrapper #ghosts-wrapper #possibleGhosts p {
