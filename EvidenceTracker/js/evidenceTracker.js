@@ -31,7 +31,7 @@ const maxNumOfEvidences = ghostInfos[0].evidences.length;
 const ecn_enabled = "enabled";
 const ecn_excluded = "excluded";
 const ecn_tagged = "tagged";
-const last_updated = "01/21/23"
+const last_updated = "01/22/23"
 const phasmophobia_server_version = "0.8.0.8"
 
 var excludeEvidence = false;
@@ -39,6 +39,7 @@ var excludeMode = false;
 var maxElementTypeID = 0;
 var recObj = null;
 var speechStatusElement = null;
+var ghostExclusiveMap = null;
 
 var elementTypeCache = [
     {id: "VOID", description: "DO NOT USE!"}
@@ -74,6 +75,7 @@ function clearEvidence(e) {
     }
 
     toggleEvidence(null);
+    ghostExclusiveMap.clear();
 }
 
 function getEvidenceByID(id) {
@@ -251,6 +253,8 @@ function initializeTracker() {
     if (element.onclick != onExcludeClickHandler) {
         element.onclick = onExcludeClickHandler;
     }
+
+    ghostExclusiveMap = new Map();
 }
 
 function initPossibleGhostText() {
@@ -368,7 +372,16 @@ function toggleEvidence(evidence) {
             newDiv.innerHTML = newEntry;
             document.getElementById("possibleGhosts").appendChild(newDiv);
             newDiv.onclick = toggleGhost
-        })
+        });
+
+        const ghostEntries = document.querySelectorAll(".ghostentry");
+        ghostEntries.forEach((ghostEntry) => {
+            if (ghostExclusiveMap.has(ghostEntry.id)) {
+                newEvent = new Event("click");
+                newEvent.override = true;
+                ghostEntry.dispatchEvent(newEvent);
+            }
+        });
     }
              
     getRemainingEvidenceIds(evidenceArray, [], excludeEvidenceArray).forEach(evidenceId => {
@@ -418,8 +431,29 @@ function toggleGhost(e) {
     total_count = document.querySelectorAll(".ghostentry").length;
     exclude_count = document.querySelectorAll("#possibleGhosts ." + ecn_excluded).length;
 
-    if ((total_count - 1) > exclude_count || (element.classList.contains(ecn_excluded)))
-        element.classList.toggle(ecn_excluded);
+    override = false;
+    if (typeof e.override !== 'undefined')
+        override = e.override;
+    console.log(override);
+    console.log(total_count);
+    if ((override && total_count > 1) || (!override && ((total_count - 1) > exclude_count || (element.classList.contains(ecn_excluded))))) {
+        if (override) {
+            console.log(ghostExclusiveMap);
+            if (ghostExclusiveMap.has(element.id)) {
+                element.classList.add(ecn_excluded);
+            }
+        } else {
+            if (element.classList.contains(ecn_excluded)) {
+                if (ghostExclusiveMap.has(element.id))
+                    ghostExclusiveMap.delete(element.id);
+                element.classList.remove(ecn_excluded);
+            } else {
+                if (!ghostExclusiveMap.has(element.id))
+                    ghostExclusiveMap.set(element.id, true);
+                element.classList.add(ecn_excluded);
+            }
+        }
+    }
 }
 
 function toUrl(str) {
