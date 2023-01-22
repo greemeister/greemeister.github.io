@@ -151,6 +151,10 @@
             .weakness {
                 color: var(--ghost-weakness-color);
             }
+
+            .ghostentry.excluded {
+                opacity: 0.25;
+            }
         }
     }
 }

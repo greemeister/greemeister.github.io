@@ -242,6 +242,10 @@ body {
   color: var(--ghost-weakness-color);
 }
 
+#section-wrapper #ghosts-wrapper #possibleGhosts .ghostentry.excluded {
+  opacity: 0.25;
+}
+
 #update-wrapper {
   font-size: 2em;
   font-weight: bold;

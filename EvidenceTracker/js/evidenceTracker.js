@@ -31,8 +31,8 @@ const maxNumOfEvidences = ghostInfos[0].evidences.length;
 const ecn_enabled = "enabled";
 const ecn_excluded = "excluded";
 const ecn_tagged = "tagged";
-const last_updated = "01/06/23"
-const phasmophobia_server_version = "0.8.0.6"
+const last_updated = "01/21/23"
+const phasmophobia_server_version = "0.8.0.8"
 
 var excludeEvidence = false;
 var excludeMode = false;
@@ -353,15 +353,21 @@ function toggleEvidence(evidence) {
         initPossibleGhostText();
     } else {
         getGhostInfoMatches(evidenceArray, [], excludeEvidenceArray).forEach(ghostInfo => {
-            newElement = 
-                        '<li><span class="tooltip">' + ghostInfo.name +
-                            '<span class="tooltiptext">' +
-                                '<div class="huntThreshold">Hunts at: ' + ghostInfo.hunt_threshold + '</div>' +
-                                '<div class="unique">Unique/Hidden Powers: ' + ghostInfo.unique + '</div>' +
-                            '</span>' +
-                        '</span></li>' + 
-                        '<p><b>' + getEvidencePossibilities(ghostInfo) + '</b><br />' + ghostInfo.description + '</p>';
-            document.getElementById("possibleGhosts").innerHTML += newElement;
+            newDiv = document.createElement("div");
+            newDiv.classList.add("ghostentry");
+            newDiv.id = "ge_" + ghostInfo.name;
+
+            newEntry = '<li><span class="tooltip">' + ghostInfo.name +
+                       '<span class="tooltiptext">' +
+                           '<div class="huntThreshold">Hunts at: ' + ghostInfo.hunt_threshold + '</div>' +
+                           '<div class="unique">Unique/Hidden Powers: ' + ghostInfo.unique + '</div>' +
+                       '</span>' +
+                       '</span></li>' + 
+                       '<p><b>' + getEvidencePossibilities(ghostInfo) + '</b><br />' + ghostInfo.description + '</p>';
+
+            newDiv.innerHTML = newEntry;
+            document.getElementById("possibleGhosts").appendChild(newDiv);
+            newDiv.onclick = toggleGhost
         })
     }
              
@@ -401,6 +407,19 @@ function toggleEvidence(evidence) {
             }
         }    
     }
+}
+
+function toggleGhost(e) {
+    // Rewind ancestry back to parent div element
+    element = e.srcElement;
+    while (element.nodeName.toLowerCase() != 'div') {
+        element = element.parentElement;
+    }
+    total_count = document.querySelectorAll(".ghostentry").length;
+    exclude_count = document.querySelectorAll("#possibleGhosts ." + ecn_excluded).length;
+
+    if ((total_count - 1) > exclude_count || (element.classList.contains(ecn_excluded)))
+        element.classList.toggle(ecn_excluded);
 }
 
 function toUrl(str) {
