@@ -89,55 +89,57 @@
             text-transform: uppercase;
             display: table;
         
-            li {
-                font-size: 2em;
-                color: var(--ghost-name-color);
-                .tooltip {
-                    position: relative;
-                    display: inline-block;
-                    .tooltiptext {
-                        visibility: hidden;
-                        width: 550px;
-                        text-align: center;
-                        padding: 5px 0;
-                        border-radius: 6px;
-                        font-size: 0.60em;
-                        position: absolute;
-                        z-index: 1;
-                        /*bottom: 100%;
-                        left: 50%;*/
-                        top: -5px;
-                        left: 205px;
-                        margin-left: -60px;
-
-                        opacity: 0;
-                        transition: opacity 0.3s;
-                        background-color: rgb(180, 179, 179);
-/* Draw an arrow at bottom of tooltip box
-                        &::after {
-                            content: "";
+            .ghostentry {
+                li {
+                    font-size: 2em;
+                    color: var(--ghost-name-color);
+                    .tooltip {
+                        position: relative;
+                        display: inline-block;
+                        .tooltiptext {
+                            visibility: hidden;
+                            width: 550px;
+                            text-align: center;
+                            padding: 5px 0;
+                            border-radius: 6px;
+                            font-size: 0.60em;
                             position: absolute;
-                            top: 100%;
-                            left: 50%;
-                            margin-left: -5px;
-                            border-width: 5px;
-                            border-style: solid;
-                            border-color: #555 transparent transparent transparent;
-                        }
-*/                        
-                        .huntThreshold {
-                            color: var(--tooltip-hunt-threshold-color);
-                            font-weight: bold;
+                            z-index: 1;
+                            /*bottom: 100%;
+                            left: 50%;*/
+                            top: -5px;
+                            left: 205px;
+                            margin-left: -60px;
+
+                            opacity: 0;
+                            transition: opacity 0.3s;
+                            background-color: rgb(180, 179, 179);
+    /* Draw an arrow at bottom of tooltip box
+                            &::after {
+                                content: "";
+                                position: absolute;
+                                top: 100%;
+                                left: 50%;
+                                margin-left: -5px;
+                                border-width: 5px;
+                                border-style: solid;
+                                border-color: #555 transparent transparent transparent;
+                            }
+    */                        
+                            .huntThreshold {
+                                color: var(--tooltip-hunt-threshold-color);
+                                font-weight: bold;
+                            }
+
+                            .unique {
+                                color: var(--tooltip-unique-color);
+                            }
                         }
 
-                        .unique {
-                            color: var(--tooltip-unique-color);
+                        &:hover .tooltiptext {
+                            visibility: visible;
+                            opacity: 1;
                         }
-                    }
-
-                    &:hover .tooltiptext {
-                        visibility: visible;
-                        opacity: 1;
                     }
                 }
             }
@@ -154,6 +156,14 @@
 
             .ghostentry.excluded {
                 opacity: 0.25;
+                li {
+                    .tooltip {
+                        &:hover .tooltiptext {
+                            visibility: hidden;
+                            opacity: 0;
+                        }
+                    }
+                }
             }
         }
     }

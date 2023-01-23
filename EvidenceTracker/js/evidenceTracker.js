@@ -31,7 +31,7 @@ const maxNumOfEvidences = ghostInfos[0].evidences.length;
 const ecn_enabled = "enabled";
 const ecn_excluded = "excluded";
 const ecn_tagged = "tagged";
-const last_updated = "01/22/23"
+const last_updated = "01/23/23"
 const phasmophobia_server_version = "0.8.0.8"
 
 var excludeEvidence = false;
@@ -434,11 +434,9 @@ function toggleGhost(e) {
     override = false;
     if (typeof e.override !== 'undefined')
         override = e.override;
-    console.log(override);
-    console.log(total_count);
+
     if ((override && total_count > 1) || (!override && ((total_count - 1) > exclude_count || (element.classList.contains(ecn_excluded))))) {
         if (override) {
-            console.log(ghostExclusiveMap);
             if (ghostExclusiveMap.has(element.id)) {
                 element.classList.add(ecn_excluded);
             }

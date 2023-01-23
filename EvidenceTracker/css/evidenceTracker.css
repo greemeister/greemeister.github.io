@@ -176,17 +176,17 @@ body {
   display: table;
 }
 
-#section-wrapper #ghosts-wrapper #possibleGhosts li {
+#section-wrapper #ghosts-wrapper #possibleGhosts .ghostentry li {
   font-size: 2em;
   color: var(--ghost-name-color);
 }
 
-#section-wrapper #ghosts-wrapper #possibleGhosts li .tooltip {
+#section-wrapper #ghosts-wrapper #possibleGhosts .ghostentry li .tooltip {
   position: relative;
   display: inline-block;
 }
 
-#section-wrapper #ghosts-wrapper #possibleGhosts li .tooltip .tooltiptext {
+#section-wrapper #ghosts-wrapper #possibleGhosts .ghostentry li .tooltip .tooltiptext {
   visibility: hidden;
   width: 550px;
   text-align: center;
@@ -196,7 +196,7 @@ body {
   position: absolute;
   z-index: 1;
   /*bottom: 100%;
-                        left: 50%;*/
+                            left: 50%;*/
   top: -5px;
   left: 205px;
   margin-left: -60px;
@@ -205,29 +205,29 @@ body {
   transition: opacity 0.3s;
   background-color: #b4b3b3;
   /* Draw an arrow at bottom of tooltip box
-                        &::after {
-                            content: "";
-                            position: absolute;
-                            top: 100%;
-                            left: 50%;
-                            margin-left: -5px;
-                            border-width: 5px;
-                            border-style: solid;
-                            border-color: #555 transparent transparent transparent;
-                        }
-*/
+                            &::after {
+                                content: "";
+                                position: absolute;
+                                top: 100%;
+                                left: 50%;
+                                margin-left: -5px;
+                                border-width: 5px;
+                                border-style: solid;
+                                border-color: #555 transparent transparent transparent;
+                            }
+    */
 }
 
-#section-wrapper #ghosts-wrapper #possibleGhosts li .tooltip .tooltiptext .huntThreshold {
+#section-wrapper #ghosts-wrapper #possibleGhosts .ghostentry li .tooltip .tooltiptext .huntThreshold {
   color: var(--tooltip-hunt-threshold-color);
   font-weight: bold;
 }
 
-#section-wrapper #ghosts-wrapper #possibleGhosts li .tooltip .tooltiptext .unique {
+#section-wrapper #ghosts-wrapper #possibleGhosts .ghostentry li .tooltip .tooltiptext .unique {
   color: var(--tooltip-unique-color);
 }
 
-#section-wrapper #ghosts-wrapper #possibleGhosts li .tooltip:hover .tooltiptext {
+#section-wrapper #ghosts-wrapper #possibleGhosts .ghostentry li .tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
 }
@@ -244,6 +244,11 @@ body {
 
 #section-wrapper #ghosts-wrapper #possibleGhosts .ghostentry.excluded {
   opacity: 0.25;
+}
+
+#section-wrapper #ghosts-wrapper #possibleGhosts .ghostentry.excluded li .tooltip:hover .tooltiptext {
+  visibility: hidden;
+  opacity: 0;
 }
 
 #update-wrapper {
