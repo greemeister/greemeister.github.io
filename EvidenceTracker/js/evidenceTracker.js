@@ -31,7 +31,7 @@ const maxNumOfEvidences = ghostInfos[0].evidences.length;
 const ecn_enabled = "enabled";
 const ecn_excluded = "excluded";
 const ecn_tagged = "tagged";
-const last_updated = "03/22/23"
+const last_updated = "03/27/23"
 const phasmophobia_server_version = "0.8.1.3"
 
 var excludeEvidence = false;
@@ -353,7 +353,7 @@ function toggleEvidence(evidence) {
     // grab ghost matches according to selected evidence
     document.getElementById("possibleGhosts").innerHTML = "";
 
-    if (evidenceArray.length == 0) {
+    if (evidenceArray.length == 0 && excludeEvidenceArray.length == 0) {
         initPossibleGhostText();
     } else {
         getGhostInfoMatches(evidenceArray, [], excludeEvidenceArray).forEach(ghostInfo => {
