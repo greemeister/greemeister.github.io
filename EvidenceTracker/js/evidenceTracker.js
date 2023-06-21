@@ -75,8 +75,8 @@ function clearEvidence(e) {
         manageEvidenceArray(excludeEvidenceArray, i, "remove");
     }
 
-    toggleEvidence(null);
     ghostExclusiveMap.clear();
+    toggleEvidence(null);
 }
 
 function getEvidenceByID(id) {
