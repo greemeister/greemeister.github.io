@@ -31,8 +31,8 @@ const maxNumOfEvidences = ghostInfos[0].evidences.length;
 const ecn_enabled = "enabled";
 const ecn_excluded = "excluded";
 const ecn_tagged = "tagged";
-const last_updated = "01/31/24"
-const phasmophobia_server_version = "0.9.4.1"
+const last_updated = "04/16/24"
+const phasmophobia_server_version = "0.9.6.1"
 
 var excludeEvidence = false;
 var excludeMode = false;
