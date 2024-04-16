@@ -30,6 +30,10 @@
     }
 }
 
+#body {
+    height: 100vh;
+}
+
 #section-wrapper {
     padding-left: 25px;
     padding-top: 25px;
@@ -40,20 +44,20 @@
         min-width: 370px;
         height: 100%;
         position: relative;
-    
-        .checkbox-wrapper {  
+
+        .checkbox-wrapper {
             &:not(.enabled) {
                 filter: opacity(50%);
             }
-        
+
             &:not(:first-child) {
-                margin-top: .35em;    
+                margin-top: .35em;
             }
-        
+
             &.disabled {
                 filter: opacity(50%);
             }
-        
+
             .checkbox-envelope {
                 &::before {
                     top: 20px;
@@ -63,39 +67,42 @@
                     display: inline-block;
                     position: relative;
                     white-space: nowrap;
-                    line-height: 37px; 
+                    line-height: 37px;
                 }
-            
+
                 &:not(.enabled)::before {
-                    background: var(--evidence-color); /*this is the color of the line*/
+                    background: var(--evidence-color);
+                    /*this is the color of the line*/
                     opacity: .9;
                     border-radius: .3em;
                     left: -15%;
-                    transform: rotate(1.0deg); 
+                    transform: rotate(1.0deg);
                 }
             }
         }
     }
-    
+
     #ghosts-wrapper {
         font-size: 1.35em;
         color: var(--ghost-info-color);
         border-left: solid var(--ghost-info-color) 3px;
         margin-left: 5px;
         padding-left: 25px;
-    
+
         #possibleGhosts {
             list-style: none;
             text-transform: uppercase;
             display: table;
-        
+
             .ghostentry {
                 li {
                     font-size: 2em;
                     color: var(--ghost-name-color);
+
                     .tooltip {
                         position: relative;
                         display: inline-block;
+
                         .tooltiptext {
                             visibility: hidden;
                             width: 550px;
@@ -114,7 +121,8 @@
                             opacity: 0;
                             transition: opacity 0.3s;
                             background-color: rgb(180, 179, 179);
-    /* Draw an arrow at bottom of tooltip box
+
+                            /* Draw an arrow at bottom of tooltip box
                             &::after {
                                 content: "";
                                 position: absolute;
@@ -125,7 +133,7 @@
                                 border-style: solid;
                                 border-color: #555 transparent transparent transparent;
                             }
-    */                        
+    */
                             .huntThreshold {
                                 color: var(--tooltip-hunt-threshold-color);
                                 font-weight: bold;
@@ -143,19 +151,20 @@
                     }
                 }
             }
-        
+
             p {
                 margin-top: -12px;
                 margin-bottom: 10px;
-                font-size: 1.15em; 
+                font-size: 1.15em;
             }
-    
+
             .weakness {
                 color: var(--ghost-weakness-color);
             }
 
             .ghostentry.excluded {
                 opacity: 0.25;
+
                 li {
                     .tooltip {
                         &:hover .tooltiptext {
@@ -183,6 +192,7 @@
     color: var(--evidence-color);
     width: 250px;
     margin-left: 190px;
+
     //text-align: center;
     #stopwatch {
         cursor: pointer;
@@ -207,7 +217,8 @@
         outline: none;
         padding-left: 15px;
         color: var(--evidence-color);
-        &:hover{
+
+        &:hover {
             color: rgba(var(--evidence-color-decimal), 0.75);
             cursor: pointer;
         }

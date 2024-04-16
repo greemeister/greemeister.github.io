@@ -4,26 +4,16 @@
   --ghost-info-color: #2D2D2D;
   --ghost-name-color: #643232;
   --ghost-weakness-color: #005800;
-  --main-font: 'Nanum Pen Script';
+  --main-font: "Nanum Pen Script";
   --remark-color: #496595;
   --tooltip-hunt-threshold-color: #141414;
   --tooltip-unique-color: #252525;
 }
 
 @font-face {
-  font-family: 'Nanum Pen Script';
+  font-family: "Nanum Pen Script";
   src: url("../font/NanumPenScript-Regular.ttf");
 }
-
-@-webkit-keyframes strike {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 100%;
-  }
-}
-
 @keyframes strike {
   0% {
     width: 0;
@@ -32,7 +22,6 @@
     width: 100%;
   }
 }
-
 * {
   margin: 0;
   padding: 0;
@@ -41,42 +30,32 @@
 body {
   background: url("../new-journal.jpg");
   background-repeat: repeat;
-  -webkit-filter: opacity(85%);
-          filter: opacity(85%);
+  filter: opacity(85%);
   font-family: var(--main-font);
 }
 
 .checkbox-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
-
 .checkbox-wrapper.enabled:hover {
   cursor: pointer;
 }
-
 .checkbox-wrapper .checkbox {
   width: 37px;
 }
-
 .checkbox-wrapper .checkbox-envelope {
   margin: 0;
   padding: 0;
 }
-
 .checkbox-wrapper .checkbox-envelope .checkbox-text {
   font-size: 41pt;
   line-height: 37px;
-  margin-left: .20em;
-  margin-top: .15em;
+  margin-left: 0.2em;
+  margin-top: 0.15em;
   color: var(--evidence-color);
 }
 
@@ -85,10 +64,8 @@ body {
   color: var(--remark-color);
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
-
 #remarks-wrapper .checkbox-wrapper .checkbox-envelope .checkbox-text {
   font-size: 28pt;
 }
@@ -103,65 +80,55 @@ body {
   color: var(--evidence-color);
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
-
 #clear-button:hover {
   cursor: pointer;
   color: rgba(var(--evidence-color-decimal), 0.75);
 }
 
+#body {
+  height: 100vh;
+}
+
 #section-wrapper {
   padding-left: 25px;
   padding-top: 25px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
-
 #section-wrapper .evidence-container {
   width: 370px;
   min-width: 370px;
   height: 100%;
   position: relative;
 }
-
 #section-wrapper .evidence-container .checkbox-wrapper:not(.enabled) {
-  -webkit-filter: opacity(50%);
-          filter: opacity(50%);
+  filter: opacity(50%);
 }
-
 #section-wrapper .evidence-container .checkbox-wrapper:not(:first-child) {
-  margin-top: .35em;
+  margin-top: 0.35em;
 }
-
 #section-wrapper .evidence-container .checkbox-wrapper.disabled {
-  -webkit-filter: opacity(50%);
-          filter: opacity(50%);
+  filter: opacity(50%);
 }
-
 #section-wrapper .evidence-container .checkbox-wrapper .checkbox-envelope::before {
   top: 20px;
-  content: '';
+  content: "";
   width: 115%;
-  height: .5em;
+  height: 0.5em;
   display: inline-block;
   position: relative;
   white-space: nowrap;
   line-height: 37px;
 }
-
 #section-wrapper .evidence-container .checkbox-wrapper .checkbox-envelope:not(.enabled)::before {
   background: var(--evidence-color);
   /*this is the color of the line*/
-  opacity: .9;
-  border-radius: .3em;
+  opacity: 0.9;
+  border-radius: 0.3em;
   left: -15%;
-  -webkit-transform: rotate(1deg);
-          transform: rotate(1deg);
+  transform: rotate(1deg);
 }
-
 #section-wrapper #ghosts-wrapper {
   font-size: 1.35em;
   color: var(--ghost-info-color);
@@ -169,83 +136,71 @@ body {
   margin-left: 5px;
   padding-left: 25px;
 }
-
 #section-wrapper #ghosts-wrapper #possibleGhosts {
   list-style: none;
   text-transform: uppercase;
   display: table;
 }
-
 #section-wrapper #ghosts-wrapper #possibleGhosts .ghostentry li {
   font-size: 2em;
   color: var(--ghost-name-color);
 }
-
 #section-wrapper #ghosts-wrapper #possibleGhosts .ghostentry li .tooltip {
   position: relative;
   display: inline-block;
 }
-
 #section-wrapper #ghosts-wrapper #possibleGhosts .ghostentry li .tooltip .tooltiptext {
   visibility: hidden;
   width: 550px;
   text-align: center;
   padding: 5px 0;
   border-radius: 6px;
-  font-size: 0.60em;
+  font-size: 0.6em;
   position: absolute;
   z-index: 1;
   /*bottom: 100%;
-                            left: 50%;*/
+  left: 50%;*/
   top: -5px;
   left: 205px;
   margin-left: -60px;
   opacity: 0;
-  -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
-  background-color: #b4b3b3;
+  background-color: rgb(180, 179, 179);
   /* Draw an arrow at bottom of tooltip box
-                            &::after {
-                                content: "";
-                                position: absolute;
-                                top: 100%;
-                                left: 50%;
-                                margin-left: -5px;
-                                border-width: 5px;
-                                border-style: solid;
-                                border-color: #555 transparent transparent transparent;
-                            }
-    */
+                          &::after {
+                              content: "";
+                              position: absolute;
+                              top: 100%;
+                              left: 50%;
+                              margin-left: -5px;
+                              border-width: 5px;
+                              border-style: solid;
+                              border-color: #555 transparent transparent transparent;
+                          }
+  */
 }
-
 #section-wrapper #ghosts-wrapper #possibleGhosts .ghostentry li .tooltip .tooltiptext .huntThreshold {
   color: var(--tooltip-hunt-threshold-color);
   font-weight: bold;
 }
-
 #section-wrapper #ghosts-wrapper #possibleGhosts .ghostentry li .tooltip .tooltiptext .unique {
   color: var(--tooltip-unique-color);
 }
-
 #section-wrapper #ghosts-wrapper #possibleGhosts .ghostentry li .tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
 }
-
 #section-wrapper #ghosts-wrapper #possibleGhosts p {
   margin-top: -12px;
   margin-bottom: 10px;
   font-size: 1.15em;
 }
-
 #section-wrapper #ghosts-wrapper #possibleGhosts .weakness {
   color: var(--ghost-weakness-color);
 }
-
 #section-wrapper #ghosts-wrapper #possibleGhosts .ghostentry.excluded {
   opacity: 0.25;
 }
-
 #section-wrapper #ghosts-wrapper #possibleGhosts .ghostentry.excluded li .tooltip:hover .tooltiptext {
   visibility: hidden;
   opacity: 0;
@@ -254,37 +209,31 @@ body {
 #update-wrapper {
   font-size: 2em;
   font-weight: bold;
-  opacity: .6;
+  opacity: 0.6;
   position: absolute;
   bottom: 0%;
 }
 
 #stopwatch-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   font-size: 3em;
   color: var(--evidence-color);
   width: 250px;
   margin-left: 190px;
 }
-
 #stopwatch-wrapper #stopwatch {
   cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   width: 150px;
 }
-
 #stopwatch-wrapper #stopwatch #stopwatch-suffix {
   position: fixed;
   font-size: 65%;
   top: 12px;
   left: 275px;
 }
-
 #stopwatch-wrapper #stopwatch-reset {
   font-family: var(--main-font);
   font-size: 1em;
@@ -296,9 +245,7 @@ body {
   padding-left: 15px;
   color: var(--evidence-color);
 }
-
 #stopwatch-wrapper #stopwatch-reset:hover {
   color: rgba(var(--evidence-color-decimal), 0.75);
   cursor: pointer;
-}
-/*# sourceMappingURL=evidenceTracker.css.map */
+}/*# sourceMappingURL=evidenceTracker.css.map */
