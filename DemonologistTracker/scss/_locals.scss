@@ -1,0 +1,189 @@
+#remarks-wrapper {
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+    #remark1 {
+        font-size: 28pt;
+        color: var(--remark-color);
+        user-select: none;
+    }
+
+    .checkbox-wrapper {
+        .checkbox-envelope {
+            .checkbox-text {
+                font-size: 28pt;
+            }
+        }
+    }
+}
+
+#clear-button {
+    width: 105px;
+    height: 55px;
+    margin-left: 225px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 4em;
+    color: var(--evidence-color);
+    user-select: none;
+
+    &:hover {
+        cursor: pointer;
+        color: rgba(var(--evidence-color-decimal), 0.75);
+    }
+}
+
+#section-wrapper {
+    padding-left: 25px;
+    display: flex;
+
+    .evidence-container {
+        width: 670px;
+        min-width: 670px;
+        height: 100%;
+        position: relative;
+
+        .checkbox-wrapper {
+            &:not(.enabled) {
+                filter: opacity(50%);
+            }
+
+            &:not(:first-child) {
+                margin-top: .35em;
+            }
+
+            &.disabled {
+                filter: opacity(50%);
+            }
+
+            .checkbox-envelope {
+                &::before {
+                    top: 20px;
+                    content: '';
+                    width: 115%;
+                    height: .5em;
+                    display: inline-block;
+                    position: relative;
+                    white-space: nowrap;
+                    line-height: 37px;
+                }
+
+                &:not(.enabled)::before {
+                    background: var(--evidence-color);
+                    /*this is the color of the line*/
+                    opacity: .9;
+                    border-radius: .3em;
+                    left: -15%;
+                    transform: rotate(1.0deg);
+                }
+            }
+        }
+    }
+
+    #ghosts-wrapper {
+        font-size: 1.35em;
+        color: var(--ghost-info-color);
+        border-left: solid var(--ghost-info-color) 3px;
+        margin-left: 5px;
+        padding-left: 25px;
+        height: 100%;
+
+        #possibleGhosts {
+            list-style: none;
+            text-transform: uppercase;
+            display: table;
+
+            .ghostentry {
+                li {
+                    font-size: 1.75em;
+                    color: var(--ghost-name-color);
+
+                    .tooltip {
+                        position: relative;
+                        display: inline-block;
+
+                        .tooltiptext {
+                            visibility: hidden;
+                            width: 550px;
+                            text-align: center;
+                            padding: 5px 0;
+                            border-radius: 6px;
+                            font-size: 0.60em;
+                            position: absolute;
+                            z-index: 1;
+                            /*bottom: 100%;
+                            left: 50%;*/
+                            top: -5px;
+                            left: 205px;
+                            margin-left: -60px;
+
+                            opacity: 0;
+                            transition: opacity 0.3s;
+                            background-color: rgb(180, 179, 179);
+
+                            /* Draw an arrow at bottom of tooltip box
+                            &::after {
+                                content: "";
+                                position: absolute;
+                                top: 100%;
+                                left: 50%;
+                                margin-left: -5px;
+                                border-width: 5px;
+                                border-style: solid;
+                                border-color: #555 transparent transparent transparent;
+                            }
+    */
+                            .huntThreshold {
+                                color: var(--tooltip-hunt-threshold-color);
+                                font-weight: bold;
+                            }
+
+                            .unique {
+                                color: var(--tooltip-unique-color);
+                            }
+                        }
+
+                        &:hover .tooltiptext {
+                            visibility: visible;
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+
+            p {
+                margin-top: -12px;
+                margin-bottom: 10px;
+                font-size: 1.15em;
+            }
+
+            .weakness {
+                color: var(--ghost-weakness-color);
+            }
+
+            .ghostentry.excluded {
+                opacity: 0.25;
+
+                li {
+                    .tooltip {
+                        &:hover .tooltiptext {
+                            visibility: hidden;
+                            opacity: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#update-wrapper {
+    color: black;
+    font-size: 2em;
+    font-weight: bold;
+    opacity: .6;
+    position: absolute;
+    top: 0%;
+    right: 0%;
+}

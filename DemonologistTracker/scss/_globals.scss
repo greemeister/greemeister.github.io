@@ -1,0 +1,76 @@
+@font-face {
+    font-family: 'Reforma 1918 Blanca';
+    src: url('../font/Reforma1918-Blanca.ttf');
+}
+
+@keyframes strike {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/*
+.bg-image {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: grid;
+}
+
+.bg-image::before {
+    content: "";
+    background-image: url('../demonologist.avif');
+    filter: blur(4px);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+}
+*/
+body,
+html {
+    font-family: var(--main-font);
+    filter: opacity(85%);
+    color: white;
+    font-weight: bold;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    user-select: none;
+
+    &.enabled:hover {
+        cursor: pointer;
+    }
+
+    .checkbox {
+        width: 37px;
+    }
+
+    .checkbox-envelope {
+        margin: 0;
+        padding: 0;
+
+        .checkbox-text {
+            font-size: 41pt;
+            line-height: 37px;
+            margin-left: .20em;
+            margin-top: .15em;
+            color: var(--evidence-color);
+        }
+    }
+}
