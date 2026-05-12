@@ -26,15 +26,17 @@ const ghostInfos = [
     { name: "thaye", evidences: [4, 5, 7], description: "Upon entering the location, Thaye will become active, defensive and agile. <span class='weakness'>Thaye will weaken over time, making them weaker, slower and less aggressive.</span>", hunt_threshold: "75% scaling to a minimum 15% after aging.", unique: "Thaye ages as time goes on if there is a player nearby. Starting very active and aging to a very slow, inactive ghost. Hunting threshold, activity, speed, and ghost event chance will all decrease the longer you are near the ghost. Starting hunt threshold is 75% dropping all the way down to a minimum of 15%. Thaye lower its speed when it ages. Starting at 2.7m/s and lowering to a minimum of 1m/s    Each age lowers the speed by 0.175m/s. No Line of sight acceleration. Increased chance for DOTS/Writing. When asking 'How old are you' on the ouija board, the Thaye will respond differently depending on it's age." },
     { name: "dayan", evidences: [1, 2, 4], description: "The Dayan gains strength to protect herself if people \'dance\' too close to her. <span class='weakness'>The Dayan loses strength if people close to her stand still.</span>", hunt_threshold: "?", unique: "???" },
     { name: "gallu", evidences: [1, 2, 3], description: "Using protective equipment pushes the ghost to become enraged, weakening equipment effects. <span class='weakness'>Being enraged exhausts the Gallu, making protective equipment more effective.</span>", hunt_threshold: "?", unique: "???" },
-    { name: "obambo", evidences: [3, 5, 7], description: "While aggressive, the Obambo is quicker to start hunting. <span class='weakness'>While calm, the Obambo is slower to start hunting and easier to track.</span>", hunt_threshold: "?", unique: "???" }
+    { name: "obambo", evidences: [3, 5, 7], description: "While aggressive, the Obambo is quicker to start hunting. <span class='weakness'>While calm, the Obambo is slower to start hunting and easier to track.</span>", hunt_threshold: "?", unique: "???" },
+    { name: "aswang", evidences: [5, 6 ,7], description: "When they spot their target, Aswangs become faster in pursuit. <span class='weakness'>Aswangs prefer chasing over searching.</span>", hunt_threshold: "?", unique: "???" },
+    { name: "kormos", evidences: [2, 3, 4], description: "Kormos have incredibly strong hearing. <span class='weakness'>Kormos are nearly blind.</span>", hunt_threshold: "?", unique: "???" }
 ];
 
 const maxNumOfEvidences = ghostInfos[0].evidences.length;
 const ecn_enabled = "enabled";
 const ecn_excluded = "excluded";
 const ecn_tagged = "tagged";
-const last_updated = "03/31/26"
-const phasmophobia_server_version = "0.16.1.0"
+const last_updated = "05/12/26"
+const phasmophobia_server_version = "0.17.1.0"
 
 var excludeEvidence = false;
 var excludeMode = false;
