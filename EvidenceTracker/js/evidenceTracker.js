@@ -29,13 +29,14 @@ const ghostInfos = [
     { name: "obambo", evidences: [3, 5, 7], description: "While aggressive, the Obambo is quicker to start hunting. <span class='weakness'>While calm, the Obambo is slower to start hunting and easier to track.</span>", hunt_threshold: "?", unique: "???" },
     { name: "aswang", evidences: [5, 6 ,7], description: "When they spot their target, Aswangs become faster in pursuit. <span class='weakness'>Aswangs prefer chasing over searching.</span>", hunt_threshold: "?", unique: "???" },
     { name: "kormos", evidences: [2, 3, 4], description: "Kormos have incredibly strong hearing. <span class='weakness'>Kormos are nearly blind.</span>", hunt_threshold: "?", unique: "???" }
+    { name: "deildegast", evidences: [1, 5, 7], description: "At the beginning of an investigation, the Deildegast has the upper hand. <span class='weakness'>Deildegasts can be slowed down by both the living and the dead.</span>", hunt_threshold: "?", unique: "???" }
 ];
 
 const maxNumOfEvidences = ghostInfos[0].evidences.length;
 const ecn_enabled = "enabled";
 const ecn_excluded = "excluded";
 const ecn_tagged = "tagged";
-const last_updated = "05/12/26"
+const last_updated = "07/20/26
 const phasmophobia_server_version = "0.17.1.0"
 
 var excludeEvidence = false;
