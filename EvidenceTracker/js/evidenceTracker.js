@@ -28,7 +28,7 @@ const ghostInfos = [
     { name: "gallu", evidences: [1, 2, 3], description: "Using protective equipment pushes the ghost to become enraged, weakening equipment effects. <span class='weakness'>Being enraged exhausts the Gallu, making protective equipment more effective.</span>", hunt_threshold: "?", unique: "???" },
     { name: "obambo", evidences: [3, 5, 7], description: "While aggressive, the Obambo is quicker to start hunting. <span class='weakness'>While calm, the Obambo is slower to start hunting and easier to track.</span>", hunt_threshold: "?", unique: "???" },
     { name: "aswang", evidences: [5, 6 ,7], description: "When they spot their target, Aswangs become faster in pursuit. <span class='weakness'>Aswangs prefer chasing over searching.</span>", hunt_threshold: "?", unique: "???" },
-    { name: "kormos", evidences: [2, 3, 4], description: "Kormos have incredibly strong hearing. <span class='weakness'>Kormos are nearly blind.</span>", hunt_threshold: "?", unique: "???" }
+    { name: "kormos", evidences: [2, 3, 4], description: "Kormos have incredibly strong hearing. <span class='weakness'>Kormos are nearly blind.</span>", hunt_threshold: "?", unique: "???" },
     { name: "deildegast", evidences: [1, 5, 7], description: "At the beginning of an investigation, the Deildegast has the upper hand. <span class='weakness'>Deildegasts can be slowed down by both the living and the dead.</span>", hunt_threshold: "?", unique: "???" }
 ];
 
