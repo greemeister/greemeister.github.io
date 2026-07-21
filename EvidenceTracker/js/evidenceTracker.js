@@ -1,3 +1,5 @@
+import { last_updated, phasmophobia_server_version } from './version.mjs';
+
 // Ghost Info Defs
 const ghostInfos = [
     { name: "spirit", evidences: [1, 2, 5], description: "No strengths. <span class='weakness'>A Spirit can be temporarily stopped by burning smudge sticks near them.</span>", hunt_threshold: "50%", unique: "When a Spirit is smudged it will prevent the spirit from hunting again for 180 seconds, instead of the normal 90 seconds for most other ghost types (60 seconds for Demon)." },
@@ -36,8 +38,6 @@ const maxNumOfEvidences = ghostInfos[0].evidences.length;
 const ecn_enabled = "enabled";
 const ecn_excluded = "excluded";
 const ecn_tagged = "tagged";
-const last_updated = "07/21/26"
-const phasmophobia_server_version = "0.18.0.0"
 
 var excludeEvidence = false;
 var excludeMode = false;
