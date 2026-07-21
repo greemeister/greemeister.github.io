@@ -377,11 +377,11 @@ function toggleEvidence(evidence) {
         initPossibleGhostText();
     } else {
         getGhostInfoMatches(evidenceArray, [], excludeEvidenceArray).forEach(ghostInfo => {
-            newDiv = document.createElement("div");
+            let newDiv = document.createElement("div");
             newDiv.classList.add("ghostentry");
             newDiv.id = "ge_" + ghostInfo.name;
 
-            newEntry = '<li><span class="tooltip">' + ghostInfo.name +
+            let newEntry = '<li><span class="tooltip">' + ghostInfo.name +
                 '<span class="tooltiptext">' +
                 '<div class="huntThreshold">Hunts at: ' + ghostInfo.hunt_threshold + '</div>' +
                 '<div class="unique">Unique/Hidden Powers: ' + ghostInfo.unique + '</div>' +
