@@ -37,7 +37,7 @@ const ecn_enabled = "enabled";
 const ecn_excluded = "excluded";
 const ecn_tagged = "tagged";
 const last_updated = "07/20/26"
-const phasmophobia_server_version = "0.17.1.0"
+const phasmophobia_server_version = "0.18.0.0"
 
 var excludeEvidence = false;
 var excludeMode = false;
