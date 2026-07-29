@@ -134,7 +134,7 @@ function getRemainingEvidenceIds(present, notPresent, exclude) {
 
 function initializeTracker() {
     // Set last update and phasmo version text
-    document.getElementById("update-wrapper").innerHTML = "Last updated: " + last_updated + "<br>Phasmophobia Server: v" + phasmophobia_server_version;
+    document.getElementById("update-wrapper").innerHTML = "Last updated: " + last_updated + "<br>Server updated: " + server_updated + "<br>Phasmophobia Server: v" + phasmophobia_server_version;
 
     // Build our element cache (THIS MUST BE FIRST IN THE INITIALIZATION PROCESS!!!)
     (function () {
@@ -444,7 +444,7 @@ function toggleEvidence(evidence) {
 
 function toggleGhost(e) {
     // Rewind ancestry back to parent div element
-    element = e.target;
+    let element = e.target;
     while (element.nodeName.toLowerCase() != 'div') {
         element = element.parentElement;
     }
