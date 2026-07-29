@@ -1,4 +1,4 @@
-import { last_updated, phasmophobia_server_version } from './version.mjs';
+import { server_updated, phasmophobia_server_version } from './version.mjs';
 
 // Ghost Info Defs
 const ghostInfos = [
@@ -38,6 +38,7 @@ const maxNumOfEvidences = ghostInfos[0].evidences.length;
 const ecn_enabled = "enabled";
 const ecn_excluded = "excluded";
 const ecn_tagged = "tagged";
+const last_updated = "07-28-2026"
 
 var excludeEvidence = false;
 var excludeMode = false;
