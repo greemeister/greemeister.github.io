@@ -450,10 +450,10 @@ function toggleGhost(e) {
         element = element.parentElement;
     }
     
-    total_count = document.querySelectorAll(".ghostentry").length;
-    exclude_count = document.querySelectorAll("#possibleGhosts ." + ecn_excluded).length;
+    let total_count = document.querySelectorAll(".ghostentry").length;
+    let exclude_count = document.querySelectorAll("#possibleGhosts ." + ecn_excluded).length;
 
-    override = false;
+    let override = false;
     if (typeof e.override !== 'undefined')
         override = e.override;
 
