@@ -444,10 +444,11 @@ function toggleEvidence(evidence) {
 
 function toggleGhost(e) {
     // Rewind ancestry back to parent div element
-    element = e.srcElement;
+    element = e.target;
     while (element.nodeName.toLowerCase() != 'div') {
         element = element.parentElement;
     }
+    
     total_count = document.querySelectorAll(".ghostentry").length;
     exclude_count = document.querySelectorAll("#possibleGhosts ." + ecn_excluded).length;
 
