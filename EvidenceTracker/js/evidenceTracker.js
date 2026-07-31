@@ -137,7 +137,7 @@ function initializeTracker() {
     let server_version = "v" + phasmophobia_server_version
 
     if (typeof patch_notes_url !== 'undefined') {
-        server_version = "<a href=\"" + patch_notes_url + "\">" + server_version + "</a>"
+        server_version = "<a target=\"_blank\" href=\"" + patch_notes_url + "\">" + server_version + "</a>"
     }
 
     // Set last update and phasmo version text
