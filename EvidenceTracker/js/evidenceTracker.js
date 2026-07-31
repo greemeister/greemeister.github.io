@@ -1,4 +1,4 @@
-import { server_updated, phasmophobia_server_version } from './version.mjs';
+import { server_updated, phasmophobia_server_version, patch_notes_url } from './version.mjs';
 
 // Ghost Info Defs
 const ghostInfos = [
@@ -134,8 +134,14 @@ function getRemainingEvidenceIds(present, notPresent, exclude) {
 }
 
 function initializeTracker() {
+    let server_version = "v" + phasmophobia_server_version
+
+    if (typeof patch_notes_url !== 'undefined') {
+        server_version = "<a href=\"" + patch_notes_url + "\">" + server_version + "</a>"
+    }
+
     // Set last update and phasmo version text
-    document.getElementById("update-wrapper").innerHTML = "Last updated: " + last_updated + "<br>Server updated: " + server_updated + "<br>Phasmophobia Server: v" + phasmophobia_server_version;
+    document.getElementById("update-wrapper").innerHTML = "Last updated: " + last_updated + "<br>Server updated: " + server_updated + "<br>Phasmophobia Server: " + server_version;
 
     // Build our element cache (THIS MUST BE FIRST IN THE INITIALIZATION PROCESS!!!)
     (function () {
