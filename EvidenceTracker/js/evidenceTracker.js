@@ -29,7 +29,7 @@ const ghostInfos = [
     { name: "dayan", evidences: [1, 2, 4], description: "The Dayan gains strength to protect herself if people \'dance\' too close to her. <span class='weakness'>The Dayan loses strength if people close to her stand still.</span>", hunt_threshold: "?", unique: "???" },
     { name: "gallu", evidences: [1, 2, 3], description: "Using protective equipment pushes the ghost to become enraged, weakening equipment effects. <span class='weakness'>Being enraged exhausts the Gallu, making protective equipment more effective.</span>", hunt_threshold: "?", unique: "???" },
     { name: "obambo", evidences: [3, 5, 7], description: "While aggressive, the Obambo is quicker to start hunting. <span class='weakness'>While calm, the Obambo is slower to start hunting and easier to track.</span>", hunt_threshold: "?", unique: "???" },
-    { name: "aswang", evidences: [5, 6 ,7], description: "When they spot their target, Aswangs become faster in pursuit. <span class='weakness'>Aswangs prefer chasing over searching.</span>", hunt_threshold: "?", unique: "???" },
+    { name: "aswang", evidences: [5, 6, 7], description: "When they spot their target, Aswangs become faster in pursuit. <span class='weakness'>Aswangs prefer chasing over searching.</span>", hunt_threshold: "?", unique: "???" },
     { name: "kormos", evidences: [2, 3, 4], description: "Kormos have incredibly strong hearing. <span class='weakness'>Kormos are nearly blind.</span>", hunt_threshold: "?", unique: "???" },
     { name: "deildegast", evidences: [1, 5, 7], description: "At the beginning of an investigation, the Deildegast has the upper hand. <span class='weakness'>Deildegasts can be slowed down by both the living and the dead.</span>", hunt_threshold: "?", unique: "???" }
 ];
@@ -38,7 +38,7 @@ const maxNumOfEvidences = ghostInfos[0].evidences.length;
 const ecn_enabled = "enabled";
 const ecn_excluded = "excluded";
 const ecn_tagged = "tagged";
-const last_updated = "07-31-2026"
+const last_updated = "08-29-2026"
 
 var excludeEvidence = false;
 var excludeMode = false;
@@ -404,7 +404,7 @@ function toggleEvidence(evidence) {
         const ghostEntries = document.querySelectorAll(".ghostentry");
         ghostEntries.forEach((ghostEntry) => {
             if (ghostExclusiveMap.has(ghostEntry.id)) {
-                newEvent = new Event("click");
+                let newEvent = new Event("click");
                 newEvent.override = true;
                 ghostEntry.dispatchEvent(newEvent);
             }
@@ -455,7 +455,7 @@ function toggleGhost(e) {
     while (element.nodeName.toLowerCase() != 'div') {
         element = element.parentElement;
     }
-    
+
     let total_count = document.querySelectorAll(".ghostentry").length;
     let exclude_count = document.querySelectorAll("#possibleGhosts ." + ecn_excluded).length;
 
